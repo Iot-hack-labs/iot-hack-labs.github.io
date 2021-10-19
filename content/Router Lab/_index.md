@@ -5,8 +5,9 @@ weight = 5
 chapter = true
 +++
 
-### Chapter X
+### WiFi Lab Information
 
-# Some Chapter title
-
-Lorem Ipsum.
+```txt
+SSID: iot-hack-lab
+Password: saintcon2021
+```

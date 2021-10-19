@@ -7,4 +7,4 @@ chapter = true
 
 # WRT160N
 
-...
+Must be on the Wifi [documented here](/router-lab/).
