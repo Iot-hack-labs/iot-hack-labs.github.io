@@ -34,15 +34,23 @@ We use `gatttool` to read and write values to service handles.
 $ gatttool -b 94:B9:7E:DA:08:56 --char-read-a 0x0016
 ```
 
-When navigating to different challenges, you will probably get the following error:
-```
-Characteristic Write Request failed: Request attribute has encountered an unlikely error
-```
-This is unavoidable because of the way the CTF was architected.
-
 
 ### Bleah
 
 Although actually deprecated in favor of Bettercap, it may be easier to use bleah to target which device to enumerate characteristics.
 
 ![images/hciconfig.png](/static/hciconfig.png)
+
+⚠️ Bleah has been deprecated in favor of Bettercap and may not be available.
+
+### Bettercap
+
+```
+$ sudo bettercap
+```
+
+```
+> ble.recon on
+```
+
+![images/ble_recon.png](/static/ble_recon.png)
