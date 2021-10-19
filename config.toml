@@ -13,3 +13,4 @@ home = [ "HTML", "RSS", "JSON"]
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
   themeVariant = "red"
   ordersectionsby = "weight"
+  editURL = "https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/"
