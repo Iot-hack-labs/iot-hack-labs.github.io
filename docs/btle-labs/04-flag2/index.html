@@ -6,18 +6,18 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>Flag2 :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634671095 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634671095 rel=stylesheet>
-<link href=/css/hybrid.css?1634671095 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634671095 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634671095 rel=stylesheet>
-<link href=/css/auto-complete.css?1634671095 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634671095 rel=stylesheet>
-<link href=/css/theme.css?1634671095 rel=stylesheet>
-<link href=/css/tabs.css?1634671095 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634671095 rel=stylesheet>
-<link href=/css/theme-red.css?1634671095 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634671095></script>
+<link href=/css/nucleus.css?1634671929 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634671929 rel=stylesheet>
+<link href=/css/hybrid.css?1634671929 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634671929 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634671929 rel=stylesheet>
+<link href=/css/auto-complete.css?1634671929 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634671929 rel=stylesheet>
+<link href=/css/theme.css?1634671929 rel=stylesheet>
+<link href=/css/tabs.css?1634671929 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634671929 rel=stylesheet>
+<link href=/css/theme-red.css?1634671929 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634671929></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/btle-labs/04-flag2/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634671095></script>
-<script type=text/javascript src=/js/auto-complete.js?1634671095></script>
+<script type=text/javascript src=/js/lunr.min.js?1634671929></script>
+<script type=text/javascript src=/js/auto-complete.js?1634671929></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634671095></script>
+<script type=text/javascript src=/js/search.js?1634671929></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -270,17 +270,12 @@ Ultraloq-UL3
 <h1>
 Flag2
 </h1>
-<p>Here are the target devices for reference:</p>
-<ol start=0>
-<li>Flag 0: 94:B9:7E:DA:08:56</li>
-<li>Flag 1: 08:3A:F2:7D:65:8A</li>
-<li>Flag 2: 94:B9:7E:FA:27:72</li>
-<li>Flag 3: 94:B9:7E:F9:21:B6</li>
-</ol>
 <h3 id=view-gatt-table>View Gatt Table</h3>
-<p>After switching to challenge 2, use <code>bleah</code> to enumerate its characteristics again.</p>
-<pre tabindex=0><code>$ sudo bleah -b 94:B9:7E:FA:27:72 -e
-</code></pre><p><img src=/static/bleah_flag_2.png alt=images/bleah_flag_2.png></p>
+<p>After switching to challenge 2, use <code>bettercap</code> to enumerate its characteristics again.</p>
+<pre tabindex=0><code>$ sudo bettercap
+</code></pre><pre tabindex=0><code>&gt; ble.recon on
+&gt; ble.enum 94:B9:7E:FA:27:72
+</code></pre><p><img src=/static/ble_enum_flag_2.png alt=images/ble_enum_flag_2.png></p>
 <p>We see that there is some authentication required, and that we should connect with pin 0000. We can do this with <code>gatttool</code>.</p>
 <h3 id=use-gatttool-with-authentication>Use Gatttool with Authentication</h3>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool --sec-level<span style=color:#f92672>=</span>high -b 94:B9:7E:FA:27:72 --char-read -a 0x002c
@@ -305,17 +300,17 @@ Flag2
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634671095></script>
-<script src=/js/perfect-scrollbar.min.js?1634671095></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634671095></script>
-<script src=/js/jquery.sticky.js?1634671095></script>
-<script src=/js/featherlight.min.js?1634671095></script>
-<script src=/js/highlight.pack.js?1634671095></script>
+<script src=/js/clipboard.min.js?1634671929></script>
+<script src=/js/perfect-scrollbar.min.js?1634671929></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634671929></script>
+<script src=/js/jquery.sticky.js?1634671929></script>
+<script src=/js/featherlight.min.js?1634671929></script>
+<script src=/js/highlight.pack.js?1634671929></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634671095></script>
-<script src=/js/learn.js?1634671095></script>
-<script src=/js/hugo-learn.js?1634671095></script>
-<script src=/mermaid/mermaid.js?1634671095></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634671929></script>
+<script src=/js/learn.js?1634671929></script>
+<script src=/js/hugo-learn.js?1634671929></script>
+<script src=/mermaid/mermaid.js?1634671929></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>
