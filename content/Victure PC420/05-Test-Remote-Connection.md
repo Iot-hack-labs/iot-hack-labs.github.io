@@ -8,7 +8,7 @@ date: 2021-10-18T20:52:11-06:00
 
 ## Test Remote Connection
 Now that the camera is connected to the WiFi, we should be able to disconnect our USB to TTL adapter and remotely connect to it.
-```
+```sh
 kali@kali:~$ telnet 192.168.4.46
 Trying 192.168.4.46...
 Connected to 192.168.4.46.

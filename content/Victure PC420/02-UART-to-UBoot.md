@@ -13,7 +13,7 @@ We will now connect to the Victure camera via the USB to TTL adapter.
 Connect the female ends of the jumper cables to the TX, RX, and GND pins on the USB to TTL adapter shown above. Once done, connect the adapter to the computer
 
 `screen` can be used to connect to serial consoles. To connect to the adapter, run the following
-```
+```sh
 kali@kali:~$ screen /dev/ttyUSB0 115200
 ```
 Where,
@@ -36,7 +36,7 @@ It is now time to power the camera. Before doing so, make sure you are ready to 
 
 Once the camera is powered on, you should see something like this in the `screen` session
 
-```
+```sh
 U-Boot 2013.10.0-AK_V3.0.05 (Jan 11 2021 - 08:10:47)
 
 DRAM:  64 MiB
@@ -53,7 +53,7 @@ reset pin value: 1
 Hit any key to stop autoboot:  1
 ```
 Press any key to stop the autoboot process. The following shell prompt should be shown
-```
+```sh
 anyka$
 ```
 
