@@ -6,18 +6,18 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>BTLE CTF :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634612509 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634612509 rel=stylesheet>
-<link href=/css/hybrid.css?1634612509 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634612509 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634612509 rel=stylesheet>
-<link href=/css/auto-complete.css?1634612509 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634612509 rel=stylesheet>
-<link href=/css/theme.css?1634612509 rel=stylesheet>
-<link href=/css/tabs.css?1634612509 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634612509 rel=stylesheet>
-<link href=/css/theme-red.css?1634612509 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634612509></script>
+<link href=/css/nucleus.css?1634613996 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634613996 rel=stylesheet>
+<link href=/css/hybrid.css?1634613996 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634613996 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634613996 rel=stylesheet>
+<link href=/css/auto-complete.css?1634613996 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634613996 rel=stylesheet>
+<link href=/css/theme.css?1634613996 rel=stylesheet>
+<link href=/css/tabs.css?1634613996 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634613996 rel=stylesheet>
+<link href=/css/theme-red.css?1634613996 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634613996></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/btle-ctf/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634612509></script>
-<script type=text/javascript src=/js/auto-complete.js?1634612509></script>
+<script type=text/javascript src=/js/lunr.min.js?1634613996></script>
+<script type=text/javascript src=/js/auto-complete.js?1634613996></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634612509></script>
+<script type=text/javascript src=/js/search.js?1634613996></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -87,6 +87,18 @@ active">
 <a href=/btle-ctf/>
 BTLE CTF
 </a>
+<ul>
+<li data-nav-id=/btle-ctf/01-intro/ title=Intro class=dd-item>
+<a href=/btle-ctf/01-intro/>
+Intro
+</a>
+</li>
+<li data-nav-id=/btle-ctf/99-outro/ title=Outro class=dd-item>
+<a href=/btle-ctf/99-outro/>
+Outro
+</a>
+</li>
+</ul>
 </li>
 </ul>
 <section id=footer>
@@ -98,6 +110,12 @@ BTLE CTF
 <div class="padding highlightable">
 <div>
 <div id=top-bar>
+<div id=top-github-link>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/BTLE%20CTF/_index.md target=blank>
+<i class="fas fa-code-branch"></i>
+<span id=top-github-link-text>Edit this page</span>
+</a>
+</div>
 <div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb>
 <span id=sidebar-toggle-span>
 <a href=# id=sidebar-toggle data-sidebar-toggle>
@@ -114,9 +132,22 @@ BTLE CTF
 </div>
 <div id=chapter>
 <div id=body-inner>
-<h3 id=chapter-x>Chapter X</h3>
-<h1 id=some-chapter-title>Some Chapter title</h1>
-<p>Lorem Ipsum.</p>
+<h3 id=btle-ctf>BTLE CTF</h3>
+<h2 id=tips-for-this-lab>Tips for this lab</h2>
+<p>⚠️⚠️⚠️ BLE devices are finicky. You <strong>will</strong> encounter errors and have to retry commands when following this lab. Here are some helpful tips:</p>
+<ol>
+<li>Don&rsquo;t be afraid to run commands multiple times if you get an error. You may see error messages when in fact the command was successful.</li>
+<li>Remove and re insert the Bluetooth dongle. (Or run <code>sudo systemctl restart bluetooth</code>)</li>
+<li>Power cycle the BLE CTF device. (Progress will persist, but you will need to navigate to the challenge again)</li>
+</ol>
+<h2 id=tools>Tools</h2>
+<p>We can use a few different tools to solve some BLE CTF Infinity challenges.</p>
+<ul>
+<li>hciconfig</li>
+<li>bettercap</li>
+<li>gatttool</li>
+</ul>
+<p>This lab walks through some tools that are used for hacking Bluetooth Low Energy (BLE). Our target is a Bluetooth CTF project designed to allow users to learn about core concepts of Bluetooth client and server interactions. (BLE CTF Infinity)</p>
 <footer class=footline>
 </footer>
 </div>
@@ -124,23 +155,23 @@ BTLE CTF
 </div>
 <div id=navigation>
 <a class="nav nav-prev" href=/router-lab/ title="Router Lab"> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/victure-pc420/ title="Victure PC420" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-next" href=/btle-ctf/01-intro/ title=Intro style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634612509></script>
-<script src=/js/perfect-scrollbar.min.js?1634612509></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634612509></script>
-<script src=/js/jquery.sticky.js?1634612509></script>
-<script src=/js/featherlight.min.js?1634612509></script>
-<script src=/js/highlight.pack.js?1634612509></script>
+<script src=/js/clipboard.min.js?1634613996></script>
+<script src=/js/perfect-scrollbar.min.js?1634613996></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634613996></script>
+<script src=/js/jquery.sticky.js?1634613996></script>
+<script src=/js/featherlight.min.js?1634613996></script>
+<script src=/js/highlight.pack.js?1634613996></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634612509></script>
-<script src=/js/learn.js?1634612509></script>
-<script src=/js/hugo-learn.js?1634612509></script>
-<script src=/mermaid/mermaid.js?1634612509></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634613996></script>
+<script src=/js/learn.js?1634613996></script>
+<script src=/js/hugo-learn.js?1634613996></script>
+<script src=/mermaid/mermaid.js?1634613996></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>

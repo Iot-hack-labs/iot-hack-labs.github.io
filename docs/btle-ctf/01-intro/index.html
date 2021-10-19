@@ -1,0 +1,323 @@
+<!doctype html><html lang=en class="js csstransforms3d">
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=generator content="Hugo 0.88.1">
+<meta name=description content>
+<link rel=icon href=/images/favicon.png type=image/png>
+<title>Intro :: IoT Hack Labs</title>
+<link href=/css/nucleus.css?1634613996 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634613996 rel=stylesheet>
+<link href=/css/hybrid.css?1634613996 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634613996 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634613996 rel=stylesheet>
+<link href=/css/auto-complete.css?1634613996 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634613996 rel=stylesheet>
+<link href=/css/theme.css?1634613996 rel=stylesheet>
+<link href=/css/tabs.css?1634613996 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634613996 rel=stylesheet>
+<link href=/css/theme-red.css?1634613996 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634613996></script>
+<style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
+</head>
+<body data-url=/btle-ctf/01-intro/>
+<nav id=sidebar>
+<div id=header-wrapper>
+<div id=header>
+</div>
+<div class=searchbox>
+<label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span>
+</div>
+<script type=text/javascript src=/js/lunr.min.js?1634613996></script>
+<script type=text/javascript src=/js/auto-complete.js?1634613996></script>
+<script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
+<script type=text/javascript src=/js/search.js?1634613996></script>
+</div>
+<section id=homelinks>
+<ul>
+<li>
+<a class=padding href=/><i class="fas fa-home"></i> Home</a>
+</li>
+</ul>
+</section>
+<div class=highlightable>
+<ul class=topics>
+<li data-nav-id=/victure-pc420/ title="Victure PC420" class=dd-item>
+<a href=/victure-pc420/>
+Victure PC420
+</a>
+<ul>
+<li data-nav-id=/victure-pc420/01-micro-sd/ title="Micro SD" class=dd-item>
+<a href=/victure-pc420/01-micro-sd/>
+Micro SD
+</a>
+</li>
+<li data-nav-id=/victure-pc420/02-uart-to-uboot/ title="UART to UBoot" class=dd-item>
+<a href=/victure-pc420/02-uart-to-uboot/>
+UART to UBoot
+</a>
+</li>
+<li data-nav-id=/victure-pc420/03-uboot-to-root/ title="UBoot to Root" class=dd-item>
+<a href=/victure-pc420/03-uboot-to-root/>
+UBoot to Root
+</a>
+</li>
+<li data-nav-id=/victure-pc420/04-configure-remote-connection/ title="Configure Remote Connection" class=dd-item>
+<a href=/victure-pc420/04-configure-remote-connection/>
+Configure Remote Connection
+</a>
+</li>
+<li data-nav-id=/victure-pc420/05-test-remote-connection/ title="Test Remote Connection" class=dd-item>
+<a href=/victure-pc420/05-test-remote-connection/>
+Test Remote Connection
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/router-lab/ title="Router Lab" class=dd-item>
+<a href=/router-lab/>
+Router Lab
+</a>
+</li>
+<li data-nav-id=/btle-ctf/ title="BTLE CTF" class="dd-item
+parent">
+<a href=/btle-ctf/>
+BTLE CTF
+</a>
+<ul>
+<li data-nav-id=/btle-ctf/01-intro/ title=Intro class="dd-item active">
+<a href=/btle-ctf/01-intro/>
+Intro
+</a>
+</li>
+<li data-nav-id=/btle-ctf/99-outro/ title=Outro class=dd-item>
+<a href=/btle-ctf/99-outro/>
+Outro
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<section id=footer>
+</section>
+</div>
+</nav>
+<section id=body>
+<div id=overlay></div>
+<div class="padding highlightable">
+<div>
+<div id=top-bar>
+<div id=top-github-link>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/BTLE%20CTF/01-intro.md target=blank>
+<i class="fas fa-code-branch"></i>
+<span id=top-github-link-text>Edit this page</span>
+</a>
+</div>
+<div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb>
+<span id=sidebar-toggle-span>
+<a href=# id=sidebar-toggle data-sidebar-toggle>
+<i class="fas fa-bars"></i>
+</a>
+</span>
+<span class=links>
+<a href=/></a> > <a href=/btle-ctf/>BTLE CTF</a> > Intro
+</span>
+</div>
+</div>
+</div>
+<div id=head-tags>
+</div>
+<div id=chapter>
+<div id=body-inner>
+<h3 id=hciconfig>Hciconfig</h3>
+<p>You can view BLE interfaces on you system by using the <code>hciconfig</code> command. You should see at least one interface.</p>
+<p><img src=/static/hciconfig.png alt=HCIConfig></p>
+<h3 id=bettercap>Bettercap</h3>
+<p>We need to discover the address of our target BLE device. There are many tools that can accomplish this. We will use bettercap in the command line.</p>
+<p>Start bettercap (lab machine passwords: password)</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo bettercap
+</code></pre></div><p>Run recon to list discovered BLE devices. Note, there will probably be <strong>many</strong> discovered devices in crowded areas. You should turn off recon mode quickly after.</p>
+<pre tabindex=0><code>» ble.recon on
+» ble.recon off
+</code></pre><p>You should see similar output as below. We are looking for the address of devices named <code>BLE_CTF_SCORE</code>. There should be several. Choose one and copy the MAC address. This will be our target for the rest of the lab.</p>
+<p><img src=/static/ble_recon.png alt></p>
+<p>After running <code>ble.recon</code>, you can display discovered devices with additional info including signal strength, the chip vendor, and connection status.</p>
+<pre tabindex=0><code>» ble.show
+</code></pre><p><img src=/static/ble_show.png alt></p>
+<p>Now that we have found the address of our target, we can enumerate characteristics and services of what is running on the gatt server. Run the following command, replacing the MAC address with your selected target.</p>
+<pre tabindex=0><code>» ble.enum AA:BB:CC:DD:EE:FF
+</code></pre><p><img src=/static/ble_enum_0.png alt></p>
+<p>This is the BLE CTF Infinity scoreboard, which nicely shows our progress. We should see that 0/10 flags are complete. There are also 2 important things we should take away from this:</p>
+<ol>
+<li>We write all flags to handle <code>0x002e</code></li>
+<li>We navigate between challenges (flags) by writing a value between <code>0x0000</code> and <code>0x00FF</code> to handle <code>0x0030</code>.</li>
+</ol>
+<p>The BLE CTF is made of multiple Gatt servers which we need to rotate through by writing values to <code>0x0030</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo bettercap --eval <span style=color:#e6db74>&#34;ble.recon on&#34;</span>
+</code></pre></div><h3 id=gatttool>Gatttool</h3>
+<p>We can use <code>gatttool</code> to write values to handle <code>0x0030</code> to navigate to different challenges. We can write <code>0000</code> to go to scoreboard at any time. This is also where flag 0 is.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x00300 -n <span style=color:#ae81ff>0000</span>  
+</code></pre></div><p>When doing this, you will get the following error:</p>
+<pre tabindex=0><code>Characteristic Write Request failed: Request attribute has encountered an unlikely error
+</code></pre><p>This is actually expected, and is what we are looking for to know the value was successfully written when navigating between the scoreboard and challenges. Its unavoidable because of the way the CTF was architected.</p>
+<h2 id=flag-0>Flag 0</h2>
+<p>We can see the &lsquo;Device Name&rsquo; is actually the flag.</p>
+<p><img src=/static/flag_0.png alt></p>
+<p>Exit bettercap.</p>
+<h2 id=submit-the-flag>Submit the Flag</h2>
+<p>Write the value to where we submit flags, handle <code>0x002e</code>. (Remember to change the device MAC address)</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x002e -n <span style=color:#66d9ef>$(</span>echo -n <span style=color:#e6db74>&#34;04dc54d9053b4307680a&#34;</span> | xxd -ps<span style=color:#66d9ef>)</span>
+Characteristic value was written successfully
+</code></pre></div><h2 id=check-your-score>Check Your Score</h2>
+<p>Now let&rsquo;s check the scoreboard. Go back into bettercap, run recon, and enumerate the device.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo bettercap
+</code></pre></div><pre tabindex=0><code>» ble.recon on
+» ble.recon off
+» ble.enum AA:BB:CC:DD:EE:FF
+</code></pre><p>We should see that Flag 0 is now complete.</p>
+<p><img src=/static/ble_enum_flag_0.png alt></p>
+<h2 id=flag-1>Flag 1</h2>
+<h3 id=navigate-to-flag-1-challenge>Navigate to Flag 1 Challenge</h3>
+<p>Navigate to challenge 2 by writing <code>0x0001</code> to handle <code>0x0030</code></p>
+<pre tabindex=0><code>gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0030 -n 0001
+</code></pre><h3 id=failure-enumerating-characteristics>Failure Enumerating Characteristics</h3>
+<p>At this point, if we try to use <code>bettercap</code> to enumerate the characteristics, we see that <code>bettercap</code> hangs and never returns output like for the scoreboard.</p>
+<p><img src=/static/ble_enum_hang.png alt></p>
+<h3 id=use-gatttool-to-read-characteristics>Use Gatttool to Read Characteristics</h3>
+<p>Lets try to use the <code>gatttool</code> to figure out what is going on. Start <code>gatttool</code> in interactive mode.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF -I
+</code></pre></div><p>Connect to the device and list the primary services.</p>
+<pre tabindex=0><code>&gt; connect
+&gt; primary
+&gt; char-read-hnd 0x0001
+&gt; char-read-hnd 0x0024
+&gt; char-read-hnd 0x0028
+</code></pre><p>From there we can read the listed service handles.</p>
+<p><img src=/static/flag_01_primary.png alt></p>
+<p>These don&rsquo;t provide anything that looks like a flag though. Recall in <code>bettercap</code> that we saw additional handles.</p>
+<p><img src=/static/ble_enum_handles.png alt></p>
+<p>Let&rsquo;s try reading those.</p>
+<pre tabindex=0><code>&gt; char-read-hnd 0x002a
+</code></pre><p><img src=/static/flag_01_0x002a.png alt></p>
+<p>Remember that <code>gatttool</code> is showing us the values hex encoded. Use your preferred method of decoding this. Cyberchef is an easy tool to use.</p>
+<p>We see that the value</p>
+<pre tabindex=0><code>67 6f 6f 64 62 79 65 20 f0 9f 91 8b
+</code></pre><p>decodes to</p>
+<pre tabindex=0><code>goodbye 👋
+</code></pre><p>This is followed by an error. It seems that we have been disconnected from the device. This perhaps explains why <code>bettercap</code> fails to enumerate the device characteristics.</p>
+<p>Reconnect and read <code>0x002e</code></p>
+<pre tabindex=0><code>&gt; char-read-hnd 0x002e
+</code></pre><p><img src=/static/flag_01_0x002e.png alt></p>
+<p>Decoding this hex shows gives us &ldquo;write here to goto to scoreboard&rdquo;.</p>
+<p>Read <code>0x002c</code></p>
+<pre tabindex=0><code>&gt; char-read-hnd 0x002c
+</code></pre><p><img src=/static/flag_01_0x002c.png alt></p>
+<p>The value at <code>0x002c</code> decoded looks like our flag :)</p>
+<h3 id=submit-the-flag-1>Submit the Flag</h3>
+<p>Write the <code>873c6495e4e738c94e1c</code> to handle <code>0x002e</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x002e -n <span style=color:#66d9ef>$(</span>echo -n <span style=color:#e6db74>&#34;873c6495e4e738c94e1c&#34;</span> | xxd -ps<span style=color:#66d9ef>)</span>
+Characteristic value was written successfully
+</code></pre></div><h3 id=check-your-score-1>Check Your Score</h3>
+<p>Navigate back to the scoreboard by writing <code>0x0000</code> to <code>0x0030</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0030 -n <span style=color:#ae81ff>0000</span>
+</code></pre></div><p>You can check your progress for flag 1 by using <code>bettercap</code> and <code>ble.enum</code>, or you can read the handle directly using <code>gatttool</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF -I
+</code></pre></div><pre tabindex=0><code>&gt; connect
+&gt; char-read-hnd 0x0036
+</code></pre><p><img src=/static/gatttool_flag_1_complete.png alt></p>
+<p>Decode the value with Cyberchef. You should see &ldquo;Flag 1: Complete&rdquo;.</p>
+<h2 id=flag-2>Flag 2</h2>
+<h3 id=navigate-to-flag-2-challenge>Navigate to Flag 2 Challenge</h3>
+<p>Navigate to challenge 2 by writing <code>0x0002</code> to handle <code>0x0030</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0030 -n <span style=color:#ae81ff>0002</span>
+</code></pre></div><h3 id=view-gatt-table>View Gatt Table</h3>
+<p>After switching to challenge 2, use <code>bettercap</code> to enumerate its characteristics again.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo bettercap
+</code></pre></div><pre tabindex=0><code>&gt; ble.recon on
+&gt; ble.recon off
+&gt; ble.enum AA:BB:CC:DD:EE:FF
+</code></pre><p><img src=/static/ble_enum_flag_2.png alt></p>
+<p>We see that there is some authentication required, and that we should connect with pin 0000. We can do this with <code>gatttool</code>.</p>
+<h3 id=use-gatttool-with-authentication>Use Gatttool with Authentication</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool --sec-level<span style=color:#f92672>=</span>high -b AA:BB:CC:DD:EE:FF --char-read -a 0x002c
+</code></pre></div><p>This will prompt you for the pin. Enter <code>0000</code> and click <code>OK</code>.</p>
+<p><img src=/static/pin_popup.png alt></p>
+<p>After authenticating, it will then print the value of <code>0x002c</code>.</p>
+<p><img src=/static/gatttool_flag_2.png alt></p>
+<p>Using Cyberchef we see</p>
+<pre tabindex=0><code>35 64 36 39 36 63 64 66 35 33 61 39 31 36 63 30 61 39 38 64
+</code></pre><p>decodes to</p>
+<pre tabindex=0><code>5d696cdf53a916c0a98d
+</code></pre><h3 id=submit-the-flag-2>Submit the Flag</h3>
+<p>Submit the flag with <code>gatttool</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x002e -n <span style=color:#66d9ef>$(</span>echo -n <span style=color:#e6db74>&#34;5d696cdf53a916c0a98d&#34;</span> | xxd -ps<span style=color:#66d9ef>)</span>
+Characteristic value was written successfully
+</code></pre></div><h3 id=check-your-score-2>Check Your Score</h3>
+<p>Navigate back to the scoreboard by writing <code>0x0000</code> to <code>0x0030</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0030 -n <span style=color:#ae81ff>0000</span>
+</code></pre></div><p>You can check your progress for flag 2 by using <code>bettercap</code> or reading handle <code>0x0038</code> with <code>gatttool</code>. You should see that flag 2 is now complete.</p>
+<p><img src=/static/ble_enum_flag_2_complete.png alt></p>
+<h2 id=flag-3>Flag 3</h2>
+<h3 id=navigate-to-flag-3-challenge>Navigate to Flag 3 Challenge</h3>
+<p>Navigate to challenge 3 by writing <code>0x0003</code> to handle <code>0x0030</code></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0030 -n <span style=color:#ae81ff>0003</span>
+</code></pre></div><h3 id=view-gatt-table-1>View Gatt Table</h3>
+<p>Use <code>bettercap</code> to enumerate its characteristics again.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo bettercap
+</code></pre></div><pre tabindex=0><code>&gt; ble.recon on
+&gt; ble.recon off
+&gt; ble.enum AA:BB:CC:DD:EE:FF
+</code></pre><p><img src=/static/ble_enum_flag_3.png alt></p>
+<p>We can see that it is looking for a device with the MAC address <code>11:22:33:44:55:66</code> to connect to it.</p>
+<h2 id=view-the-interface-mac-address>View the Interface MAC Address</h2>
+<p>Use <code>hciconfig</code> to view the MAC address of the interface.</p>
+<p><img src=/static/hciconfig.png alt></p>
+<h3 id=spooftooph>Spooftooph</h3>
+<p>We can spoof our mac address with the tool <code>spooftooph</code>. (Make sure to use <code>sudo</code>)</p>
+<pre tabindex=0><code>$ sudo spooftooph -i hci0 -a 11:22:33:44:55:66
+</code></pre><p><img src=/static/spooftooph.png alt></p>
+<p>Once we have done this, we need to reset the interface for the changes to take.</p>
+<pre tabindex=0><code>$ sudo hciconfig hci0 reset
+</code></pre><p>Now <code>hciconfig</code> should show the new MAC.</p>
+<p><img src=/static/hciconfig_spoofed_mac.png alt></p>
+<h3 id=read-the-gatt-table-with-spoofed-mac>Read the Gatt Table with Spoofed MAC</h3>
+<p>Using <code>bettercap</code> with the spoofed MAC we can now read the flag: <code>0ad3fe0c58e0a47b8afb</code>.</p>
+<p><img src=/static/ble_enum_flag_3_spoofed_mac.png alt></p>
+<h3 id=submit-the-flag-3>Submit the Flag</h3>
+<p>Submit the flag with <code>gatttool</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x002e -n <span style=color:#66d9ef>$(</span>echo -n <span style=color:#e6db74>&#34;0ad3fe0c58e0a47b8afb&#34;</span> | xxd -ps<span style=color:#66d9ef>)</span>
+Characteristic value was written successfully
+</code></pre></div><h3 id=check-your-score-3>Check Your Score</h3>
+<p>Navigate back to the scoreboard by writing <code>0x0000</code> to <code>0x0030</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0030 -n <span style=color:#ae81ff>0000</span>
+</code></pre></div><p>You can check your progress for flag 3 by using <code>bettercap</code> or reading handle <code>0x0038</code> with <code>gatttool</code>. You should see that flag 3 is now complete.</p>
+<p><img src=/static/ble_enum_flag_3_complete.png alt></p>
+<footer class=footline>
+</footer>
+</div>
+</div>
+</div>
+<div id=navigation>
+<a class="nav nav-prev" href=/btle-ctf/ title="BTLE CTF"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/btle-ctf/99-outro/ title=Outro style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+</div>
+</section>
+<div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
+<div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
+</div>
+<script src=/js/clipboard.min.js?1634613996></script>
+<script src=/js/perfect-scrollbar.min.js?1634613996></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634613996></script>
+<script src=/js/jquery.sticky.js?1634613996></script>
+<script src=/js/featherlight.min.js?1634613996></script>
+<script src=/js/highlight.pack.js?1634613996></script>
+<script>hljs.initHighlightingOnLoad()</script>
+<script src=/js/modernizr.custom-3.6.0.js?1634613996></script>
+<script src=/js/learn.js?1634613996></script>
+<script src=/js/hugo-learn.js?1634613996></script>
+<script src=/mermaid/mermaid.js?1634613996></script>
+<script>mermaid.initialize({startOnLoad:!0})</script>
+</body>
+</html>

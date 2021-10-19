@@ -1,0 +1,169 @@
+<!doctype html><html lang=en class="js csstransforms3d">
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=generator content="Hugo 0.88.1">
+<meta name=description content>
+<link rel=icon href=/images/favicon.png type=image/png>
+<title>Outro :: IoT Hack Labs</title>
+<link href=/css/nucleus.css?1634613996 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634613996 rel=stylesheet>
+<link href=/css/hybrid.css?1634613996 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634613996 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634613996 rel=stylesheet>
+<link href=/css/auto-complete.css?1634613996 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634613996 rel=stylesheet>
+<link href=/css/theme.css?1634613996 rel=stylesheet>
+<link href=/css/tabs.css?1634613996 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634613996 rel=stylesheet>
+<link href=/css/theme-red.css?1634613996 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634613996></script>
+<style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
+</head>
+<body data-url=/btle-ctf/99-outro/>
+<nav id=sidebar>
+<div id=header-wrapper>
+<div id=header>
+</div>
+<div class=searchbox>
+<label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span>
+</div>
+<script type=text/javascript src=/js/lunr.min.js?1634613996></script>
+<script type=text/javascript src=/js/auto-complete.js?1634613996></script>
+<script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
+<script type=text/javascript src=/js/search.js?1634613996></script>
+</div>
+<section id=homelinks>
+<ul>
+<li>
+<a class=padding href=/><i class="fas fa-home"></i> Home</a>
+</li>
+</ul>
+</section>
+<div class=highlightable>
+<ul class=topics>
+<li data-nav-id=/victure-pc420/ title="Victure PC420" class=dd-item>
+<a href=/victure-pc420/>
+Victure PC420
+</a>
+<ul>
+<li data-nav-id=/victure-pc420/01-micro-sd/ title="Micro SD" class=dd-item>
+<a href=/victure-pc420/01-micro-sd/>
+Micro SD
+</a>
+</li>
+<li data-nav-id=/victure-pc420/02-uart-to-uboot/ title="UART to UBoot" class=dd-item>
+<a href=/victure-pc420/02-uart-to-uboot/>
+UART to UBoot
+</a>
+</li>
+<li data-nav-id=/victure-pc420/03-uboot-to-root/ title="UBoot to Root" class=dd-item>
+<a href=/victure-pc420/03-uboot-to-root/>
+UBoot to Root
+</a>
+</li>
+<li data-nav-id=/victure-pc420/04-configure-remote-connection/ title="Configure Remote Connection" class=dd-item>
+<a href=/victure-pc420/04-configure-remote-connection/>
+Configure Remote Connection
+</a>
+</li>
+<li data-nav-id=/victure-pc420/05-test-remote-connection/ title="Test Remote Connection" class=dd-item>
+<a href=/victure-pc420/05-test-remote-connection/>
+Test Remote Connection
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/router-lab/ title="Router Lab" class=dd-item>
+<a href=/router-lab/>
+Router Lab
+</a>
+</li>
+<li data-nav-id=/btle-ctf/ title="BTLE CTF" class="dd-item
+parent">
+<a href=/btle-ctf/>
+BTLE CTF
+</a>
+<ul>
+<li data-nav-id=/btle-ctf/01-intro/ title=Intro class=dd-item>
+<a href=/btle-ctf/01-intro/>
+Intro
+</a>
+</li>
+<li data-nav-id=/btle-ctf/99-outro/ title=Outro class="dd-item active">
+<a href=/btle-ctf/99-outro/>
+Outro
+</a>
+</li>
+</ul>
+</li>
+</ul>
+<section id=footer>
+</section>
+</div>
+</nav>
+<section id=body>
+<div id=overlay></div>
+<div class="padding highlightable">
+<div>
+<div id=top-bar>
+<div id=top-github-link>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/BTLE%20CTF/99-outro.md target=blank>
+<i class="fas fa-code-branch"></i>
+<span id=top-github-link-text>Edit this page</span>
+</a>
+</div>
+<div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb>
+<span id=sidebar-toggle-span>
+<a href=# id=sidebar-toggle data-sidebar-toggle>
+<i class="fas fa-bars"></i>
+</a>
+</span>
+<span class=links>
+<a href=/></a> > <a href=/btle-ctf/>BTLE CTF</a> > Outro
+</span>
+</div>
+</div>
+</div>
+<div id=head-tags>
+</div>
+<div id=chapter>
+<div id=body-inner>
+<h2 id=finishing-up>Finishing up</h2>
+<p>Thats it for this lab. You are welcome to continue to try the other challenges.
+If you are done, reset the CTF by writing <code>0xC1EA12</code> to handle <code>0x0032</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0032 -n C1EA12
+</code></pre></div><h3 id=references>References</h3>
+<ul>
+<li><a href=https://github.com/hackgnar/ble_ctf_infinity>https://github.com/hackgnar/ble_ctf_infinity</a></li>
+<li>Chapter 11 of Practical IoT Hacking from No Starch Press.</li>
+</ul>
+<footer class=footline>
+</footer>
+</div>
+</div>
+</div>
+<div id=navigation>
+<a class="nav nav-prev" href=/btle-ctf/01-intro/ title=Intro> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/btle-ctf/01-intro/ title=Intro style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+</div>
+</section>
+<div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
+<div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
+</div>
+<script src=/js/clipboard.min.js?1634613996></script>
+<script src=/js/perfect-scrollbar.min.js?1634613996></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634613996></script>
+<script src=/js/jquery.sticky.js?1634613996></script>
+<script src=/js/featherlight.min.js?1634613996></script>
+<script src=/js/highlight.pack.js?1634613996></script>
+<script>hljs.initHighlightingOnLoad()</script>
+<script src=/js/modernizr.custom-3.6.0.js?1634613996></script>
+<script src=/js/learn.js?1634613996></script>
+<script src=/js/hugo-learn.js?1634613996></script>
+<script src=/mermaid/mermaid.js?1634613996></script>
+<script>mermaid.initialize({startOnLoad:!0})</script>
+</body>
+</html>
