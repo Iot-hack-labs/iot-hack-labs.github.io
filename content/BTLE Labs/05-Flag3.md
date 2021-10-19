@@ -47,4 +47,4 @@ Now `hciconfig` should show the new MAC.
 
 Using `bettercap` with the spoofed MAC we can now read the flag: `0ad3fe0c58e0a47b8afb`.
 
-![images/bleah_flag_3.png](/static/bleah_flag_3.png)
+![images/ble_enum_flag_3_spoofed_mac.png](/static/ble_enum_flag_3_spoofed_mac.png)
