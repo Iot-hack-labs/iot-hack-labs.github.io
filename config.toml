@@ -12,3 +12,4 @@ home = [ "HTML", "RSS", "JSON"]
 [params]
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
   themeVariant = "red"
+  ordersectionsby = "weight"
