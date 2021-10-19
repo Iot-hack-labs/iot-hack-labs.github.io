@@ -8,5 +8,7 @@ chapter = true
 # WRT160N
 ```txt
 Host: 172.21.0.15
+User: admin
+password: LvawK!*C@6MR!Cz#*V2$ze@#7v75iT
 ```
 Must be on the Wifi [documented here](/router-lab/).
