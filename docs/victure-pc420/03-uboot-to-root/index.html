@@ -6,18 +6,18 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>U-Boot to Root :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634659240 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634659240 rel=stylesheet>
-<link href=/css/hybrid.css?1634659240 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634659240 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634659240 rel=stylesheet>
-<link href=/css/auto-complete.css?1634659240 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634659240 rel=stylesheet>
-<link href=/css/theme.css?1634659240 rel=stylesheet>
-<link href=/css/tabs.css?1634659240 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634659240 rel=stylesheet>
-<link href=/css/theme-red.css?1634659240 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634659240></script>
+<link href=/css/nucleus.css?1634659971 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634659971 rel=stylesheet>
+<link href=/css/hybrid.css?1634659971 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634659971 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634659971 rel=stylesheet>
+<link href=/css/auto-complete.css?1634659971 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634659971 rel=stylesheet>
+<link href=/css/theme.css?1634659971 rel=stylesheet>
+<link href=/css/tabs.css?1634659971 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634659971 rel=stylesheet>
+<link href=/css/theme-red.css?1634659971 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634659971></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/victure-pc420/03-uboot-to-root/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634659240></script>
-<script type=text/javascript src=/js/auto-complete.js?1634659240></script>
+<script type=text/javascript src=/js/lunr.min.js?1634659971></script>
+<script type=text/javascript src=/js/auto-complete.js?1634659971></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634659240></script>
+<script type=text/javascript src=/js/search.js?1634659971></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -262,8 +262,8 @@ U-Boot to Root
 </h1>
 <h2 id=u-boot-to-root>U-Boot to Root</h2>
 <p>The current shell is actually a U-Boot a limited shell. U-Boot is an open-source, primary boot loader. This shell has commands related to the booting process.</p>
-<pre tabindex=0><code>anyka$ help
-?       - alias for 'help'
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>anyka$ help
+?       - alias <span style=color:#66d9ef>for</span> <span style=color:#e6db74>&#39;help&#39;</span>
 base    - print or set address offset
 bootm   - boot application image from memory
 bootp   - boot image via network using BOOTP/TFTP protocol
@@ -275,37 +275,37 @@ downcheck_patition_update- load usr.sqsh4 tftp
 downimage- downimage   - download and write All-Image to FLASH device,partiton table from ENV partition.
 downjffs2fs- load usr.jffs2 tftp
 downkernel- load uImage tftp
-...&lt;omitted for brevity&gt;...
-</code></pre><p>This U-Boot shell can be used to drop us into a root shell. To do so, run the following</p>
-<pre tabindex=0><code>anyka$ setenv bootargs console=ttySAK0,115200n8 root=/dev/mtdblock4 rootfstype=squashfs init=/bin/sh mem=64M memsize=64M
+...&lt;omitted <span style=color:#66d9ef>for</span> brevity&gt;...
+</code></pre></div><p>This U-Boot shell can be used to drop us into a root shell. To do so, run the following</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>anyka$ setenv bootargs console<span style=color:#f92672>=</span>ttySAK0,115200n8 root<span style=color:#f92672>=</span>/dev/mtdblock4 rootfstype<span style=color:#f92672>=</span>squashfs init<span style=color:#f92672>=</span>/bin/sh mem<span style=color:#f92672>=</span>64M memsize<span style=color:#f92672>=</span>64M
 anyka$ saveenv
 
 Saving Environment to SPI Flash...
-Env save done OK
+Env save <span style=color:#66d9ef>done</span> OK
 
-</code></pre><p>Where,</p>
+</code></pre></div><p>Where,</p>
 <ul>
 <li><code>setenv bootargs args...</code>: Sets the command line arguments that are passed to the kernel. The change here is <code>init=/bin/sh</code>. This means that instead of running <code>/init</code> when fully booted, <code>/bin/sh</code> will be run.</li>
 <li><code>saveenv</code>: Saves the environment to Flash memory.</li>
 </ul>
 <p>Now disconnect and reconnect the power to the camera. Once fully booted, you should be dropped into a shell.</p>
-<pre tabindex=0><code>/ # ls -lah
-total 3
-drwxrwxr-x   13 1024     1028         162 Mar  2  2021 .
-drwxrwxr-x   13 1024     1028         162 Mar  2  2021 ..
-drwxr-xr-x    2 1024     1028        2.3K Oct 28  2019 bin
-drwxr-xr-x    3 0        root           0 Jan  1 00:00 dev
-drwxr-xr-x    5 1024     1028         283 Mar  2  2021 etc
--rwxr-xr-x    1 1024     1028        2.7K Nov 22  2017 init
-drwxr-xr-x    3 1024     1028         816 Feb  9  2021 lib
-drwxr-xr-x    2 1024     1028           3 Feb  9  2017 mnt
-drwxr-xr-x    2 1024     1028           3 Feb  9  2017 proc
-drwxr-xr-x    2 1024     1028        1.4K Mar  2  2021 sbin
-drwxr-xr-x    2 1024     1028           3 Feb  9  2017 sys
-drwxr-xr-x    2 1024     1028           3 Feb  9  2017 tmp
-drwxr-xr-x    2 1024     1028           3 Mar  2  2021 usr
-drwxr-xr-x    3 1024     1028          26 Apr 14  2017 var
-</code></pre>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>/ <span style=color:#75715e># ls -lah</span>
+total <span style=color:#ae81ff>3</span>
+drwxrwxr-x   <span style=color:#ae81ff>13</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>         <span style=color:#ae81ff>162</span> Mar  <span style=color:#ae81ff>2</span>  <span style=color:#ae81ff>2021</span> .
+drwxrwxr-x   <span style=color:#ae81ff>13</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>         <span style=color:#ae81ff>162</span> Mar  <span style=color:#ae81ff>2</span>  <span style=color:#ae81ff>2021</span> ..
+drwxr-xr-x    <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>        2.3K Oct <span style=color:#ae81ff>28</span>  <span style=color:#ae81ff>2019</span> bin
+drwxr-xr-x    <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>0</span>        root           <span style=color:#ae81ff>0</span> Jan  <span style=color:#ae81ff>1</span> 00:00 dev
+drwxr-xr-x    <span style=color:#ae81ff>5</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>         <span style=color:#ae81ff>283</span> Mar  <span style=color:#ae81ff>2</span>  <span style=color:#ae81ff>2021</span> etc
+-rwxr-xr-x    <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>        2.7K Nov <span style=color:#ae81ff>22</span>  <span style=color:#ae81ff>2017</span> init
+drwxr-xr-x    <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>         <span style=color:#ae81ff>816</span> Feb  <span style=color:#ae81ff>9</span>  <span style=color:#ae81ff>2021</span> lib
+drwxr-xr-x    <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>           <span style=color:#ae81ff>3</span> Feb  <span style=color:#ae81ff>9</span>  <span style=color:#ae81ff>2017</span> mnt
+drwxr-xr-x    <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>           <span style=color:#ae81ff>3</span> Feb  <span style=color:#ae81ff>9</span>  <span style=color:#ae81ff>2017</span> proc
+drwxr-xr-x    <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>        1.4K Mar  <span style=color:#ae81ff>2</span>  <span style=color:#ae81ff>2021</span> sbin
+drwxr-xr-x    <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>           <span style=color:#ae81ff>3</span> Feb  <span style=color:#ae81ff>9</span>  <span style=color:#ae81ff>2017</span> sys
+drwxr-xr-x    <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>           <span style=color:#ae81ff>3</span> Feb  <span style=color:#ae81ff>9</span>  <span style=color:#ae81ff>2017</span> tmp
+drwxr-xr-x    <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>           <span style=color:#ae81ff>3</span> Mar  <span style=color:#ae81ff>2</span>  <span style=color:#ae81ff>2021</span> usr
+drwxr-xr-x    <span style=color:#ae81ff>3</span> <span style=color:#ae81ff>1024</span>     <span style=color:#ae81ff>1028</span>          <span style=color:#ae81ff>26</span> Apr <span style=color:#ae81ff>14</span>  <span style=color:#ae81ff>2017</span> var
+</code></pre></div>
 <footer class=footline>
 </footer>
 </div>
@@ -318,17 +318,17 @@ drwxr-xr-x    3 1024     1028          26 Apr 14  2017 var
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634659240></script>
-<script src=/js/perfect-scrollbar.min.js?1634659240></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634659240></script>
-<script src=/js/jquery.sticky.js?1634659240></script>
-<script src=/js/featherlight.min.js?1634659240></script>
-<script src=/js/highlight.pack.js?1634659240></script>
+<script src=/js/clipboard.min.js?1634659971></script>
+<script src=/js/perfect-scrollbar.min.js?1634659971></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634659971></script>
+<script src=/js/jquery.sticky.js?1634659971></script>
+<script src=/js/featherlight.min.js?1634659971></script>
+<script src=/js/highlight.pack.js?1634659971></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634659240></script>
-<script src=/js/learn.js?1634659240></script>
-<script src=/js/hugo-learn.js?1634659240></script>
-<script src=/mermaid/mermaid.js?1634659240></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634659971></script>
+<script src=/js/learn.js?1634659971></script>
+<script src=/js/hugo-learn.js?1634659971></script>
+<script src=/mermaid/mermaid.js?1634659971></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>

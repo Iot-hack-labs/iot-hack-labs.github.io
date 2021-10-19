@@ -9,7 +9,7 @@ The micro SD must be FAT32 formatted. The following steps can be skipped if your
 
 ### Partitioning
 When the micro SD card is plugged in, run the following to determine the micro SD's block device on the computer
-```
+```sh
 kali@kali:~$ sudo fdisk -l
 
 Disk /dev/sda: 80 GiB, 85899345920 bytes, 167772160 sectors
@@ -38,7 +38,7 @@ Disk identifier: 0x29a1987d
 In this case, the block device for the micro SD is `/dev/sdb`
 
 We will use `fdisk` to create a partition on the card.
-```
+```sh
 kali@kali:~$ sudo fdisk /dev/sdb
 
 Welcome to fdisk (util-linux 2.37.2).
@@ -73,7 +73,7 @@ Where,
 - `Command (m for help): w`: Writes the table to disk and exits
 
 Running `fdisk` again will show the new partition on the card.
-```
+```sh
 kali@kali:~$ sudo fdisk /dev/sdb -l
 
 Disk /dev/sdb: 3.69 GiB, 3965714432 bytes, 7745536 sectors
@@ -91,6 +91,6 @@ The new partition is located at `/dev/sdb1` for this card.
 
 ### Formatting
 Now that the card is partitioned, it can be FAT32 formatted. To do that, simply run the following
-```
+```sh
 kali@kali:~$ sudo mkfs.fat /dev/sdb1
 ```

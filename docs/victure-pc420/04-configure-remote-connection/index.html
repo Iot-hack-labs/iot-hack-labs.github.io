@@ -6,18 +6,18 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>Configure Remote Connection :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634659240 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634659240 rel=stylesheet>
-<link href=/css/hybrid.css?1634659240 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634659240 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634659240 rel=stylesheet>
-<link href=/css/auto-complete.css?1634659240 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634659240 rel=stylesheet>
-<link href=/css/theme.css?1634659240 rel=stylesheet>
-<link href=/css/tabs.css?1634659240 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634659240 rel=stylesheet>
-<link href=/css/theme-red.css?1634659240 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634659240></script>
+<link href=/css/nucleus.css?1634659971 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634659971 rel=stylesheet>
+<link href=/css/hybrid.css?1634659971 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634659971 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634659971 rel=stylesheet>
+<link href=/css/auto-complete.css?1634659971 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634659971 rel=stylesheet>
+<link href=/css/theme.css?1634659971 rel=stylesheet>
+<link href=/css/tabs.css?1634659971 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634659971 rel=stylesheet>
+<link href=/css/theme-red.css?1634659971 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634659971></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/victure-pc420/04-configure-remote-connection/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634659240></script>
-<script type=text/javascript src=/js/auto-complete.js?1634659240></script>
+<script type=text/javascript src=/js/lunr.min.js?1634659971></script>
+<script type=text/javascript src=/js/auto-complete.js?1634659971></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634659240></script>
+<script type=text/javascript src=/js/search.js?1634659971></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -273,19 +273,19 @@ Configure Remote Connection
 <h3 id=dump-firmware>Dump Firmware</h3>
 <p>The first step in enabling remote connections is to dump the camera&rsquo;s firmware.</p>
 <p>You may notice that, though we have shell, basic commands like <code>whoami</code> seem to give errors</p>
-<pre tabindex=0><code>/ # whoami
-whoami: unknown uid 0
-</code></pre><p>This is because we bypassed the initialization scripts that would mount file systems and start and configure certain services.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>/ <span style=color:#75715e># whoami</span>
+whoami: unknown uid <span style=color:#ae81ff>0</span>
+</code></pre></div><p>This is because we bypassed the initialization scripts that would mount file systems and start and configure certain services.</p>
 <p>We could simply run <code>/init</code> but the camera&rsquo;s services all output to <code>stdout</code> which make it nearly impossible to use the shell. Thankfully, the services will log to a specific file if it exists when they are run.</p>
 <p>Run the following to ensure the services will only log to a file</p>
-<pre tabindex=0><code>/ # mount /mnt &amp;&amp; mkdir /mnt/debug &amp;&amp; touch /mnt/debug/log.txt
-</code></pre><p>Where,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>/ <span style=color:#75715e># mount /mnt &amp;&amp; mkdir /mnt/debug &amp;&amp; touch /mnt/debug/log.txt</span>
+</code></pre></div><p>Where,</p>
 <ul>
 <li><code>mount /mnt</code>: Mounts the <code>/mnt</code> directory according to the <code>/etc/fstab</code> file</li>
 <li><code>mkdir /mnt/debug && touch /mnt/debug/log.txt</code>: Creates the debug directory and the log file the services will log to</li>
 </ul>
 <p>Now we can safely run the initialization scripts. The scripts output to the console then start executing services in the background, dropping you back in the shell</p>
-<pre tabindex=0><code>/ # /etc/init.d/rcS
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>/ <span style=color:#75715e># /etc/init.d/rcS</span>
 mount all file system...
 mount: according to /proc/mounts, tmpfs is already mounted on /mnt
 starting mdev...
@@ -294,74 +294,74 @@ starting mdev...
 **************************
 200+0 records in
 200+0 records out
-102400 bytes (100.0KB) copied, 0.024803 seconds, 3.9MB/s
+<span style=color:#ae81ff>102400</span> bytes <span style=color:#f92672>(</span>100.0KB<span style=color:#f92672>)</span> copied, 0.024803 seconds, 3.9MB/s
 find: insmod: No such file or directory
 aksensor_module_init
 aksensor 0-0001: Sensor ID error
-</code></pre><p>Running <code>whoami</code> shows us that the system has been initialized</p>
-<pre tabindex=0><code>~ # whoami
+</code></pre></div><p>Running <code>whoami</code> shows us that the system has been initialized</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>~ <span style=color:#75715e># whoami</span>
 root
-</code></pre><p>Because we will be connecting remotely later on, lets update root&rsquo;s password to something we know</p>
-<pre tabindex=0><code>~ # passwd
-Changing password for root
+</code></pre></div><p>Because we will be connecting remotely later on, lets update root&rsquo;s password to something we know</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>~ <span style=color:#75715e># passwd</span>
+Changing password <span style=color:#66d9ef>for</span> root
 New password:
 Bad password: too short
 Retype password:
-Password for root changed by root
-</code></pre><p><strong>Note:</strong> For the purpose of this guide, a simple password was used. It is advised to use a stronger password to avoid being easily compromised.</p>
+Password <span style=color:#66d9ef>for</span> root changed by root
+</code></pre></div><p><strong>Note:</strong> For the purpose of this guide, a simple password was used. It is advised to use a stronger password to avoid being easily compromised.</p>
 <p>Connect the micro SD card to the camera and run the following:</p>
-<pre tabindex=0><code>~ # mount /dev/mmcblk0p1 /mnt
-~ # mkdir /mnt/firmware
-~ # cp /dev/mtdblock* /mnt/firmware/
-</code></pre><p>Where,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>~ <span style=color:#75715e># mount /dev/mmcblk0p1 /mnt</span>
+~ <span style=color:#75715e># mkdir /mnt/firmware</span>
+~ <span style=color:#75715e># cp /dev/mtdblock* /mnt/firmware/</span>
+</code></pre></div><p>Where,</p>
 <ul>
 <li><code>mount /dev/mmcblk0p1 /mnt</code>: Mounts the micro SD card to <code>/mnt</code></li>
 <li><code>cp /dev/mtdblock* /mnt/firmware/</code>: Copies the block devices that contain the firmware over to the micro SD card</li>
 </ul>
 <h3 id=modify-firmware>Modify firmware</h3>
 <p>The block device that we need to modify is just a squashfs filesystem file. To extract the files from the firmware, lets install the <code>squashfs</code> tools</p>
-<pre tabindex=0><code>sudo apt install squashfs-tools
-</code></pre><p>Now connect the micro SD to the computer and mount the card</p>
-<pre tabindex=0><code>kali@kali:~$ sudo mkdir /mnt/pc420
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>sudo apt install squashfs-tools
+</code></pre></div><p>Now connect the micro SD to the computer and mount the card</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kali@kali:~$ sudo mkdir /mnt/pc420
 kali@kali:~$ sudo mount /dev/sdb1 /mnt/pc420
-</code></pre><p>Now run the following to unsquash the root filesystem:</p>
-<pre tabindex=0><code>kali@kali:~$ unsquashfs -d rootfs /mnt/pc420/firmware/mtdblock4
-Parallel unsquashfs: Using 6 processors
-320 inodes (338 blocks) to write
+</code></pre></div><p>Now run the following to unsquash the root filesystem:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kali@kali:~$ unsquashfs -d rootfs /mnt/pc420/firmware/mtdblock4
+Parallel unsquashfs: Using <span style=color:#ae81ff>6</span> processors
+<span style=color:#ae81ff>320</span> inodes <span style=color:#f92672>(</span><span style=color:#ae81ff>338</span> blocks<span style=color:#f92672>)</span> to write
 
-[===================-] 338/338 100%
+<span style=color:#f92672>[===================</span>-<span style=color:#f92672>]</span> 338/338 100%
 
-created 302 files
-created 17 directories
-created 18 symlinks
-created 0 devices
-created 0 fifos
-created 0 sockets
-</code></pre><p>Where,</p>
+created <span style=color:#ae81ff>302</span> files
+created <span style=color:#ae81ff>17</span> directories
+created <span style=color:#ae81ff>18</span> symlinks
+created <span style=color:#ae81ff>0</span> devices
+created <span style=color:#ae81ff>0</span> fifos
+created <span style=color:#ae81ff>0</span> sockets
+</code></pre></div><p>Where,</p>
 <ul>
 <li><code>unsquashfs -d rootfs /mnt/pc420/firmware/mtdblock4</code>: Unsquashes the <code>mtdblock4</code> squashfs file and extracts the files to the <code>rootfs</code> directory</li>
 </ul>
 <p>Now we are going to update the initialization scripts to start <code>telnet</code> and <code>ftp</code> upon boot. Edit <code>rootfs/etc/init.d/rcS</code> and uncomment lines 7 and 8</p>
-<pre tabindex=0><code>echo &quot;start telnet......&quot;
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>echo <span style=color:#e6db74>&#34;start telnet......&#34;</span>
 telnetd &amp;
-</code></pre><p>Edit <code>rootfs/etc/init.d/rc.local</code> and uncomment line 13</p>
-<pre tabindex=0><code>/bin/tcpsvd 0 21 ftpd -w / -t 600 &amp;
-</code></pre><h3 id=build-firmware>Build firmware</h3>
+</code></pre></div><p>Edit <code>rootfs/etc/init.d/rc.local</code> and uncomment line 13</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>/bin/tcpsvd <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>21</span> ftpd -w / -t <span style=color:#ae81ff>600</span> &amp;
+</code></pre></div><h3 id=build-firmware>Build firmware</h3>
 <p>Now that we have modified the initialization scripts, we are going to &lsquo;resquash&rsquo; the files</p>
-<pre tabindex=0><code>kali@kali:~$ mksquashfs rootfs /mnt/pc420/root.sqsh4 -comp xz
-</code></pre><p>Where,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kali@kali:~$ mksquashfs rootfs /mnt/pc420/root.sqsh4 -comp xz
+</code></pre></div><p>Where,</p>
 <ul>
 <li><code>rootfs</code>: The path to the directory containing the filesystem</li>
 <li><code>/mnt/pc420/root.sqsh4</code>: The destination of the resulting squashfs file</li>
 <li><code>-comp xz</code>: Compress the filesystem using <code>xz</code></li>
 </ul>
 <p>Once complete, unmount the micro SD card</p>
-<pre tabindex=0><code>kali@kali:~$ sudo umount /mnt/pc420
-</code></pre><h3 id=update-camera-firmware>Update camera firmware</h3>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kali@kali:~$ sudo umount /mnt/pc420
+</code></pre></div><h3 id=update-camera-firmware>Update camera firmware</h3>
 <p>Now that we have the modified squashfs file, we can update the camera&rsquo;s firmware. Plug the micro SD into the camera and run the following</p>
-<pre tabindex=0><code>~ # mount /dev/mmcblk0p1 /mnt
-~ # /usr/sbin/update.sh
-</code></pre><p>Where,</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>~ <span style=color:#75715e># mount /dev/mmcblk0p1 /mnt</span>
+~ <span style=color:#75715e># /usr/sbin/update.sh</span>
+</code></pre></div><p>Where,</p>
 <ul>
 <li><code>mount /dev/mmcblk0p1 /mnt</code>: Mounts the micro SD card to <code>/mnt</code></li>
 <li><code>/usr/sbin/update.sh</code>: Runs the script to update the camera&rsquo;s firmware</li>
@@ -369,42 +369,42 @@ telnetd &amp;
 <p>The camera should reboot once it is done updating.</p>
 <h3 id=connect-camera-to-wifi>Connect camera to WiFi</h3>
 <p>Now that the firmware has been updated, we no longer need to boot to <code>/bin/sh</code>. To change the bootargs, follow the steps taken in the <code>UART to U-Boot</code> section to get into the U-Boot shell and run the following:</p>
-<pre tabindex=0><code>anyka$ setenv bootargs console=ttySAK0,115200n8 root=/dev/mtdblock4 rootfstype=squashfs init=/init mem=64M memsize=64M
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>anyka$ setenv bootargs console<span style=color:#f92672>=</span>ttySAK0,115200n8 root<span style=color:#f92672>=</span>/dev/mtdblock4 rootfstype<span style=color:#f92672>=</span>squashfs init<span style=color:#f92672>=</span>/init mem<span style=color:#f92672>=</span>64M memsize<span style=color:#f92672>=</span>64M
 anyka$ saveenv
 
 Saving Environment to SPI Flash...
-Env save done OK
-</code></pre><p>Now disconnect and re
+Env save <span style=color:#66d9ef>done</span> OK
+</code></pre></div><p>Now disconnect and re
 connect the power to the camera. The camera should not boot into a shell but should run our modified initialization scripts.</p>
 <p>We now need to connect the camera to the WiFi. The first step to do this is to connect the computer to the WiFi the camera is broadcasting. The camera&rsquo;s WiFi SSID should start with &lsquo;Victure_&rsquo;.</p>
 <p>Once connected, run the following on the computer, replacing PASSWORD and SSID with the password and SSID of the WiFi it should connect to:</p>
-<pre tabindex=0><code>qrcode_header='\x68\x00\x00\x00\x80'
-victure_user=&quot;95c992cdf31fc7d0&quot;
-timezone=&quot;-7.00&quot;
-region=&quot;US&quot;
-wifi_type=&quot;WPA&quot;
-wifi_password='PASSWORD'
-wifi_ssid='SSID'
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>qrcode_header<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;\x68\x00\x00\x00\x80&#39;</span>
+victure_user<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;95c992cdf31fc7d0&#34;</span>
+timezone<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-7.00&#34;</span>
+region<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;US&#34;</span>
+wifi_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;WPA&#34;</span>
+wifi_password<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;PASSWORD&#39;</span>
+wifi_ssid<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;SSID&#39;</span>
 
-payload=&quot;WIFI:U:$victure_user;Z:$timezone;R:$region;T:$wifi_type;P:\&quot;$wifi_password\&quot;;S:$wifi_ssid;&quot;
+payload<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;WIFI:U:</span>$victure_user<span style=color:#e6db74>;Z:</span>$timezone<span style=color:#e6db74>;R:</span>$region<span style=color:#e6db74>;T:</span>$wifi_type<span style=color:#e6db74>;P:\&#34;</span>$wifi_password<span style=color:#e6db74>\&#34;;S:</span>$wifi_ssid<span style=color:#e6db74>;&#34;</span>
 
-ssidLength=&quot;${#wifi_ssid}&quot;
-passwordLength=&quot;${#wifi_password}&quot;
-payloadLength=&quot;${#payload}&quot;
-lengths=&quot;$passwordLength;$ssidLength;$payloadLength&quot;
+ssidLength<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${#</span>wifi_ssid<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+passwordLength<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${#</span>wifi_password<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+payloadLength<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${#</span>payload<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+lengths<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$passwordLength<span style=color:#e6db74>;</span>$ssidLength<span style=color:#e6db74>;</span>$payloadLength<span style=color:#e6db74>&#34;</span>
 
-echo -en &quot;${qrcode_header}L:$lengths;$payload&quot; | nc -v 10.1.8.1 6666
-</code></pre><p>This sends the camera all of the info it needs in order to connect to the WiFi. Once done, you should see output in the <code>screen</code> session related to the camera connecting to the WiFi. Make note of the IP that is displayed once it has connected to the WiFi.</p>
-<pre tabindex=0><code>Sending select for 192.168.4.46...
-Lease of 192.168.4.46 obtained, lease time 14400
+echo -en <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>qrcode_header<span style=color:#e6db74>}</span><span style=color:#e6db74>L:</span>$lengths<span style=color:#e6db74>;</span>$payload<span style=color:#e6db74>&#34;</span> | nc -v 10.1.8.1 <span style=color:#ae81ff>6666</span>
+</code></pre></div><p>This sends the camera all of the info it needs in order to connect to the WiFi. Once done, you should see output in the <code>screen</code> session related to the camera connecting to the WiFi. Make note of the IP that is displayed once it has connected to the WiFi.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>Sending <span style=color:#66d9ef>select</span> <span style=color:#66d9ef>for</span> 192.168.4.46...
+Lease of 192.168.4.46 obtained, lease time <span style=color:#ae81ff>14400</span>
 deleting routes
 route: SIOCDELRT: No such process
 adding dns 69.27.0.130
 adding dns 69.27.0.131
-totalsize [4857755] VmRSS [3672] [4020] VmSize [13104]
-no network for token
-interface [wlan0] ip [192.168.4.46]
-</code></pre>
+totalsize <span style=color:#f92672>[</span>4857755<span style=color:#f92672>]</span> VmRSS <span style=color:#f92672>[</span>3672<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>4020<span style=color:#f92672>]</span> VmSize <span style=color:#f92672>[</span>13104<span style=color:#f92672>]</span>
+no network <span style=color:#66d9ef>for</span> token
+interface <span style=color:#f92672>[</span>wlan0<span style=color:#f92672>]</span> ip <span style=color:#f92672>[</span>192.168.4.46<span style=color:#f92672>]</span>
+</code></pre></div>
 <footer class=footline>
 </footer>
 </div>
@@ -417,17 +417,17 @@ interface [wlan0] ip [192.168.4.46]
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634659240></script>
-<script src=/js/perfect-scrollbar.min.js?1634659240></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634659240></script>
-<script src=/js/jquery.sticky.js?1634659240></script>
-<script src=/js/featherlight.min.js?1634659240></script>
-<script src=/js/highlight.pack.js?1634659240></script>
+<script src=/js/clipboard.min.js?1634659971></script>
+<script src=/js/perfect-scrollbar.min.js?1634659971></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634659971></script>
+<script src=/js/jquery.sticky.js?1634659971></script>
+<script src=/js/featherlight.min.js?1634659971></script>
+<script src=/js/highlight.pack.js?1634659971></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634659240></script>
-<script src=/js/learn.js?1634659240></script>
-<script src=/js/hugo-learn.js?1634659240></script>
-<script src=/mermaid/mermaid.js?1634659240></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634659971></script>
+<script src=/js/learn.js?1634659971></script>
+<script src=/js/hugo-learn.js?1634659971></script>
+<script src=/mermaid/mermaid.js?1634659971></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>

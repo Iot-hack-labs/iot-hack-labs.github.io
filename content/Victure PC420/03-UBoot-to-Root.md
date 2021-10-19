@@ -8,7 +8,7 @@ date: 2021-10-18T20:48:21-06:00
 
 The current shell is actually a U-Boot a limited shell. U-Boot is an open-source, primary boot loader. This shell has commands related to the booting process.
 
-```
+```sh
 anyka$ help
 ?       - alias for 'help'
 base    - print or set address offset
@@ -25,7 +25,7 @@ downkernel- load uImage tftp
 ...<omitted for brevity>...
 ```
 This U-Boot shell can be used to drop us into a root shell. To do so, run the following
-```
+```sh
 anyka$ setenv bootargs console=ttySAK0,115200n8 root=/dev/mtdblock4 rootfstype=squashfs init=/bin/sh mem=64M memsize=64M
 anyka$ saveenv
 
@@ -39,7 +39,7 @@ Where,
 
 Now disconnect and reconnect the power to the camera. Once fully booted, you should be dropped into a shell.
 
-```
+```sh
 / # ls -lah
 total 3
 drwxrwxr-x   13 1024     1028         162 Mar  2  2021 .
