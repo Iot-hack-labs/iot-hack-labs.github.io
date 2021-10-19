@@ -23,5 +23,5 @@ submit_type=wsc_method2&change_action=gozila_cgi&next_page=../..{FILE}
 ```
 **NOTE:** Replace {TARGET_IP}, {BASE_64_CREDENTIALS}, {FILE_TO_READ} with the valid IP, credentials, and file to read respectively
 
-![LFI Request](resources/WRT160N-LFI-Request.png)
-![LFI Response](resources/WRT160N-LFI-Response.png)
+![LFI Request](/static/WRT160N-LFI-Request.png)
+![LFI Response](/static/WRT160N-LFI-Response.png)
