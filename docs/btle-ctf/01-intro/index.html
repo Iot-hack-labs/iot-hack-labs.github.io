@@ -6,18 +6,18 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>Intro :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634613996 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634613996 rel=stylesheet>
-<link href=/css/hybrid.css?1634613996 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634613996 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634613996 rel=stylesheet>
-<link href=/css/auto-complete.css?1634613996 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634613996 rel=stylesheet>
-<link href=/css/theme.css?1634613996 rel=stylesheet>
-<link href=/css/tabs.css?1634613996 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634613996 rel=stylesheet>
-<link href=/css/theme-red.css?1634613996 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634613996></script>
+<link href=/css/nucleus.css?1634614582 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634614582 rel=stylesheet>
+<link href=/css/hybrid.css?1634614582 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634614582 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634614582 rel=stylesheet>
+<link href=/css/auto-complete.css?1634614582 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634614582 rel=stylesheet>
+<link href=/css/theme.css?1634614582 rel=stylesheet>
+<link href=/css/tabs.css?1634614582 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634614582 rel=stylesheet>
+<link href=/css/theme-red.css?1634614582 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634614582></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/btle-ctf/01-intro/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634613996></script>
-<script type=text/javascript src=/js/auto-complete.js?1634613996></script>
+<script type=text/javascript src=/js/lunr.min.js?1634614582></script>
+<script type=text/javascript src=/js/auto-complete.js?1634614582></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634613996></script>
+<script type=text/javascript src=/js/search.js?1634614582></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -80,6 +80,30 @@ Test Remote Connection
 <a href=/router-lab/>
 Router Lab
 </a>
+<ul>
+<li data-nav-id=/router-lab/mikrotik/ title=MikroTik class=dd-item>
+<a href=/router-lab/mikrotik/>
+MikroTik
+</a>
+<ul>
+<li data-nav-id=/router-lab/mikrotik/01-discovery/ title=Discovery class=dd-item>
+<a href=/router-lab/mikrotik/01-discovery/>
+Discovery
+</a>
+</li>
+<li data-nav-id=/router-lab/mikrotik/02-exploitation/ title=Exploitation class=dd-item>
+<a href=/router-lab/mikrotik/02-exploitation/>
+Exploitation
+</a>
+</li>
+<li data-nav-id=/router-lab/mikrotik/03-notes/ title=Exploitation class=dd-item>
+<a href=/router-lab/mikrotik/03-notes/>
+Exploitation
+</a>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 <li data-nav-id=/btle-ctf/ title="BTLE CTF" class="dd-item
 parent">
@@ -121,16 +145,69 @@ Outro
 <i class="fas fa-bars"></i>
 </a>
 </span>
+<span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
 <a href=/></a> > <a href=/btle-ctf/>BTLE CTF</a> > Intro
 </span>
+</div>
+<div class=progress>
+<div class=wrapper>
+<nav id=TableOfContents>
+<ul>
+<li>
+<ul>
+<li><a href=#hciconfig>Hciconfig</a></li>
+<li><a href=#bettercap>Bettercap</a></li>
+<li><a href=#gatttool>Gatttool</a></li>
+</ul>
+</li>
+<li><a href=#flag-0>Flag 0</a></li>
+<li><a href=#submit-the-flag>Submit the Flag</a></li>
+<li><a href=#check-your-score>Check Your Score</a></li>
+<li><a href=#flag-1>Flag 1</a>
+<ul>
+<li><a href=#navigate-to-flag-1-challenge>Navigate to Flag 1 Challenge</a></li>
+<li><a href=#failure-enumerating-characteristics>Failure Enumerating Characteristics</a></li>
+<li><a href=#use-gatttool-to-read-characteristics>Use Gatttool to Read Characteristics</a></li>
+<li><a href=#submit-the-flag-1>Submit the Flag</a></li>
+<li><a href=#check-your-score-1>Check Your Score</a></li>
+</ul>
+</li>
+<li><a href=#flag-2>Flag 2</a>
+<ul>
+<li><a href=#navigate-to-flag-2-challenge>Navigate to Flag 2 Challenge</a></li>
+<li><a href=#view-gatt-table>View Gatt Table</a></li>
+<li><a href=#use-gatttool-with-authentication>Use Gatttool with Authentication</a></li>
+<li><a href=#submit-the-flag-2>Submit the Flag</a></li>
+<li><a href=#check-your-score-2>Check Your Score</a></li>
+</ul>
+</li>
+<li><a href=#flag-3>Flag 3</a>
+<ul>
+<li><a href=#navigate-to-flag-3-challenge>Navigate to Flag 3 Challenge</a></li>
+<li><a href=#view-gatt-table-1>View Gatt Table</a></li>
+</ul>
+</li>
+<li><a href=#view-the-interface-mac-address>View the Interface MAC Address</a>
+<ul>
+<li><a href=#spooftooph>Spooftooph</a></li>
+<li><a href=#read-the-gatt-table-with-spoofed-mac>Read the Gatt Table with Spoofed MAC</a></li>
+<li><a href=#submit-the-flag-3>Submit the Flag</a></li>
+<li><a href=#check-your-score-3>Check Your Score</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
 </div>
 </div>
 </div>
 <div id=head-tags>
 </div>
-<div id=chapter>
 <div id=body-inner>
+<h1>
+Intro
+</h1>
 <h3 id=hciconfig>Hciconfig</h3>
 <p>You can view BLE interfaces on you system by using the <code>hciconfig</code> command. You should see at least one interface.</p>
 <p><img src=/static/hciconfig.png alt=HCIConfig></p>
@@ -298,7 +375,6 @@ Characteristic value was written successfully
 </footer>
 </div>
 </div>
-</div>
 <div id=navigation>
 <a class="nav nav-prev" href=/btle-ctf/ title="BTLE CTF"> <i class="fa fa-chevron-left"></i></a>
 <a class="nav nav-next" href=/btle-ctf/99-outro/ title=Outro style=margin-right:0><i class="fa fa-chevron-right"></i></a>
@@ -307,17 +383,17 @@ Characteristic value was written successfully
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634613996></script>
-<script src=/js/perfect-scrollbar.min.js?1634613996></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634613996></script>
-<script src=/js/jquery.sticky.js?1634613996></script>
-<script src=/js/featherlight.min.js?1634613996></script>
-<script src=/js/highlight.pack.js?1634613996></script>
+<script src=/js/clipboard.min.js?1634614582></script>
+<script src=/js/perfect-scrollbar.min.js?1634614582></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634614582></script>
+<script src=/js/jquery.sticky.js?1634614582></script>
+<script src=/js/featherlight.min.js?1634614582></script>
+<script src=/js/highlight.pack.js?1634614582></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634613996></script>
-<script src=/js/learn.js?1634613996></script>
-<script src=/js/hugo-learn.js?1634613996></script>
-<script src=/mermaid/mermaid.js?1634613996></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634614582></script>
+<script src=/js/learn.js?1634614582></script>
+<script src=/js/hugo-learn.js?1634614582></script>
+<script src=/mermaid/mermaid.js?1634614582></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>
