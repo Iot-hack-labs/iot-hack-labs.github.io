@@ -12,8 +12,8 @@ This will guide you how to exploit a Mikrotik running Router Os.
 ### Discovery
 
 1. First, run nmap against the target to discover what ports are open.
-- -Pn: scan the device even though its not responding to ping.
-- --top-ports=4000 will scan the top 4000 most common service ports. The default is 1000, and will miss one of the open ports.
+- `-Pn`: scan the device even though its not responding to ping.
+- `--top-ports=4000` will scan the top 4000 most common service ports. The default is 1000, and will miss one of the open ports.
 
 ```
 nmap 172.21.0.4 --top-ports=4000 -Pn
@@ -35,6 +35,9 @@ PORT     STATE    SERVICE
 ```
 $ nmap 172.21.0.4 -p21,8291 -sC -Pn
 ```
+
+We should get back some additional information about what services are running.
+
 ```
 $ nmap 172.21.0.4 -p21,8291 -sC -Pn
 PORT     STATE SERVICE
