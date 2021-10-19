@@ -12,7 +12,7 @@ $ sudo bettercap
 ```
 ```
 > ble.recon on
-> ble.enum bleah 94:B9:7E:DA:08:56
+> ble.enum 94:B9:7E:DA:08:56
 ```
 
 ![images/ble_enum_flag_0.png](/static/ble_enum_flag_0.png)
