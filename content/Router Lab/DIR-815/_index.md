@@ -7,4 +7,5 @@ chapter = true
 
 # DIR-815
 
-...
+
+Must be on the Wifi [documented here](/router-lab/).
