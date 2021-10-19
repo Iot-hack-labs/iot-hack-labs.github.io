@@ -6,3 +6,7 @@ chapter = true
 +++
 
 # Mikrotik (Router OS 6.39.2)
+
+```txt
+Host: 172.21.0.4
+```

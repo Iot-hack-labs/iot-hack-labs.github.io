@@ -6,6 +6,8 @@ chapter = true
 +++
 
 # DIR-815
-
+```txt
+Host: 172.21.0.23
+```
 
 Must be on the Wifi [documented here](/router-lab/).
