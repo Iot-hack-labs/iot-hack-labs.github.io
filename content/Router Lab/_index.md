@@ -10,4 +10,7 @@ chapter = true
 ```txt
 SSID: iot-hack-lab
 Password: saintcon2021
+Target CIDR: 172.21.0.1/24
 ```
+
+Please don't ruin things for other people.
