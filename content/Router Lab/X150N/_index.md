@@ -7,4 +7,8 @@ chapter = true
 
 # X150N
 
-...
+```txt
+Host: 172.21.0.8
+```
+
+Must be on the Wifi [documented here](/router-lab/).
