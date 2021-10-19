@@ -23,7 +23,7 @@ When enumerating, the value at handle `0x002a` returns `goodbye 👋`. This disc
 Read the value at `0x002c` using `gatttool`.
 
 ``` bash
-$ gatttool -b 08:3A:F2:7D:65:8A char-read -a 0x002c
+$ gatttool -b 08:3A:F2:7D:65:8A --char-read -a 0x002c
 ```
 ![images/bleah_flag_1.png](/static/bleah_flag_1.png)
 
