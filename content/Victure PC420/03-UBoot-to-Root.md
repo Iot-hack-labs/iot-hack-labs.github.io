@@ -1,5 +1,5 @@
 ---
-title: "UBoot to Root"
+title: "U-Boot to Root"
 weight: 300
 date: 2021-10-18T20:48:21-06:00
 ---
