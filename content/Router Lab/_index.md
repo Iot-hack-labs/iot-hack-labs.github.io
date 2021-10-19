@@ -15,7 +15,7 @@ Target CIDR: 172.21.0.1/24
 
 
 ```bash
-nmap -sn -PS21,22,80,8000,8080
+nmap -sn -PS21,22,80,8000,8080 172.21.0.1/24
 ```
 
 Please don't ruin things for other people.
