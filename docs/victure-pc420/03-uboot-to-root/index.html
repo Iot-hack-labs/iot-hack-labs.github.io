@@ -1,0 +1,199 @@
+<!doctype html><html lang=en class="js csstransforms3d">
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=generator content="Hugo 0.88.1">
+<meta name=description content>
+<link rel=icon href=/images/favicon.png type=image/png>
+<title>UBoot to Root :: IoT Hack Labs</title>
+<link href=/css/nucleus.css?1634612377 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634612377 rel=stylesheet>
+<link href=/css/hybrid.css?1634612377 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634612377 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634612377 rel=stylesheet>
+<link href=/css/auto-complete.css?1634612377 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634612377 rel=stylesheet>
+<link href=/css/theme.css?1634612377 rel=stylesheet>
+<link href=/css/tabs.css?1634612377 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634612377 rel=stylesheet>
+<link href=/css/theme-red.css?1634612377 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634612377></script>
+<style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
+</head>
+<body data-url=/victure-pc420/03-uboot-to-root/>
+<nav id=sidebar>
+<div id=header-wrapper>
+<div id=header>
+</div>
+<div class=searchbox>
+<label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span>
+</div>
+<script type=text/javascript src=/js/lunr.min.js?1634612377></script>
+<script type=text/javascript src=/js/auto-complete.js?1634612377></script>
+<script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
+<script type=text/javascript src=/js/search.js?1634612377></script>
+</div>
+<section id=homelinks>
+<ul>
+<li>
+<a class=padding href=/><i class="fas fa-home"></i> Home</a>
+</li>
+</ul>
+</section>
+<div class=highlightable>
+<ul class=topics>
+<li data-nav-id=/victure-pc420/ title="Victure PC420" class="dd-item
+parent">
+<a href=/victure-pc420/>
+Victure PC420
+</a>
+<ul>
+<li data-nav-id=/victure-pc420/01-micro-sd/ title="Micro SD" class=dd-item>
+<a href=/victure-pc420/01-micro-sd/>
+Micro SD
+</a>
+</li>
+<li data-nav-id=/victure-pc420/02-uart-to-uboot/ title="UART to UBoot" class=dd-item>
+<a href=/victure-pc420/02-uart-to-uboot/>
+UART to UBoot
+</a>
+</li>
+<li data-nav-id=/victure-pc420/03-uboot-to-root/ title="UBoot to Root" class="dd-item active">
+<a href=/victure-pc420/03-uboot-to-root/>
+UBoot to Root
+</a>
+</li>
+<li data-nav-id=/victure-pc420/04-configure-remote-connection/ title="Configure Remote Connection" class=dd-item>
+<a href=/victure-pc420/04-configure-remote-connection/>
+Configure Remote Connection
+</a>
+</li>
+<li data-nav-id=/victure-pc420/05-test-remote-connection/ title="Test Remote Connection" class=dd-item>
+<a href=/victure-pc420/05-test-remote-connection/>
+Test Remote Connection
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/router-lab/ title="Router Lab" class=dd-item>
+<a href=/router-lab/>
+Router Lab
+</a>
+</li>
+<li data-nav-id=/btle-ctf/ title="BTLE CTF" class=dd-item>
+<a href=/btle-ctf/>
+BTLE CTF
+</a>
+</li>
+</ul>
+<section id=footer>
+</section>
+</div>
+</nav>
+<section id=body>
+<div id=overlay></div>
+<div class="padding highlightable">
+<div>
+<div id=top-bar>
+<div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb>
+<span id=sidebar-toggle-span>
+<a href=# id=sidebar-toggle data-sidebar-toggle>
+<i class="fas fa-bars"></i>
+</a>
+</span>
+<span id=toc-menu><i class="fas fa-list-alt"></i></span>
+<span class=links>
+<a href=/>IoT Hack Labs</a> > <a href=/victure-pc420/>Victure PC420</a> > UBoot to Root
+</span>
+</div>
+<div class=progress>
+<div class=wrapper>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#u-boot-to-root>U-Boot to Root</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+<div id=head-tags>
+</div>
+<div id=body-inner>
+<h1>
+UBoot to Root
+</h1>
+<h2 id=u-boot-to-root>U-Boot to Root</h2>
+<p>The current shell is actually a U-Boot a limited shell. U-Boot is an open-source, primary boot loader. This shell has commands related to the booting process.</p>
+<pre tabindex=0><code>anyka$ help
+?       - alias for 'help'
+base    - print or set address offset
+bootm   - boot application image from memory
+bootp   - boot image via network using BOOTP/TFTP protocol
+chpart  - change active partition
+cmp     - memory compare
+cp      - memory copy
+crc32   - checksum calculation
+downcheck_patition_update- load usr.sqsh4 tftp
+downimage- downimage   - download and write All-Image to FLASH device,partiton table from ENV partition.
+downjffs2fs- load usr.jffs2 tftp
+downkernel- load uImage tftp
+...&lt;omitted for brevity&gt;...
+</code></pre><p>This U-Boot shell can be used to drop us into a root shell. To do so, run the following</p>
+<pre tabindex=0><code>anyka$ setenv bootargs console=ttySAK0,115200n8 root=/dev/mtdblock4 rootfstype=squashfs init=/bin/sh mem=64M memsize=64M
+anyka$ saveenv
+
+Saving Environment to SPI Flash...
+Env save done OK
+
+</code></pre><p>Where,</p>
+<ul>
+<li><code>setenv bootargs args...</code>: Sets the command line arguments that are passed to the kernel. The change here is <code>init=/bin/sh</code>. This means that instead of running <code>/init</code> when fully booted, <code>/bin/sh</code> will be run.</li>
+<li><code>saveenv</code>: Saves the environment to Flash memory.</li>
+</ul>
+<p>Now disconnect and reconnect the power to the camera. Once fully booted, you should be dropped into a shell.</p>
+<pre tabindex=0><code>/ # ls -lah
+total 3
+drwxrwxr-x   13 1024     1028         162 Mar  2  2021 .
+drwxrwxr-x   13 1024     1028         162 Mar  2  2021 ..
+drwxr-xr-x    2 1024     1028        2.3K Oct 28  2019 bin
+drwxr-xr-x    3 0        root           0 Jan  1 00:00 dev
+drwxr-xr-x    5 1024     1028         283 Mar  2  2021 etc
+-rwxr-xr-x    1 1024     1028        2.7K Nov 22  2017 init
+drwxr-xr-x    3 1024     1028         816 Feb  9  2021 lib
+drwxr-xr-x    2 1024     1028           3 Feb  9  2017 mnt
+drwxr-xr-x    2 1024     1028           3 Feb  9  2017 proc
+drwxr-xr-x    2 1024     1028        1.4K Mar  2  2021 sbin
+drwxr-xr-x    2 1024     1028           3 Feb  9  2017 sys
+drwxr-xr-x    2 1024     1028           3 Feb  9  2017 tmp
+drwxr-xr-x    2 1024     1028           3 Mar  2  2021 usr
+drwxr-xr-x    3 1024     1028          26 Apr 14  2017 var
+</code></pre>
+<footer class=footline>
+</footer>
+</div>
+</div>
+<div id=navigation>
+<a class="nav nav-prev" href=/victure-pc420/02-uart-to-uboot/ title="UART to UBoot"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/victure-pc420/04-configure-remote-connection/ title="Configure Remote Connection" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+</div>
+</section>
+<div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
+<div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
+</div>
+<script src=/js/clipboard.min.js?1634612377></script>
+<script src=/js/perfect-scrollbar.min.js?1634612377></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634612377></script>
+<script src=/js/jquery.sticky.js?1634612377></script>
+<script src=/js/featherlight.min.js?1634612377></script>
+<script src=/js/highlight.pack.js?1634612377></script>
+<script>hljs.initHighlightingOnLoad()</script>
+<script src=/js/modernizr.custom-3.6.0.js?1634612377></script>
+<script src=/js/learn.js?1634612377></script>
+<script src=/js/hugo-learn.js?1634612377></script>
+<script src=/mermaid/mermaid.js?1634612377></script>
+<script>mermaid.initialize({startOnLoad:!0})</script>
+</body>
+</html>

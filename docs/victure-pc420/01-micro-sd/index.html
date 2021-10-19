@@ -1,0 +1,238 @@
+<!doctype html><html lang=en class="js csstransforms3d">
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=generator content="Hugo 0.88.1">
+<meta name=description content>
+<link rel=icon href=/images/favicon.png type=image/png>
+<title>Micro SD :: IoT Hack Labs</title>
+<link href=/css/nucleus.css?1634612377 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634612377 rel=stylesheet>
+<link href=/css/hybrid.css?1634612377 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634612377 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634612377 rel=stylesheet>
+<link href=/css/auto-complete.css?1634612377 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634612377 rel=stylesheet>
+<link href=/css/theme.css?1634612377 rel=stylesheet>
+<link href=/css/tabs.css?1634612377 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634612377 rel=stylesheet>
+<link href=/css/theme-red.css?1634612377 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634612377></script>
+<style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
+</head>
+<body data-url=/victure-pc420/01-micro-sd/>
+<nav id=sidebar>
+<div id=header-wrapper>
+<div id=header>
+</div>
+<div class=searchbox>
+<label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span>
+</div>
+<script type=text/javascript src=/js/lunr.min.js?1634612377></script>
+<script type=text/javascript src=/js/auto-complete.js?1634612377></script>
+<script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
+<script type=text/javascript src=/js/search.js?1634612377></script>
+</div>
+<section id=homelinks>
+<ul>
+<li>
+<a class=padding href=/><i class="fas fa-home"></i> Home</a>
+</li>
+</ul>
+</section>
+<div class=highlightable>
+<ul class=topics>
+<li data-nav-id=/victure-pc420/ title="Victure PC420" class="dd-item
+parent">
+<a href=/victure-pc420/>
+Victure PC420
+</a>
+<ul>
+<li data-nav-id=/victure-pc420/01-micro-sd/ title="Micro SD" class="dd-item active">
+<a href=/victure-pc420/01-micro-sd/>
+Micro SD
+</a>
+</li>
+<li data-nav-id=/victure-pc420/02-uart-to-uboot/ title="UART to UBoot" class=dd-item>
+<a href=/victure-pc420/02-uart-to-uboot/>
+UART to UBoot
+</a>
+</li>
+<li data-nav-id=/victure-pc420/03-uboot-to-root/ title="UBoot to Root" class=dd-item>
+<a href=/victure-pc420/03-uboot-to-root/>
+UBoot to Root
+</a>
+</li>
+<li data-nav-id=/victure-pc420/04-configure-remote-connection/ title="Configure Remote Connection" class=dd-item>
+<a href=/victure-pc420/04-configure-remote-connection/>
+Configure Remote Connection
+</a>
+</li>
+<li data-nav-id=/victure-pc420/05-test-remote-connection/ title="Test Remote Connection" class=dd-item>
+<a href=/victure-pc420/05-test-remote-connection/>
+Test Remote Connection
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/router-lab/ title="Router Lab" class=dd-item>
+<a href=/router-lab/>
+Router Lab
+</a>
+</li>
+<li data-nav-id=/btle-ctf/ title="BTLE CTF" class=dd-item>
+<a href=/btle-ctf/>
+BTLE CTF
+</a>
+</li>
+</ul>
+<section id=footer>
+</section>
+</div>
+</nav>
+<section id=body>
+<div id=overlay></div>
+<div class="padding highlightable">
+<div>
+<div id=top-bar>
+<div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb>
+<span id=sidebar-toggle-span>
+<a href=# id=sidebar-toggle data-sidebar-toggle>
+<i class="fas fa-bars"></i>
+</a>
+</span>
+<span id=toc-menu><i class="fas fa-list-alt"></i></span>
+<span class=links>
+<a href=/>IoT Hack Labs</a> > <a href=/victure-pc420/>Victure PC420</a> > Micro SD
+</span>
+</div>
+<div class=progress>
+<div class=wrapper>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#micro-sd>Micro SD</a>
+<ul>
+<li><a href=#partitioning>Partitioning</a></li>
+<li><a href=#formatting>Formatting</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+<div id=head-tags>
+</div>
+<div id=body-inner>
+<h1>
+Micro SD
+</h1>
+<h2 id=micro-sd>Micro SD</h2>
+<p>The micro SD must be FAT32 formatted. The following steps can be skipped if your micro SD is already FAT32 formatted.</p>
+<h3 id=partitioning>Partitioning</h3>
+<p>When the micro SD card is plugged in, run the following to determine the micro SD&rsquo;s block device on the computer</p>
+<pre tabindex=0><code>kali@kali:~$ sudo fdisk -l
+
+Disk /dev/sda: 80 GiB, 85899345920 bytes, 167772160 sectors
+Disk model: VMware Virtual S
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x0852c5cd
+
+Device     Boot     Start       End   Sectors  Size Id Type
+/dev/sda1  *         2048 165771263 165769216   79G 83 Linux
+/dev/sda2       165773310 167770111   1996802  975M  5 Extended
+/dev/sda5       165773312 167770111   1996800  975M 82 Linux swap / Solaris
+
+
+Disk /dev/sdb: 3.69 GiB, 3965714432 bytes, 7745536 sectors
+Disk model: Storage Device  
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x29a1987d
+</code></pre><p>In this case, the block device for the micro SD is <code>/dev/sdb</code></p>
+<p>We will use <code>fdisk</code> to create a partition on the card.</p>
+<pre tabindex=0><code>kali@kali:~$ sudo fdisk /dev/sdb
+
+Welcome to fdisk (util-linux 2.37.2).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+
+Command (m for help): n
+Partition type
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended (container for logical partitions)
+Select (default p): [ENTER]
+
+Using default response p.
+Partition number (1-4, default 1): [ENTER]
+First sector (2048-7745535, default 2048): [ENTER]
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-7745535, default 7745535): [ENTER]
+
+Created a new partition 1 of type 'Linux' and of size 3.7 GiB.
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+</code></pre><p>Where,</p>
+<ul>
+<li><code>Command (m for help): n</code>: Adds a new partition</li>
+<li><code>Select (default p): [ENTER]</code>: The default <code>p</code> is used. <code>p</code> will mark the partition as the primary partition</li>
+<li><code>First sector (2048-7745535, default 2048): [ENTER]</code>: Sets the starting point of the partition at the default point. In this case, it is at the 2048 byte offset</li>
+<li><code>Last sector, +/-sectors or +/-size{K,M,G,T,P} (2048-7745535, default 7745535): [ENTER]</code>: Sets the ending point of the partition at the default point. In this case, it is at the very end of the micro SD card</li>
+<li><code>Command (m for help): w</code>: Writes the table to disk and exits</li>
+</ul>
+<p>Running <code>fdisk</code> again will show the new partition on the card.</p>
+<pre tabindex=0><code>kali@kali:~$ sudo fdisk /dev/sdb -l
+
+Disk /dev/sdb: 3.69 GiB, 3965714432 bytes, 7745536 sectors
+Disk model: Storage Device  
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x29a1987d
+
+Device     Boot Start     End Sectors  Size Id Type
+/dev/sdb1        2048 7745535 7743488  3.7G 83 Linux
+</code></pre><p>The new partition is located at <code>/dev/sdb1</code> for this card.</p>
+<h3 id=formatting>Formatting</h3>
+<p>Now that the card is partitioned, it can be FAT32 formatted. To do that, simply run the following</p>
+<pre tabindex=0><code>kali@kali:~$ sudo mkfs.fat /dev/sdb1
+</code></pre>
+<footer class=footline>
+</footer>
+</div>
+</div>
+<div id=navigation>
+<a class="nav nav-prev" href=/victure-pc420/ title="Victure PC420"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/victure-pc420/02-uart-to-uboot/ title="UART to UBoot" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+</div>
+</section>
+<div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
+<div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
+</div>
+<script src=/js/clipboard.min.js?1634612377></script>
+<script src=/js/perfect-scrollbar.min.js?1634612377></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634612377></script>
+<script src=/js/jquery.sticky.js?1634612377></script>
+<script src=/js/featherlight.min.js?1634612377></script>
+<script src=/js/highlight.pack.js?1634612377></script>
+<script>hljs.initHighlightingOnLoad()</script>
+<script src=/js/modernizr.custom-3.6.0.js?1634612377></script>
+<script src=/js/learn.js?1634612377></script>
+<script src=/js/hugo-learn.js?1634612377></script>
+<script src=/mermaid/mermaid.js?1634612377></script>
+<script>mermaid.initialize({startOnLoad:!0})</script>
+</body>
+</html>

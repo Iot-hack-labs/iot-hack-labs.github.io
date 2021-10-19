@@ -1,0 +1,298 @@
+<!doctype html><html lang=en class="js csstransforms3d">
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=generator content="Hugo 0.88.1">
+<meta name=description content>
+<link rel=icon href=/images/favicon.png type=image/png>
+<title>Configure Remote Connection :: IoT Hack Labs</title>
+<link href=/css/nucleus.css?1634612377 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634612377 rel=stylesheet>
+<link href=/css/hybrid.css?1634612377 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634612377 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634612377 rel=stylesheet>
+<link href=/css/auto-complete.css?1634612377 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634612377 rel=stylesheet>
+<link href=/css/theme.css?1634612377 rel=stylesheet>
+<link href=/css/tabs.css?1634612377 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634612377 rel=stylesheet>
+<link href=/css/theme-red.css?1634612377 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634612377></script>
+<style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
+</head>
+<body data-url=/victure-pc420/04-configure-remote-connection/>
+<nav id=sidebar>
+<div id=header-wrapper>
+<div id=header>
+</div>
+<div class=searchbox>
+<label for=search-by><i class="fas fa-search"></i></label>
+<input data-search-input id=search-by type=search placeholder=Search...>
+<span data-search-clear><i class="fas fa-times"></i></span>
+</div>
+<script type=text/javascript src=/js/lunr.min.js?1634612377></script>
+<script type=text/javascript src=/js/auto-complete.js?1634612377></script>
+<script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
+<script type=text/javascript src=/js/search.js?1634612377></script>
+</div>
+<section id=homelinks>
+<ul>
+<li>
+<a class=padding href=/><i class="fas fa-home"></i> Home</a>
+</li>
+</ul>
+</section>
+<div class=highlightable>
+<ul class=topics>
+<li data-nav-id=/victure-pc420/ title="Victure PC420" class="dd-item
+parent">
+<a href=/victure-pc420/>
+Victure PC420
+</a>
+<ul>
+<li data-nav-id=/victure-pc420/01-micro-sd/ title="Micro SD" class=dd-item>
+<a href=/victure-pc420/01-micro-sd/>
+Micro SD
+</a>
+</li>
+<li data-nav-id=/victure-pc420/02-uart-to-uboot/ title="UART to UBoot" class=dd-item>
+<a href=/victure-pc420/02-uart-to-uboot/>
+UART to UBoot
+</a>
+</li>
+<li data-nav-id=/victure-pc420/03-uboot-to-root/ title="UBoot to Root" class=dd-item>
+<a href=/victure-pc420/03-uboot-to-root/>
+UBoot to Root
+</a>
+</li>
+<li data-nav-id=/victure-pc420/04-configure-remote-connection/ title="Configure Remote Connection" class="dd-item active">
+<a href=/victure-pc420/04-configure-remote-connection/>
+Configure Remote Connection
+</a>
+</li>
+<li data-nav-id=/victure-pc420/05-test-remote-connection/ title="Test Remote Connection" class=dd-item>
+<a href=/victure-pc420/05-test-remote-connection/>
+Test Remote Connection
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/router-lab/ title="Router Lab" class=dd-item>
+<a href=/router-lab/>
+Router Lab
+</a>
+</li>
+<li data-nav-id=/btle-ctf/ title="BTLE CTF" class=dd-item>
+<a href=/btle-ctf/>
+BTLE CTF
+</a>
+</li>
+</ul>
+<section id=footer>
+</section>
+</div>
+</nav>
+<section id=body>
+<div id=overlay></div>
+<div class="padding highlightable">
+<div>
+<div id=top-bar>
+<div id=breadcrumbs itemscope itemtype=http://data-vocabulary.org/Breadcrumb>
+<span id=sidebar-toggle-span>
+<a href=# id=sidebar-toggle data-sidebar-toggle>
+<i class="fas fa-bars"></i>
+</a>
+</span>
+<span id=toc-menu><i class="fas fa-list-alt"></i></span>
+<span class=links>
+<a href=/>IoT Hack Labs</a> > <a href=/victure-pc420/>Victure PC420</a> > Configure Remote Connection
+</span>
+</div>
+<div class=progress>
+<div class=wrapper>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#configure-remote-connection>Configure Remote Connection</a>
+<ul>
+<li><a href=#dump-firmware>Dump Firmware</a></li>
+<li><a href=#modify-firmware>Modify firmware</a></li>
+<li><a href=#build-firmware>Build firmware</a></li>
+<li><a href=#update-camera-firmware>Update camera firmware</a></li>
+<li><a href=#connect-camera-to-wifi>Connect camera to WiFi</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+</div>
+<div id=head-tags>
+</div>
+<div id=body-inner>
+<h1>
+Configure Remote Connection
+</h1>
+<h2 id=configure-remote-connection>Configure Remote Connection</h2>
+<p>We have successfully been dropped into a root shell on the camera, but this required physical access. We are next going to update the camera&rsquo;s firmware to run <code>telnetd</code> upon booting up, allowing us to connect to it remotely.</p>
+<h3 id=dump-firmware>Dump Firmware</h3>
+<p>The first step in enabling remote connections is to dump the camera&rsquo;s firmware.</p>
+<p>You may notice that, though we have shell, basic commands like <code>whoami</code> seem to give errors</p>
+<pre tabindex=0><code>/ # whoami
+whoami: unknown uid 0
+</code></pre><p>This is because we bypassed the initialization scripts that would mount file systems and start and configure certain services.</p>
+<p>We could simply run <code>/init</code> but the camera&rsquo;s services all output to <code>stdout</code> which make it nearly impossible to use the shell. Thankfully, the services will log to a specific file if it exists when they are run.</p>
+<p>Run the following to ensure the services will only log to a file</p>
+<pre tabindex=0><code>/ # mount /mnt &amp;&amp; mkdir /mnt/debug &amp;&amp; touch /mnt/debug/log.txt
+</code></pre><p>Where,</p>
+<ul>
+<li><code>mount /mnt</code>: Mounts the <code>/mnt</code> directory according to the <code>/etc/fstab</code> file</li>
+<li><code>mkdir /mnt/debug && touch /mnt/debug/log.txt</code>: Creates the debug directory and the log file the services will log to</li>
+</ul>
+<p>Now we can safely run the initialization scripts. The scripts output to the console then start executing services in the background, dropping you back in the shell</p>
+<pre tabindex=0><code>/ # /etc/init.d/rcS
+mount all file system...
+mount: according to /proc/mounts, tmpfs is already mounted on /mnt
+starting mdev...
+**************************
+    Love Linux ! ! !
+**************************
+200+0 records in
+200+0 records out
+102400 bytes (100.0KB) copied, 0.024803 seconds, 3.9MB/s
+find: insmod: No such file or directory
+aksensor_module_init
+aksensor 0-0001: Sensor ID error
+</code></pre><p>Running <code>whoami</code> shows us that the system has been initialized</p>
+<pre tabindex=0><code>~ # whoami
+root
+</code></pre><p>Because we will be connecting remotely later on, lets update root&rsquo;s password to something we know</p>
+<pre tabindex=0><code>~ # passwd
+Changing password for root
+New password:
+Bad password: too short
+Retype password:
+Password for root changed by root
+</code></pre><p><strong>Note:</strong> For the purpose of this guide, a simple password was used. It is advised to use a stronger password to avoid being easily compromised.</p>
+<p>Connect the micro SD card to the camera and run the following:</p>
+<pre tabindex=0><code>~ # mount /dev/mmcblk0p1 /mnt
+~ # mkdir /mnt/firmware
+~ # cp /dev/mtdblock* /mnt/firmware/
+</code></pre><p>Where,</p>
+<ul>
+<li><code>mount /dev/mmcblk0p1 /mnt</code>: Mounts the micro SD card to <code>/mnt</code></li>
+<li><code>cp /dev/mtdblock* /mnt/firmware/</code>: Copies the block devices that contain the firmware over to the micro SD card</li>
+</ul>
+<h3 id=modify-firmware>Modify firmware</h3>
+<p>The block device that we need to modify is just a squashfs filesystem file. To extract the files from the firmware, lets install the <code>squashfs</code> tools</p>
+<pre tabindex=0><code>sudo apt install squashfs-tools
+</code></pre><p>Now connect the micro SD to the computer and mount the card</p>
+<pre tabindex=0><code>kali@kali:~$ sudo mkdir /mnt/pc420
+kali@kali:~$ sudo mount /dev/sdb1 /mnt/pc420
+</code></pre><p>Now run the following to unsquash the root filesystem:</p>
+<pre tabindex=0><code>kali@kali:~$ unsquashfs -d rootfs /mnt/pc420/firmware/mtdblock4
+Parallel unsquashfs: Using 6 processors
+320 inodes (338 blocks) to write
+
+[===================-] 338/338 100%
+
+created 302 files
+created 17 directories
+created 18 symlinks
+created 0 devices
+created 0 fifos
+created 0 sockets
+</code></pre><p>Where,</p>
+<ul>
+<li><code>unsquashfs -d rootfs /mnt/pc420/firmware/mtdblock4</code>: Unsquashes the <code>mtdblock4</code> squashfs file and extracts the files to the <code>rootfs</code> directory</li>
+</ul>
+<p>Now we are going to update the initialization scripts to start <code>telnet</code> and <code>ftp</code> upon boot. Edit <code>rootfs/etc/init.d/rcS</code> and uncomment lines 7 and 8</p>
+<pre tabindex=0><code>echo &quot;start telnet......&quot;
+telnetd &amp;
+</code></pre><p>Edit <code>rootfs/etc/init.d/rc.local</code> and uncomment line 13</p>
+<pre tabindex=0><code>/bin/tcpsvd 0 21 ftpd -w / -t 600 &amp;
+</code></pre><h3 id=build-firmware>Build firmware</h3>
+<p>Now that we have modified the initialization scripts, we are going to &lsquo;resquash&rsquo; the files</p>
+<pre tabindex=0><code>kali@kali:~$ mksquashfs rootfs /mnt/pc420/root.sqsh4 -comp xz
+</code></pre><p>Where,</p>
+<ul>
+<li><code>rootfs</code>: The path to the directory containing the filesystem</li>
+<li><code>/mnt/pc420/root.sqsh4</code>: The destination of the resulting squashfs file</li>
+<li><code>-comp xz</code>: Compress the filesystem using <code>xz</code></li>
+</ul>
+<p>Once complete, unmount the micro SD card</p>
+<pre tabindex=0><code>kali@kali:~$ sudo umount /mnt/pc420
+</code></pre><h3 id=update-camera-firmware>Update camera firmware</h3>
+<p>Now that we have the modified squashfs file, we can update the camera&rsquo;s firmware. Plug the micro SD into the camera and run the following</p>
+<pre tabindex=0><code>~ # mount /dev/mmcblk0p1 /mnt
+~ # /usr/sbin/update.sh
+</code></pre><p>Where,</p>
+<ul>
+<li><code>mount /dev/mmcblk0p1 /mnt</code>: Mounts the micro SD card to <code>/mnt</code></li>
+<li><code>/usr/sbin/update.sh</code>: Runs the script to update the camera&rsquo;s firmware</li>
+</ul>
+<p>The camera should reboot once it is done updating.</p>
+<h3 id=connect-camera-to-wifi>Connect camera to WiFi</h3>
+<p>Now that the firmware has been updated, we no longer need to boot to <code>/bin/sh</code>. To change the bootargs, follow the steps taken in the <code>UART to U-Boot</code> section to get into the U-Boot shell and run the following:</p>
+<pre tabindex=0><code>anyka$ setenv bootargs console=ttySAK0,115200n8 root=/dev/mtdblock4 rootfstype=squashfs init=/init mem=64M memsize=64M
+anyka$ saveenv
+
+Saving Environment to SPI Flash...
+Env save done OK
+</code></pre><p>Now disconnect and re
+connect the power to the camera. The camera should not boot into a shell but should run our modified initialization scripts.</p>
+<p>We now need to connect the camera to the WiFi. The first step to do this is to connect the computer to the WiFi the camera is broadcasting. The camera&rsquo;s WiFi SSID should start with &lsquo;Victure_&rsquo;.</p>
+<p>Once connected, run the following on the computer, replacing PASSWORD and SSID with the password and SSID of the WiFi it should connect to:</p>
+<pre tabindex=0><code>qrcode_header='\x68\x00\x00\x00\x80'
+victure_user=&quot;95c992cdf31fc7d0&quot;
+timezone=&quot;-7.00&quot;
+region=&quot;US&quot;
+wifi_type=&quot;WPA&quot;
+wifi_password='PASSWORD'
+wifi_ssid='SSID'
+
+payload=&quot;WIFI:U:$victure_user;Z:$timezone;R:$region;T:$wifi_type;P:\&quot;$wifi_password\&quot;;S:$wifi_ssid;&quot;
+
+ssidLength=&quot;${#wifi_ssid}&quot;
+passwordLength=&quot;${#wifi_password}&quot;
+payloadLength=&quot;${#payload}&quot;
+lengths=&quot;$passwordLength;$ssidLength;$payloadLength&quot;
+
+echo -en &quot;${qrcode_header}L:$lengths;$payload&quot; | nc -v 10.1.8.1 6666
+</code></pre><p>This sends the camera all of the info it needs in order to connect to the WiFi. Once done, you should see output in the <code>screen</code> session related to the camera connecting to the WiFi. Make note of the IP that is displayed once it has connected to the WiFi.</p>
+<pre tabindex=0><code>Sending select for 192.168.4.46...
+Lease of 192.168.4.46 obtained, lease time 14400
+deleting routes
+route: SIOCDELRT: No such process
+adding dns 69.27.0.130
+adding dns 69.27.0.131
+totalsize [4857755] VmRSS [3672] [4020] VmSize [13104]
+no network for token
+interface [wlan0] ip [192.168.4.46]
+</code></pre>
+<footer class=footline>
+</footer>
+</div>
+</div>
+<div id=navigation>
+<a class="nav nav-prev" href=/victure-pc420/03-uboot-to-root/ title="UBoot to Root"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/victure-pc420/05-test-remote-connection/ title="Test Remote Connection" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+</div>
+</section>
+<div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
+<div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
+</div>
+<script src=/js/clipboard.min.js?1634612377></script>
+<script src=/js/perfect-scrollbar.min.js?1634612377></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634612377></script>
+<script src=/js/jquery.sticky.js?1634612377></script>
+<script src=/js/featherlight.min.js?1634612377></script>
+<script src=/js/highlight.pack.js?1634612377></script>
+<script>hljs.initHighlightingOnLoad()</script>
+<script src=/js/modernizr.custom-3.6.0.js?1634612377></script>
+<script src=/js/learn.js?1634612377></script>
+<script src=/js/hugo-learn.js?1634612377></script>
+<script src=/mermaid/mermaid.js?1634612377></script>
+<script>mermaid.initialize({startOnLoad:!0})</script>
+</body>
+</html>
