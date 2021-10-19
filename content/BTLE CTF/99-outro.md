@@ -1,11 +1,9 @@
 +++
-title = "Outro"
+title = "Finishing up"
 date = 2021-10-18T20:39:54-06:00
-weight = 5
+weight = 90
 +++
 
-
-## Finishing up
 
 Thats it for this lab. You are welcome to continue to try the other challenges.
 If you are done, reset the CTF by writing `0xC1EA12` to handle `0x0032`.

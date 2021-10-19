@@ -5,7 +5,7 @@
 <meta name=generator content="Hugo 0.88.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title>Victure PC420 :: IoT Hack Labs</title>
+<title>Flag0 :: IoT Hack Labs</title>
 <link href=/css/nucleus.css?1634616144 rel=stylesheet>
 <link href=/css/fontawesome-all.min.css?1634616144 rel=stylesheet>
 <link href=/css/hybrid.css?1634616144 rel=stylesheet>
@@ -20,7 +20,7 @@
 <script src=/js/jquery-3.3.1.min.js?1634616144></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
-<body data-url=/victure-pc420/>
+<body data-url=/btle-ctf/02-flag0/>
 <nav id=sidebar>
 <div id=header-wrapper>
 <div id=header>
@@ -44,9 +44,7 @@
 </section>
 <div class=highlightable>
 <ul class=topics>
-<li data-nav-id=/victure-pc420/ title="Victure PC420" class="dd-item
-parent
-active">
+<li data-nav-id=/victure-pc420/ title="Victure PC420" class=dd-item>
 <a href=/victure-pc420/>
 Victure PC420
 </a>
@@ -180,7 +178,8 @@ References
 </li>
 </ul>
 </li>
-<li data-nav-id=/btle-ctf/ title="BTLE CTF" class=dd-item>
+<li data-nav-id=/btle-ctf/ title="BTLE CTF" class="dd-item
+parent">
 <a href=/btle-ctf/>
 BTLE CTF
 </a>
@@ -190,7 +189,7 @@ BTLE CTF
 Getting Started
 </a>
 </li>
-<li data-nav-id=/btle-ctf/02-flag0/ title=Flag0 class=dd-item>
+<li data-nav-id=/btle-ctf/02-flag0/ title=Flag0 class="dd-item active">
 <a href=/btle-ctf/02-flag0/>
 Flag0
 </a>
@@ -228,7 +227,7 @@ Finishing up
 <div>
 <div id=top-bar>
 <div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/Victure%20PC420/_index.md target=blank>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/BTLE%20CTF/02-Flag0.md target=blank>
 <i class="fas fa-code-branch"></i>
 <span id=top-github-link-text>Edit this page</span>
 </a>
@@ -239,34 +238,61 @@ Finishing up
 <i class="fas fa-bars"></i>
 </a>
 </span>
+<span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > Victure PC420
+<a href=/></a> > <a href=/btle-ctf/>BTLE CTF</a> > Flag0
 </span>
+</div>
+<div class=progress>
+<div class=wrapper>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#submit-the-flag>Submit the Flag</a></li>
+<li><a href=#check-your-score>Check Your Score</a></li>
+</ul>
+</nav>
+</div>
 </div>
 </div>
 </div>
 <div id=head-tags>
 </div>
-<div id=chapter>
 <div id=body-inner>
-<h3 id=victure-pc420-baby-monitor>Victure PC420 Baby Monitor</h3>
-<h1 id=requirements>Requirements</h1>
-<ul>
-<li>Victure PC420 baby monitor camera with power cord</li>
-<li>USB to TTL adapter (Shikra, DSD Tech USB to TTL, etc.)</li>
-<li>Micro SD (at least 20 MB)</li>
-<li>Micro SD to USB adapter</li>
-<li>3 Female to male jumper wires</li>
-<li>Computer</li>
-</ul>
+<h1>
+Flag0
+</h1>
+<p>Here are the target devices for reference:</p>
+<ol>
+<li>08:3A:F2:7D:65:8A</li>
+<li>94:B9:7E:FA:27:72</li>
+<li>94:B9:7E:F9:21:B6</li>
+<li>94:B9:7E:FA:71:F2</li>
+<li>94:B9:7E:FA:2A:42</li>
+<li>4C:EB:D6:75:4E:B6</li>
+<li>94:B9:7E:DA:08:56</li>
+</ol>
+<p>Use <code>bleah</code> to enumerate the characteristics on the device. (Remember to change the device MAC address)</p>
+<pre tabindex=0><code>$ sudo bleah -b 94:B9:7E:FA:27:72 -e
+</code></pre><p>⚠️ Try this a few times if it doesn&rsquo;t work and/or removing and plugging in the bluetooth dongle.</p>
+<p>For the flag 0, we notice that the &lsquo;Device Name&rsquo; kinda looks like a flag.</p>
+<p><img src=/static/bleah_flag_0.png alt=images/bleah_flag_0.png></p>
+<h2 id=submit-the-flag>Submit the Flag</h2>
+<p>Write the value to where we submit flags, handle <code>0x002e</code>.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b 94:B9:7E:FA:27:72 --char-write-req -a 0x002e -n <span style=color:#66d9ef>$(</span>echo -n <span style=color:#e6db74>&#34;04dc54d9053b4307680a&#34;</span> | xxd -ps<span style=color:#66d9ef>)</span>
+</code></pre></div><p>⚠️ Try this until we get the message:</p>
+<pre tabindex=0><code>Characteristic value was written successfully
+</code></pre><h2 id=check-your-score>Check Your Score</h2>
+<p>Now let&rsquo;s check the scoreboard again with <code>bleah</code>:</p>
+<pre tabindex=0><code>$ sudo bleah -b 94:B9:7E:FA:27:72 -e
+</code></pre><p>We should see that Flag 0 is now complete.</p>
+<p><img src=/static/bleah_flag_0.png alt=images/bleah_flag_0.png></p>
 <footer class=footline>
 </footer>
 </div>
 </div>
-</div>
 <div id=navigation>
-<a class="nav nav-prev" href=/ title> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/victure-pc420/01-micro-sd/ title="Micro SD" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-prev" href=/btle-ctf/01-getting-started/ title="Getting Started"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/btle-ctf/03-flag1/ title=Flag1 style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>

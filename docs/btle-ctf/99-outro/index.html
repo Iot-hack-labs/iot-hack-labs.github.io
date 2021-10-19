@@ -5,19 +5,19 @@
 <meta name=generator content="Hugo 0.88.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title>Outro :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634615416 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634615416 rel=stylesheet>
-<link href=/css/hybrid.css?1634615416 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634615416 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634615416 rel=stylesheet>
-<link href=/css/auto-complete.css?1634615416 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634615416 rel=stylesheet>
-<link href=/css/theme.css?1634615416 rel=stylesheet>
-<link href=/css/tabs.css?1634615416 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634615416 rel=stylesheet>
-<link href=/css/theme-red.css?1634615416 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634615416></script>
+<title>Finishing up :: IoT Hack Labs</title>
+<link href=/css/nucleus.css?1634616144 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634616144 rel=stylesheet>
+<link href=/css/hybrid.css?1634616144 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634616144 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634616144 rel=stylesheet>
+<link href=/css/auto-complete.css?1634616144 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634616144 rel=stylesheet>
+<link href=/css/theme.css?1634616144 rel=stylesheet>
+<link href=/css/tabs.css?1634616144 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634616144 rel=stylesheet>
+<link href=/css/theme-red.css?1634616144 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634616144></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/btle-ctf/99-outro/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634615416></script>
-<script type=text/javascript src=/js/auto-complete.js?1634615416></script>
+<script type=text/javascript src=/js/lunr.min.js?1634616144></script>
+<script type=text/javascript src=/js/auto-complete.js?1634616144></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634615416></script>
+<script type=text/javascript src=/js/search.js?1634616144></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -184,14 +184,34 @@ parent">
 BTLE CTF
 </a>
 <ul>
-<li data-nav-id=/btle-ctf/01-intro/ title=Intro class=dd-item>
-<a href=/btle-ctf/01-intro/>
-Intro
+<li data-nav-id=/btle-ctf/01-getting-started/ title="Getting Started" class=dd-item>
+<a href=/btle-ctf/01-getting-started/>
+Getting Started
 </a>
 </li>
-<li data-nav-id=/btle-ctf/99-outro/ title=Outro class="dd-item active">
+<li data-nav-id=/btle-ctf/02-flag0/ title=Flag0 class=dd-item>
+<a href=/btle-ctf/02-flag0/>
+Flag0
+</a>
+</li>
+<li data-nav-id=/btle-ctf/03-flag1/ title=Flag1 class=dd-item>
+<a href=/btle-ctf/03-flag1/>
+Flag1
+</a>
+</li>
+<li data-nav-id=/btle-ctf/04-flag2/ title=Flag2 class=dd-item>
+<a href=/btle-ctf/04-flag2/>
+Flag2
+</a>
+</li>
+<li data-nav-id=/btle-ctf/05-flag3/ title=Flag2 class=dd-item>
+<a href=/btle-ctf/05-flag3/>
+Flag2
+</a>
+</li>
+<li data-nav-id=/btle-ctf/99-outro/ title="Finishing up" class="dd-item active">
 <a href=/btle-ctf/99-outro/>
-Outro
+Finishing up
 </a>
 </li>
 </ul>
@@ -220,14 +240,14 @@ Outro
 </span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > <a href=/btle-ctf/>BTLE CTF</a> > Outro
+<a href=/></a> > <a href=/btle-ctf/>BTLE CTF</a> > Finishing up
 </span>
 </div>
 <div class=progress>
 <div class=wrapper>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#finishing-up>Finishing up</a>
+<li>
 <ul>
 <li><a href=#references>References</a></li>
 </ul>
@@ -242,9 +262,8 @@ Outro
 </div>
 <div id=body-inner>
 <h1>
-Outro
+Finishing up
 </h1>
-<h2 id=finishing-up>Finishing up</h2>
 <p>Thats it for this lab. You are welcome to continue to try the other challenges.
 If you are done, reset the CTF by writing <code>0xC1EA12</code> to handle <code>0x0032</code>.</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ gatttool -b AA:BB:CC:DD:EE:FF --char-write-req -a 0x0032 -n C1EA12
@@ -258,24 +277,24 @@ If you are done, reset the CTF by writing <code>0xC1EA12</code> to handle <code>
 </div>
 </div>
 <div id=navigation>
-<a class="nav nav-prev" href=/btle-ctf/01-intro/ title=Intro> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/btle-ctf/01-intro/ title=Intro style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-prev" href=/btle-ctf/05-flag3/ title=Flag2> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/btle-ctf/01-getting-started/ title="Getting Started" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634615416></script>
-<script src=/js/perfect-scrollbar.min.js?1634615416></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634615416></script>
-<script src=/js/jquery.sticky.js?1634615416></script>
-<script src=/js/featherlight.min.js?1634615416></script>
-<script src=/js/highlight.pack.js?1634615416></script>
+<script src=/js/clipboard.min.js?1634616144></script>
+<script src=/js/perfect-scrollbar.min.js?1634616144></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634616144></script>
+<script src=/js/jquery.sticky.js?1634616144></script>
+<script src=/js/featherlight.min.js?1634616144></script>
+<script src=/js/highlight.pack.js?1634616144></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634615416></script>
-<script src=/js/learn.js?1634615416></script>
-<script src=/js/hugo-learn.js?1634615416></script>
-<script src=/mermaid/mermaid.js?1634615416></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634616144></script>
+<script src=/js/learn.js?1634616144></script>
+<script src=/js/hugo-learn.js?1634616144></script>
+<script src=/mermaid/mermaid.js?1634616144></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>
