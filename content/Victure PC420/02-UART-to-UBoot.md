@@ -1,5 +1,5 @@
 ---
-title: "UART to UBoot"
+title: "UART to U-Boot"
 weight: 200
 date: 2021-10-18T20:47:46-06:00
 ---
