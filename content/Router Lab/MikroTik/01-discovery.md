@@ -35,6 +35,9 @@ PORT     STATE    SERVICE
 ```
 $ nmap 172.21.0.4 -p21,8291 -sC -Pn
 ```
+
+We should get back some additional information about what services are running.
+
 ```
 $ nmap 172.21.0.4 -p21,8291 -sC -Pn
 PORT     STATE SERVICE
