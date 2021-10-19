@@ -6,5 +6,7 @@ chapter = true
 +++
 
 # WRT160N
-
+```txt
+Host: 172.21.0.15
+```
 Must be on the Wifi [documented here](/router-lab/).
