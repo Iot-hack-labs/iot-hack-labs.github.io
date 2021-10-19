@@ -4,15 +4,8 @@ date = 2021-10-18T20:39:54-06:00
 weight = 20
 +++
 
-Here are the target devices for reference:
 
-0. Flag 0: 94:B9:7E:DA:08:56
-1. Flag 1: 08:3A:F2:7D:65:8A
-2. Flag 2: 94:B9:7E:FA:27:72
-3. Flag 3: 94:B9:7E:F9:21:B6
-
-
-### Use Bleah to Enumerate All Characteristics
+### Use Bettercap to Enumerate All Characteristics
 
 At this point, if we try to use `bleah` to enumerate the characteristics, we see that `bleah` shows us some interesting values.
 
