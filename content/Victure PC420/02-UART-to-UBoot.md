@@ -24,7 +24,7 @@ Now connect the male ends of the jumper cables to the camera's UART ports accord
 
 `screen` can be used to connect to serial consoles. To connect to the adapter, run the following
 ```sh
-screen /dev/ttyUSB0 115200
+screen /dev/ttyUSB3 115200
 ```
 Where,
 - `/dev/ttyUSB3`: Linux serial port for the USB to TTL adapter
