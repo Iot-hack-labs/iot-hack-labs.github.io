@@ -72,9 +72,11 @@ Where,
 - `cp /dev/mtdblock* /mnt/firmware/`: Copies the block devices that contain the firmware over to the micro SD card
 
 ### Modify firmware
+**The following steps need to be done on the laptop**
+
 The block device that we need to modify is just a squashfs filesystem file. To extract the files from the firmware, lets install the `squashfs` tools
 ```sh
-sudo apt install squashfs-tools
+sudo apt install squashfs-tools 2> /dev/null
 ```
 
 Now connect the micro SD to the computer and mount the card
@@ -129,6 +131,8 @@ sudo umount /mnt/pc420
 ```
 
 ### Update camera firmware
+**The following commands need to be run on the camera**
+
 Now that we have the modified squashfs file, we can update the camera's firmware. Plug the micro SD into the camera and run the following
 ```sh
 /usr/sbin/update.sh
