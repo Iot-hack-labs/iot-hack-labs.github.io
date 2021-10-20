@@ -26,9 +26,11 @@ downkernel- load uImage tftp
 ```
 This U-Boot shell can be used to drop us into a root shell. To do so, run the following
 ```sh
-anyka$ setenv bootargs console=ttySAK0,115200n8 root=/dev/mtdblock4 rootfstype=squashfs init=/bin/sh mem=64M memsize=64M
-anyka$ saveenv
+setenv bootargs console=ttySAK0,115200n8 root=/dev/mtdblock4 rootfstype=squashfs init=/bin/sh mem=64M memsize=64M
+saveenv
+```
 
+```
 Saving Environment to SPI Flash...
 Env save done OK
 
