@@ -9,11 +9,11 @@ weight = 40
 
 Use `bettercap` to enumerate its characteristics again.
 ```
-$ sudo bettercap
+sudo bettercap
 ```
 ```
-> ble.recon on
-> ble.enum 94:B9:7E:F9:21:B6
+ble.recon on
+ble.enum 94:B9:7E:F9:21:B6
 ```
 
 ![images/ble_enum_flag_3.png](/static/ble_enum_flag_3.png)
@@ -30,14 +30,14 @@ Use `hciconfig` to view the MAC address of the interface.
 
 We can spoof our mac address with the tool `spooftooph`. (Make sure to use `sudo`)
 ```
-$ sudo spooftooph -i hci0 -a 11:22:33:44:55:66
+sudo spooftooph -i hci0 -a 11:22:33:44:55:66
 ```
 ![images/bleah_flag_3.png](/static/bleah_flag_3.png)
 
 
 Once we have done this, we need to reset the interface for the changes to take.
 ```
-$ sudo hciconfig hci0 reset
+sudo hciconfig hci0 reset
 ```
 Now `hciconfig` should show the new MAC.
 

@@ -31,7 +31,7 @@ You can view BLE interfaces on you system by using the `hciconfig` command. You 
 
 We use `gatttool` to read and write values to service handles.
 ```bash
-$ gatttool -b 94:B9:7E:DA:08:56 --char-read-a 0x0016
+gatttool -b 94:B9:7E:DA:08:56 --char-read -a 0x0016
 ```
 
 
@@ -46,11 +46,11 @@ Although actually deprecated in favor of Bettercap, it may be easier to use blea
 ### Bettercap
 
 ```
-$ sudo bettercap
+sudo bettercap
 ```
 
 ```
-> ble.recon on
+ble.recon on
 ```
 
 ![images/ble_recon.png](/static/ble_recon.png)
