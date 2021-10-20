@@ -21,15 +21,17 @@ We could simply run `/init` but the camera's services all output to `stdout` whi
 
 Run the following to ensure the services will only log to a file
 ```sh
-/ # mount /mnt && mkdir /mnt/debug && touch /mnt/debug/log.txt
+mount /mnt && mkdir /mnt/debug && touch /mnt/debug/log.txt
 ```
 Where,
 - `mount /mnt`: Mounts the `/mnt` directory according to the `/etc/fstab` file
 - `mkdir /mnt/debug && touch /mnt/debug/log.txt`: Creates the debug directory and the log file the services will log to
 
 Now we can safely run the initialization scripts. The scripts output to the console then start executing services in the background, dropping you back in the shell
-```sh
-/ # /etc/init.d/rcS
+```
+/etc/init.d/rcS
+```
+```
 mount all file system...
 mount: according to /proc/mounts, tmpfs is already mounted on /mnt
 starting mdev...
@@ -63,12 +65,10 @@ Password for root changed by root
 
 Connect the micro SD card to the camera and run the following:
 ```sh
-~ # mount /dev/mmcblk0p1 /mnt
-~ # mkdir /mnt/firmware
-~ # cp /dev/mtdblock* /mnt/firmware/
+mkdir /mnt/firmware
+cp /dev/mtdblock* /mnt/firmware/
 ```
 Where,
-- `mount /dev/mmcblk0p1 /mnt`: Mounts the micro SD card to `/mnt`
 - `cp /dev/mtdblock* /mnt/firmware/`: Copies the block devices that contain the firmware over to the micro SD card
 
 ### Modify firmware
@@ -79,13 +79,15 @@ sudo apt install squashfs-tools
 
 Now connect the micro SD to the computer and mount the card
 ```sh
-kali@kali:~$ sudo mkdir /mnt/pc420
-kali@kali:~$ sudo mount /dev/sdb1 /mnt/pc420
+sudo mkdir /mnt/pc420
+sudo mount /dev/sdb1 /mnt/pc420
 ```
 
 Now run the following to unsquash the root filesystem:
 ```sh
-kali@kali:~$ unsquashfs -d rootfs /mnt/pc420/firmware/mtdblock4
+unsquashfs -d rootfs /mnt/pc420/firmware/mtdblock4
+```
+```
 Parallel unsquashfs: Using 6 processors
 320 inodes (338 blocks) to write
 
@@ -114,7 +116,7 @@ Edit `rootfs/etc/init.d/rc.local` and uncomment line 13
 ### Build firmware
 Now that we have modified the initialization scripts, we are going to 'resquash' the files
 ```sh
-kali@kali:~$ mksquashfs rootfs /mnt/pc420/root.sqsh4 -comp xz
+mksquashfs rootfs /mnt/pc420/root.sqsh4 -comp xz
 ```
 Where,
 - `rootfs`: The path to the directory containing the filesystem
@@ -123,17 +125,15 @@ Where,
 
 Once complete, unmount the micro SD card
 ```sh
-kali@kali:~$ sudo umount /mnt/pc420
+sudo umount /mnt/pc420
 ```
 
 ### Update camera firmware
 Now that we have the modified squashfs file, we can update the camera's firmware. Plug the micro SD into the camera and run the following
 ```sh
-~ # mount /dev/mmcblk0p1 /mnt
-~ # /usr/sbin/update.sh
+/usr/sbin/update.sh
 ```
 Where,
-- `mount /dev/mmcblk0p1 /mnt`: Mounts the micro SD card to `/mnt`
 - `/usr/sbin/update.sh`: Runs the script to update the camera's firmware
 
 The camera should reboot once it is done updating.
@@ -142,35 +142,38 @@ The camera should reboot once it is done updating.
 Now that the firmware has been updated, we no longer need to boot to `/bin/sh`. To change the bootargs, follow the steps taken in the `UART to U-Boot` section to get into the U-Boot shell and run the following:
 
 ```sh
-anyka$ setenv bootargs console=ttySAK0,115200n8 root=/dev/mtdblock4 rootfstype=squashfs init=/init mem=64M memsize=64M
-anyka$ saveenv
-
+setenv bootargs console=ttySAK0,115200n8 root=/dev/mtdblock4 rootfstype=squashfs init=/init mem=64M memsize=64M
+saveenv
+```
+```
 Saving Environment to SPI Flash...
 Env save done OK
 ```
-Now disconnect and re
-connect the power to the camera. The camera should not boot into a shell but should run our modified initialization scripts.
+Now disconnect and reconnect the power to the camera. The camera should not boot into a shell but should run our modified initialization scripts.
 
 We now need to connect the camera to the WiFi. The first step to do this is to connect the computer to the WiFi the camera is broadcasting. The camera's WiFi SSID should start with 'Victure_'.
 
 Once connected, run the following on the computer, replacing PASSWORD and SSID with the password and SSID of the WiFi it should connect to:
 ```sh
-qrcode_header='\x68\x00\x00\x00\x80'
-victure_user="95c992cdf31fc7d0"
-timezone="-7.00"
-region="US"
-wifi_type="WPA"
-wifi_password='PASSWORD'
-wifi_ssid='SSID'
+gen_qr_code_str(){
+    qrcode_header='\x68\x00\x00\x00\x80'
+    victure_user="95c992cdf31fc7d0"
+    timezone="-7.00"
+    region="US"
+    wifi_type="WPA"
+    wifi_ssid="$1"
+    wifi_password="$2"
 
-payload="WIFI:U:$victure_user;Z:$timezone;R:$region;T:$wifi_type;P:\"$wifi_password\";S:$wifi_ssid;"
+    payload="WIFI:U:$victure_user;Z:$timezone;R:$region;T:$wifi_type;P:\"$wifi_password\";S:$wifi_ssid;"
 
-ssidLength="${#wifi_ssid}"
-passwordLength="${#wifi_password}"
-payloadLength="${#payload}"
-lengths="$passwordLength;$ssidLength;$payloadLength"
+    ssidLength="${#wifi_ssid}"
+    passwordLength="${#wifi_password}"
+    payloadLength="${#payload}"
+    lengths="$passwordLength;$ssidLength;$payloadLength"
+    echo -en "${qrcode_header}L:$lengths;$payload"
+}
 
-echo -en "${qrcode_header}L:$lengths;$payload" | nc -v 10.1.8.1 6666
+gen_qr_code_str "SAINTCON" "saintcon2021" | nc -v 10.1.8.1 6666
 ```
 This sends the camera all of the info it needs in order to connect to the WiFi. Once done, you should see output in the `screen` session related to the camera connecting to the WiFi. Make note of the IP that is displayed once it has connected to the WiFi.
 ```sh
