@@ -6,18 +6,18 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>UART to U-Boot :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634745620 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634745620 rel=stylesheet>
-<link href=/css/hybrid.css?1634745620 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634745620 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634745620 rel=stylesheet>
-<link href=/css/auto-complete.css?1634745620 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634745620 rel=stylesheet>
-<link href=/css/theme.css?1634745620 rel=stylesheet>
-<link href=/css/tabs.css?1634745620 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634745620 rel=stylesheet>
-<link href=/css/theme-red.css?1634745620 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634745620></script>
+<link href=/css/nucleus.css?1634746003 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634746003 rel=stylesheet>
+<link href=/css/hybrid.css?1634746003 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634746003 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634746003 rel=stylesheet>
+<link href=/css/auto-complete.css?1634746003 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634746003 rel=stylesheet>
+<link href=/css/theme.css?1634746003 rel=stylesheet>
+<link href=/css/tabs.css?1634746003 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634746003 rel=stylesheet>
+<link href=/css/theme-red.css?1634746003 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634746003></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/victure-pc420/02-uart-to-uboot/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634745620></script>
-<script type=text/javascript src=/js/auto-complete.js?1634745620></script>
+<script type=text/javascript src=/js/lunr.min.js?1634746003></script>
+<script type=text/javascript src=/js/auto-complete.js?1634746003></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634745620></script>
+<script type=text/javascript src=/js/search.js?1634746003></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -209,14 +209,6 @@ UART to U-Boot
 <p><img src=/static/PC420-dsd-tech-usb-to-ttl.jpg alt="DSD Tech USB to TTL Adapter">
 <img src=/static/PC420-shikra-diagram.png alt="Shikra Diagram"></p>
 <p>Connect the female ends of the jumper cables to the TX, RX, and GND pins on the USB to TTL adapter shown above. Once done, connect the adapter to the computer</p>
-<p><code>screen</code> can be used to connect to serial consoles. To connect to the adapter, run the following</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>kali@kali:~$ screen /dev/ttyUSB0 <span style=color:#ae81ff>115200</span>
-</code></pre></div><p>Where,</p>
-<ul>
-<li><code>/dev/ttyUSB0</code>: Linux serial port for the USB to TTL adapter</li>
-<li><code>115200</code>: The baud rate (i.e. communication speed). <code>115200</code> is often the baud rate of UART devices.</li>
-</ul>
-<p><strong>Note:</strong> Your serial port might not be <code>/dev/ttyUSB0</code>. You can disconnect the adapter from the computer, run <code>ls /dev</code>, reconnect the adapter and run <code>ls /dev</code> to determine the correct serial port to use.</p>
 <p>Now connect the male ends of the jumper cables to the camera&rsquo;s UART ports according to the following table</p>
 <table>
 <thead>
@@ -241,6 +233,14 @@ UART to U-Boot
 </tbody>
 </table>
 <p><img src=/static/PC420-victure.png alt="Victure UART Ports"></p>
+<p><code>screen</code> can be used to connect to serial consoles. To connect to the adapter, run the following</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>screen /dev/ttyUSB0 <span style=color:#ae81ff>115200</span>
+</code></pre></div><p>Where,</p>
+<ul>
+<li><code>/dev/ttyUSB3</code>: Linux serial port for the USB to TTL adapter</li>
+<li><code>115200</code>: The baud rate (i.e. communication speed). <code>115200</code> is often the baud rate of UART devices.</li>
+</ul>
+<p><strong>Note:</strong> Your serial port might not be <code>/dev/ttyUSB3</code>. You can disconnect the adapter from the computer, run <code>ls /dev</code>, reconnect the adapter and run <code>ls /dev</code> to determine the correct serial port to use.</p>
 <p>It is now time to power the camera. Before doing so, make sure you are ready to press any key in the terminal where you ran the <code>screen</code> command to connect to the adapter&rsquo;s serial console.</p>
 <p>Once the camera is powered on, you should see something like this in the <code>screen</code> session</p>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>U-Boot 2013.10.0-AK_V3.0.05 <span style=color:#f92672>(</span>Jan <span style=color:#ae81ff>11</span> <span style=color:#ae81ff>2021</span> - 08:10:47<span style=color:#f92672>)</span>
@@ -272,17 +272,17 @@ Hit any key to stop autoboot:  <span style=color:#ae81ff>1</span>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634745620></script>
-<script src=/js/perfect-scrollbar.min.js?1634745620></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634745620></script>
-<script src=/js/jquery.sticky.js?1634745620></script>
-<script src=/js/featherlight.min.js?1634745620></script>
-<script src=/js/highlight.pack.js?1634745620></script>
+<script src=/js/clipboard.min.js?1634746003></script>
+<script src=/js/perfect-scrollbar.min.js?1634746003></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634746003></script>
+<script src=/js/jquery.sticky.js?1634746003></script>
+<script src=/js/featherlight.min.js?1634746003></script>
+<script src=/js/highlight.pack.js?1634746003></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634745620></script>
-<script src=/js/learn.js?1634745620></script>
-<script src=/js/hugo-learn.js?1634745620></script>
-<script src=/mermaid/mermaid.js?1634745620></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634746003></script>
+<script src=/js/learn.js?1634746003></script>
+<script src=/js/hugo-learn.js?1634746003></script>
+<script src=/mermaid/mermaid.js?1634746003></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>

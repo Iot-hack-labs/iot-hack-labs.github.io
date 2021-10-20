@@ -12,16 +12,6 @@ We will now connect to the Victure camera via the USB to TTL adapter.
 
 Connect the female ends of the jumper cables to the TX, RX, and GND pins on the USB to TTL adapter shown above. Once done, connect the adapter to the computer
 
-`screen` can be used to connect to serial consoles. To connect to the adapter, run the following
-```sh
-kali@kali:~$ screen /dev/ttyUSB0 115200
-```
-Where,
-- `/dev/ttyUSB0`: Linux serial port for the USB to TTL adapter
-- `115200`: The baud rate (i.e. communication speed). `115200` is often the baud rate of UART devices.
-
-**Note:** Your serial port might not be `/dev/ttyUSB0`. You can disconnect the adapter from the computer, run `ls /dev`, reconnect the adapter and run `ls /dev` to determine the correct serial port to use.
-
 Now connect the male ends of the jumper cables to the camera's UART ports according to the following table
 
 | Adapter | Camera |
@@ -31,6 +21,16 @@ Now connect the male ends of the jumper cables to the camera's UART ports accord
 | RX | TX |
 
 ![Victure UART Ports](/static/PC420-victure.png)
+
+`screen` can be used to connect to serial consoles. To connect to the adapter, run the following
+```sh
+screen /dev/ttyUSB0 115200
+```
+Where,
+- `/dev/ttyUSB3`: Linux serial port for the USB to TTL adapter
+- `115200`: The baud rate (i.e. communication speed). `115200` is often the baud rate of UART devices.
+
+**Note:** Your serial port might not be `/dev/ttyUSB3`. You can disconnect the adapter from the computer, run `ls /dev`, reconnect the adapter and run `ls /dev` to determine the correct serial port to use.
 
 It is now time to power the camera. Before doing so, make sure you are ready to press any key in the terminal where you ran the `screen` command to connect to the adapter's serial console.
 
