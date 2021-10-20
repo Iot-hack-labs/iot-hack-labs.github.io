@@ -8,11 +8,11 @@ weight = 10
 Use `bettercap` to enumerate the characteristics on the device.
 
 ```
-$ sudo bettercap
+sudo bettercap
 ```
 ```
-> ble.recon on
-> ble.enum 94:B9:7E:DA:08:56
+ble.recon on
+ble.enum 94:B9:7E:DA:08:56
 ```
 
 ![images/ble_enum_flag_0.png](/static/ble_enum_flag_0.png)

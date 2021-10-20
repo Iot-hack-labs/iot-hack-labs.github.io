@@ -9,11 +9,11 @@ weight = 30
 
 After switching to challenge 2, use `bettercap` to enumerate its characteristics again.
 ```
-$ sudo bettercap
+sudo bettercap
 ```
 ```
-> ble.recon on
-> ble.enum 94:B9:7E:FA:27:72
+ble.recon on
+ble.enum 94:B9:7E:FA:27:72
 ```
 
 ![images/ble_enum_flag_2.png](/static/ble_enum_flag_2.png)
@@ -23,7 +23,7 @@ We see that there is some authentication required, and that we should connect wi
 ### Use Gatttool with Authentication
 
 ```bash
-$ gatttool --sec-level=high -b 94:B9:7E:FA:27:72 --char-read -a 0x002c
+gatttool --sec-level=high -b 94:B9:7E:FA:27:72 --char-read -a 0x002c
 ```
 This will prompt you for the pin. Enter `0000` and click `OK`.
 

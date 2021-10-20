@@ -33,13 +33,13 @@ PORT     STATE    SERVICE
 
 2. Do service discovery on the open ports by using the `-sC` flag.
 ```
-$ nmap 172.21.0.4 -p21,8291 -sC -Pn
+nmap 172.21.0.4 -p21,8291 -sC -Pn
 ```
 
 We should get back some additional information about what services are running.
 
 ```
-$ nmap 172.21.0.4 -p21,8291 -sC -Pn
+nmap 172.21.0.4 -p21,8291 -sC -Pn
 PORT     STATE SERVICE
 21/tcp   open  ftp
 | ftp-syst:
