@@ -8,6 +8,7 @@ chapter = true
 # WRT160N
 ```txt
 Host: 172.21.0.15
+Port: 8080
 User: admin
 password: LvawK!*C@6MR!Cz#*V2$ze@#7v75iT
 ```
