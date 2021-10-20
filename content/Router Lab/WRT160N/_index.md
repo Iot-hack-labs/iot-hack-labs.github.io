@@ -11,4 +11,4 @@ Host: 172.21.0.15
 User: admin
 password: LvawK!*C@6MR!Cz#*V2$ze@#7v75iT
 ```
-Must be on the Wifi [documented here](/router-lab/).
+Must be on the Wifi or hard wired to our network [documented here](/router-lab/).
