@@ -11,4 +11,8 @@ draft = true
 Host: 172.21.0.23
 ```
 
-Must be on the Wifi [documented here](/router-lab/).
+Must either be hardwired on a lab machine or be on the Wifi [documented here](/router-lab/).
+
+This lab walks through exploiting the Dlink 815 using the following:
+- Use Metasploit to bruteforce the login credentials
+- Use Burpsuite to exploit command injection in the ping utility.
