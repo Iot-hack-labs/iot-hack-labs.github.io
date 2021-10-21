@@ -6,11 +6,11 @@ date: 2021-10-18T20:52:11-06:00
 
 Now that the camera is connected to the WiFi, we should be able to disconnect our USB to TTL adapter and remotely connect to it.
 ```sh
-telnet IP_ADDR
+telnet 172.21.0.69
 ```
 ```
-Trying 192.168.4.46...
-Connected to 192.168.4.46.
+Trying 172.21.0.69...
+Connected to 172.21.0.69.
 Escape character is '^]'.
 
 anyka login: root

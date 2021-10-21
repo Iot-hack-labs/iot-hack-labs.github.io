@@ -6,18 +6,18 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>Update Camera Firmware :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634837438 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634837438 rel=stylesheet>
-<link href=/css/hybrid.css?1634837438 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634837438 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634837438 rel=stylesheet>
-<link href=/css/auto-complete.css?1634837438 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634837438 rel=stylesheet>
-<link href=/css/theme.css?1634837438 rel=stylesheet>
-<link href=/css/tabs.css?1634837438 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634837438 rel=stylesheet>
-<link href=/css/theme-red.css?1634837438 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634837438></script>
+<link href=/css/nucleus.css?1634838624 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634838624 rel=stylesheet>
+<link href=/css/hybrid.css?1634838624 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634838624 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634838624 rel=stylesheet>
+<link href=/css/auto-complete.css?1634838624 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634838624 rel=stylesheet>
+<link href=/css/theme.css?1634838624 rel=stylesheet>
+<link href=/css/tabs.css?1634838624 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634838624 rel=stylesheet>
+<link href=/css/theme-red.css?1634838624 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634838624></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/victure-pc420/configure-remote-connection/04-update-camera-firmware/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634837438></script>
-<script type=text/javascript src=/js/auto-complete.js?1634837438></script>
+<script type=text/javascript src=/js/lunr.min.js?1634838624></script>
+<script type=text/javascript src=/js/auto-complete.js?1634838624></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634837438></script>
+<script type=text/javascript src=/js/search.js?1634838624></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -207,15 +207,7 @@ Ultraloq-UL3
 </div>
 <div class=progress>
 <div class=wrapper>
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#connect-camera-to-wifi>Connect camera to WiFi</a></li>
-</ul>
-</li>
-</ul>
-</nav>
+<nav id=TableOfContents></nav>
 </div>
 </div>
 </div>
@@ -234,45 +226,6 @@ Update Camera Firmware
 <li><code>/usr/sbin/update.sh</code>: Runs the script to update the camera&rsquo;s firmware</li>
 </ul>
 <p>The camera should reboot once it is done updating.</p>
-<h3 id=connect-camera-to-wifi>Connect camera to WiFi</h3>
-<p>Now that the firmware has been updated, we no longer need to boot to <code>/bin/sh</code>. To change the bootargs, follow the steps taken in the <code>UART to U-Boot</code> section to get into the U-Boot shell and run the following:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>setenv bootargs console<span style=color:#f92672>=</span>ttySAK0,115200n8 root<span style=color:#f92672>=</span>/dev/mtdblock4 rootfstype<span style=color:#f92672>=</span>squashfs init<span style=color:#f92672>=</span>/init mem<span style=color:#f92672>=</span>64M memsize<span style=color:#f92672>=</span>64M
-saveenv
-</code></pre></div><pre tabindex=0><code>Saving Environment to SPI Flash...
-Env save done OK
-</code></pre><p>Now disconnect and reconnect the power to the camera. The camera should not boot into a shell but should run our modified initialization scripts.</p>
-<p>We now need to connect the camera to the WiFi. The first step to do this is to connect the computer to the WiFi the camera is broadcasting. The camera&rsquo;s WiFi SSID should start with &lsquo;Victure_&rsquo;.</p>
-<p>Once connected, run the following on the computer, replacing PASSWORD and SSID with the password and SSID of the WiFi it should connect to:</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>gen_qr_code_str<span style=color:#f92672>(){</span>
-    qrcode_header<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;\x68\x00\x00\x00\x80&#39;</span>
-    victure_user<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;95c992cdf31fc7d0&#34;</span>
-    timezone<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-7.00&#34;</span>
-    region<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;US&#34;</span>
-    wifi_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;WPA&#34;</span>
-    wifi_ssid<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$1<span style=color:#e6db74>&#34;</span>
-    wifi_password<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$2<span style=color:#e6db74>&#34;</span>
-
-    payload<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;WIFI:U:</span>$victure_user<span style=color:#e6db74>;Z:</span>$timezone<span style=color:#e6db74>;R:</span>$region<span style=color:#e6db74>;T:</span>$wifi_type<span style=color:#e6db74>;P:\&#34;</span>$wifi_password<span style=color:#e6db74>\&#34;;S:</span>$wifi_ssid<span style=color:#e6db74>;&#34;</span>
-
-    ssidLength<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${#</span>wifi_ssid<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
-    passwordLength<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${#</span>wifi_password<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
-    payloadLength<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${#</span>payload<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
-    lengths<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$passwordLength<span style=color:#e6db74>;</span>$ssidLength<span style=color:#e6db74>;</span>$payloadLength<span style=color:#e6db74>&#34;</span>
-    echo -en <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>qrcode_header<span style=color:#e6db74>}</span><span style=color:#e6db74>L:</span>$lengths<span style=color:#e6db74>;</span>$payload<span style=color:#e6db74>&#34;</span>
-<span style=color:#f92672>}</span>
-
-gen_qr_code_str <span style=color:#e6db74>&#34;HP Office Jet 420&#34;</span> <span style=color:#e6db74>&#34;omg pizza party&#34;</span> | nc -v 10.1.8.1 <span style=color:#ae81ff>6666</span>
-</code></pre></div><p>This sends the camera all of the info it needs in order to connect to the WiFi. Once done, you should see output in the <code>screen</code> session related to the camera connecting to the WiFi. Make note of the IP that is displayed once it has connected to the WiFi.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>Sending <span style=color:#66d9ef>select</span> <span style=color:#66d9ef>for</span> 192.168.4.46...
-Lease of 192.168.4.46 obtained, lease time <span style=color:#ae81ff>14400</span>
-deleting routes
-route: SIOCDELRT: No such process
-adding dns 69.27.0.130
-adding dns 69.27.0.131
-totalsize <span style=color:#f92672>[</span>4857755<span style=color:#f92672>]</span> VmRSS <span style=color:#f92672>[</span>3672<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>4020<span style=color:#f92672>]</span> VmSize <span style=color:#f92672>[</span>13104<span style=color:#f92672>]</span>
-no network <span style=color:#66d9ef>for</span> token
-interface <span style=color:#f92672>[</span>wlan0<span style=color:#f92672>]</span> ip <span style=color:#f92672>[</span>192.168.4.46<span style=color:#f92672>]</span>
-</code></pre></div>
 <footer class=footline>
 </footer>
 </div>
@@ -285,17 +238,17 @@ interface <span style=color:#f92672>[</span>wlan0<span style=color:#f92672>]</sp
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634837438></script>
-<script src=/js/perfect-scrollbar.min.js?1634837438></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634837438></script>
-<script src=/js/jquery.sticky.js?1634837438></script>
-<script src=/js/featherlight.min.js?1634837438></script>
-<script src=/js/highlight.pack.js?1634837438></script>
+<script src=/js/clipboard.min.js?1634838624></script>
+<script src=/js/perfect-scrollbar.min.js?1634838624></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634838624></script>
+<script src=/js/jquery.sticky.js?1634838624></script>
+<script src=/js/featherlight.min.js?1634838624></script>
+<script src=/js/highlight.pack.js?1634838624></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634837438></script>
-<script src=/js/learn.js?1634837438></script>
-<script src=/js/hugo-learn.js?1634837438></script>
-<script src=/mermaid/mermaid.js?1634837438></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634838624></script>
+<script src=/js/learn.js?1634838624></script>
+<script src=/js/hugo-learn.js?1634838624></script>
+<script src=/mermaid/mermaid.js?1634838624></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>
