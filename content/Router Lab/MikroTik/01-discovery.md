@@ -9,8 +9,6 @@ weight = 5
 This will guide you how to exploit a Mikrotik running Router Os.
 
 
-### Discovery
-
 1. First, run nmap against the target to discover what ports are open.
 - `-Pn`: scan the device even though its not responding to ping.
 - `--top-ports=4000` will scan the top 4000 most common service ports. The default is 1000, and will miss one of the open ports.
