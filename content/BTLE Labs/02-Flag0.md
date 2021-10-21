@@ -4,6 +4,8 @@ date = 2021-10-18T20:39:54-06:00
 weight = 10
 +++
 
+This is device #7 (94:B9:7E:DA:08:56)
+
 
 Use `bettercap` to enumerate the characteristics on the device.
 

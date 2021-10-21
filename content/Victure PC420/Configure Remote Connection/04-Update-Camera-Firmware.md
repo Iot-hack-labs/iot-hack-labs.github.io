@@ -50,7 +50,7 @@ gen_qr_code_str(){
     echo -en "${qrcode_header}L:$lengths;$payload"
 }
 
-gen_qr_code_str "SAINTCON" "saintcon2021" | nc -v 10.1.8.1 6666
+gen_qr_code_str "HP Office Jet 420" "omg pizza party" | nc -v 10.1.8.1 6666
 ```
 This sends the camera all of the info it needs in order to connect to the WiFi. Once done, you should see output in the `screen` session related to the camera connecting to the WiFi. Make note of the IP that is displayed once it has connected to the WiFi.
 ```sh
