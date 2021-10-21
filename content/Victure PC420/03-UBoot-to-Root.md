@@ -33,7 +33,6 @@ saveenv
 ```
 Saving Environment to SPI Flash...
 Env save done OK
-
 ```
 Where,
 - `setenv bootargs args...`: Sets the command line arguments that are passed to the kernel. The change here is `init=/bin/sh`. This means that instead of running `/init` when fully booted, `/bin/sh` will be run.
