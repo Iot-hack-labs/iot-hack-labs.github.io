@@ -5,7 +5,7 @@
 <meta name=generator content="Hugo 0.88.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title>Getting Started :: IoT Hack Labs</title>
+<title>Command Injection :: IoT Hack Labs</title>
 <link href=/css/nucleus.css?1634850962 rel=stylesheet>
 <link href=/css/fontawesome-all.min.css?1634850962 rel=stylesheet>
 <link href=/css/hybrid.css?1634850962 rel=stylesheet>
@@ -20,7 +20,7 @@
 <script src=/js/jquery-3.3.1.min.js?1634850962></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
-<body data-url=/btle-labs/01-getting-started/>
+<body data-url=/router-lab/dir-815/03-command-injection/>
 <nav id=sidebar>
 <div id=header-wrapper>
 <div id=header>
@@ -98,12 +98,14 @@ Test Remote Connection
 </li>
 </ul>
 </li>
-<li data-nav-id=/router-lab/ title="Router Lab" class=dd-item>
+<li data-nav-id=/router-lab/ title="Router Lab" class="dd-item
+parent">
 <a href=/router-lab/>
 Router Lab
 </a>
 <ul>
-<li data-nav-id=/router-lab/dir-815/ title=DIR-815 class=dd-item>
+<li data-nav-id=/router-lab/dir-815/ title=DIR-815 class="dd-item
+parent">
 <a href=/router-lab/dir-815/>
 DIR-815
 </a>
@@ -118,7 +120,7 @@ Auth Buffer Overflow
 Brute Force Login
 </a>
 </li>
-<li data-nav-id=/router-lab/dir-815/03-command-injection/ title="Command Injection" class=dd-item>
+<li data-nav-id=/router-lab/dir-815/03-command-injection/ title="Command Injection" class="dd-item active">
 <a href=/router-lab/dir-815/03-command-injection/>
 Command Injection
 </a>
@@ -176,13 +178,12 @@ Local File Inclusion
 </li>
 </ul>
 </li>
-<li data-nav-id=/btle-labs/ title="BTLE CTF" class="dd-item
-parent">
+<li data-nav-id=/btle-labs/ title="BTLE CTF" class=dd-item>
 <a href=/btle-labs/>
 BTLE CTF
 </a>
 <ul>
-<li data-nav-id=/btle-labs/01-getting-started/ title="Getting Started" class="dd-item active">
+<li data-nav-id=/btle-labs/01-getting-started/ title="Getting Started" class=dd-item>
 <a href=/btle-labs/01-getting-started/>
 Getting Started
 </a>
@@ -230,7 +231,7 @@ Ultraloq-UL3
 <div>
 <div id=top-bar>
 <div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/BTLE%20Labs/01-Getting-Started.md target=blank>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/Router%20Lab/DIR-815/03-command-injection.md target=blank>
 <i class="fas fa-code-branch"></i>
 <span id=top-github-link-text>Edit this page</span>
 </a>
@@ -243,26 +244,19 @@ Ultraloq-UL3
 </span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > <a href=/btle-labs/>BTLE CTF</a> > Getting Started
+<a href=/></a> > <a href=/router-lab/>Router Lab</a> > <a href=/router-lab/dir-815/>DIR-815</a> > Command Injection
 </span>
 </div>
 <div class=progress>
 <div class=wrapper>
 <nav id=TableOfContents>
 <ul>
-<li>
-<ul>
-<li><a href=#devices>Devices</a></li>
-</ul>
-</li>
-<li><a href=#tools>Tools</a>
-<ul>
-<li><a href=#hciconfig>Hciconfig</a></li>
-<li><a href=#gatttool>Gatttool</a></li>
-<li><a href=#bleah>Bleah</a></li>
-<li><a href=#bettercap>Bettercap</a></li>
-</ul>
-</li>
+<li><a href=#open-burpsuite>Open Burpsuite</a></li>
+<li><a href=#open-firefox>Open Firefox</a></li>
+<li><a href=#use-the-ping-utility>Use the Ping Utility</a></li>
+<li><a href=#test-for-command-injection>Test for Command Injection</a></li>
+<li><a href=#examining-the-code>Examining the Code</a></li>
+<li><a href=#exploiting-command-injection-to-read-files>Exploiting Command Injection to Read Files.</a></li>
 </ul>
 </nav>
 </div>
@@ -273,44 +267,70 @@ Ultraloq-UL3
 </div>
 <div id=body-inner>
 <h1>
-Getting Started
+Command Injection
 </h1>
-<h3 id=devices>Devices</h3>
-<p>Because it may be difficult to scan for all Bluetooth devices in such a crowded area, the BLE_CTF_INFINITY MAC addresses for each challenge are provided below.</p>
-<ol start=0>
-<li>Challenge 0: 94:B9:7E:DA:08:56</li>
-<li>Challenge 1: 08:3A:F2:7D:65:8A</li>
-<li>Challenge 2: 94:B9:7E:FA:27:72</li>
-<li>Challenge 3: 94:B9:7E:F9:21:B6</li>
-</ol>
-<h2 id=tools>Tools</h2>
-<p>We can use a few different tools to solve some BLE CTF Infinity challenges.</p>
+<p>The DIR 815 is vulnerable to command injection once authenticated. Make sure you found the password from the previous steps.</p>
+<h2 id=open-burpsuite>Open Burpsuite</h2>
+<p>For this step, we will use Burpsuite.</p>
+<p>Click the Kali drop down in the top left corner and search for <code>Burp</code>.</p>
+<p><img src=/static/kali-burp.png alt=images/kali-burp.png></p>
 <ul>
-<li>hciconfig</li>
-<li>bleah</li>
-<li>gatttool</li>
+<li>Open Burp. This may take a few seconds.</li>
+<li>Click <code>Next</code></li>
+<li>Click <code>Start Burp</code></li>
 </ul>
-<h3 id=hciconfig>Hciconfig</h3>
-<p>You can view BLE interfaces on you system by using the <code>hciconfig</code> command. You should see at least one interface.</p>
-<p><img src=/static/hciconfig.png alt=images/hciconfig.png></p>
-<h3 id=gatttool>Gatttool</h3>
-<p>We use <code>gatttool</code> to read and write values to service handles.</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>gatttool -b 94:B9:7E:DA:08:56 --char-read -a 0x0016
-</code></pre></div><h3 id=bleah>Bleah</h3>
-<p>Although actually deprecated in favor of Bettercap, it may be easier to use bleah to target which device to enumerate characteristics.</p>
-<p><img src=/static/hciconfig.png alt=images/hciconfig.png></p>
-<p>⚠️ Bleah has been deprecated in favor of Bettercap and may not be available.</p>
-<h3 id=bettercap>Bettercap</h3>
-<pre tabindex=0><code>sudo bettercap
-</code></pre><pre tabindex=0><code>ble.recon on
-</code></pre><p><img src=/static/ble_recon.png alt=images/ble_recon.png></p>
+<p>Navigate to &ldquo;Proxy&rdquo; > &ldquo;Intercept&rdquo; tab and turn off Intercept.</p>
+<p><img src=/static/burp_nav_to_proxy.png alt=images/burp_nav_to_proxy.png></p>
+<h2 id=open-firefox>Open Firefox</h2>
+<p>Open Firefox and click on the &ldquo;Foxy Proxy&rdquo; extension. We need to select the option <code>127.0.0.1:8080</code>. The &ldquo;Foxy Proxy&rdquo; extension should then get a green label above it.</p>
+<p><img src=/static/foxy-proxy.png alt=images/foxy-proxy.png></p>
+<p>In Firefox, navigate to <code>http://172.21.0.23:8080/</code>.</p>
+<p>Now in Burpsuite. Navigate to the &ldquo;Proxy&rdquo; > &ldquo;HTTP History&rdquo; tab. You should see the traffic from loading the login page.</p>
+<p><img src=/static/burp_http_history.png alt=images/burp_http_history.png></p>
+<h2 id=use-the-ping-utility>Use the Ping Utility</h2>
+<p>In Firefox, log into the DLINK router using the creds discovered from out brute force attack.</p>
+<p>Then navigate to <code>Tools</code> > <code>System Check</code>:</p>
+<p><img src=/static/ir815_tools_system_check.png alt=images/dir815_tools_system_check.png></p>
+<p>Try using the IPv6 ping utility.</p>
+<p><img src=/static/dir815_ipv6_ping.png alt=images/dir815_ipv6_ping.png></p>
+<p>Send the request to the repeater tab.</p>
+<p><img src=/static/dir815_send_to_repeater.png alt=images/dir815_send_to_repeater.png></p>
+<p>We can see that the POST request body contains what look like shell commands to run ping.</p>
+<p><img src=/static/dir815_repeater1.png alt=images/dir815_repeater1.png></p>
+<h2 id=test-for-command-injection>Test for Command Injection</h2>
+<p>You can rerun the command a few times and see that it quickly resolves. We can test for command injection by using the <code>sleep</code> command. We don&rsquo;t need to get any data back, but if the command takes longer to return, then we know that the <code>sleep</code> command is being evaluated. Try changing the body of the request to the following and sending.</p>
+<p>We want to try to get the router to evaluate the following command:</p>
+<blockquote>
+<p>ping6 ::1 && sleep 2</p>
+</blockquote>
+<p>But it will need to be URL encoded. We can use Cyberchef to encode this. Click here</p>
+<p><img src=/static/cyberchef_url_encode_sleep.png alt=images/cyberchef_url_encode_sleep.png></p>
+<p>Once we have our command encoded, place it in our request in Burpsuite.</p>
+<pre tabindex=0><code>act=ping6&amp;dst=::1%26%26%20sleep%202
+</code></pre><p><img src=/static/burp_sleep_command.png alt=images/burp_sleep_command.png></p>
+<p>We should see that the request takes 2 seconds to return, implying we have command injection.</p>
+<h2 id=examining-the-code>Examining the Code</h2>
+<p>We know that the DLINK router is running firmware version 2.01. We&rsquo;ve pulled the firmware and extracted the file system and found the code that is used for the <code>ping</code> diagnostic utility.We can notice the ping IPv4 is doing more than for IPv6. The IPv4 ping utility is not vulnerable to the same vector that we just tested.</p>
+<p><img src=/static/diagnostic_php.png alt=images/diagnostic_php.png></p>
+<p>Another script used with the ping utility shows which file the results are written and read from.</p>
+<p><img src=/static/ping-util_sh.png alt=images/ping-utli_sh.png></p>
+<h2 id=exploiting-command-injection-to-read-files>Exploiting Command Injection to Read Files.</h2>
+<p>We want to inject the command to copy the contents of <code>flag.txt</code> to the file that is read for the ping results:</p>
+<blockquote>
+<p>cat /var/flag.txt > /var/ping_result</p>
+</blockquote>
+<p>We need to URL encode the payload again. You can do that with Cyberchef here.</p>
+<p>Copy and use the payload in Burp repeater.</p>
+<pre tabindex=0><code>act=ping6&amp;dst=::1%26%26%20cat%20%2Fvar%2Fflag%2Etxt%20%3E%20%2Fvar%2Fping%5Fresult
+</code></pre><p><img src=/static/burp_command_injection.png alt=images/burp_command_injection.png></p>
+<p>You should get the contents of <code>/var/flag.txt</code> in the response.</p>
 <footer class=footline>
 </footer>
 </div>
 </div>
 <div id=navigation>
-<a class="nav nav-prev" href=/btle-labs/ title="BTLE CTF"> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/btle-labs/02-flag0/ title=Flag0 style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-prev" href=/router-lab/dir-815/02-brute-force-login/ title="Brute Force Login"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/router-lab/dir-815/01-discovery/ title=Discovery style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
