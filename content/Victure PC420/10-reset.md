@@ -1,5 +1,5 @@
 ---
-title: "Test Remote Connection"
+title: "Reset"
 weight: 1000
 date: 2021-10-18T20:52:11-06:00
 ---
@@ -12,10 +12,11 @@ saveenv
 ```
 
 reboot... wait for shell.
-
+plug in sd card
 ```sh
-mount /mnt && mkdir /mnt/debug && touch /mnt/debug/log.txt
+mount /mnt
 /etc/init.d/rcS
+update.sh
 ```
 
 in uboot (press enter after rebooting)
