@@ -4,7 +4,6 @@ weight: 500
 date: 2021-10-18T20:48:21-06:01
 ---
 
-### Connect Camera to WiFi
 Now that the firmware has been updated, we no longer need to boot to `/bin/sh`. To change the bootargs, follow the steps taken in the `UART to U-Boot` section to get into the U-Boot shell and run the following:
 
 ```sh

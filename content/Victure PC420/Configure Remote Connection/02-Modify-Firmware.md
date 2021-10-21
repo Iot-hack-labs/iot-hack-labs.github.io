@@ -4,8 +4,6 @@ weight: 200
 date: 2021-10-18T20:48:21-06:01
 ---
 
-## Modify Firmware
-
 **The following steps need to be done on the laptop**
 
 The block device that we need to modify is just a squashfs filesystem file.
