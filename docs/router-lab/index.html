@@ -6,18 +6,18 @@
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
 <title>Router Lab :: IoT Hack Labs</title>
-<link href=/css/nucleus.css?1634762570 rel=stylesheet>
-<link href=/css/fontawesome-all.min.css?1634762570 rel=stylesheet>
-<link href=/css/hybrid.css?1634762570 rel=stylesheet>
-<link href=/css/featherlight.min.css?1634762570 rel=stylesheet>
-<link href=/css/perfect-scrollbar.min.css?1634762570 rel=stylesheet>
-<link href=/css/auto-complete.css?1634762570 rel=stylesheet>
-<link href=/css/atom-one-dark-reasonable.css?1634762570 rel=stylesheet>
-<link href=/css/theme.css?1634762570 rel=stylesheet>
-<link href=/css/tabs.css?1634762570 rel=stylesheet>
-<link href=/css/hugo-theme.css?1634762570 rel=stylesheet>
-<link href=/css/theme-red.css?1634762570 rel=stylesheet>
-<script src=/js/jquery-3.3.1.min.js?1634762570></script>
+<link href=/css/nucleus.css?1634834254 rel=stylesheet>
+<link href=/css/fontawesome-all.min.css?1634834254 rel=stylesheet>
+<link href=/css/hybrid.css?1634834254 rel=stylesheet>
+<link href=/css/featherlight.min.css?1634834254 rel=stylesheet>
+<link href=/css/perfect-scrollbar.min.css?1634834254 rel=stylesheet>
+<link href=/css/auto-complete.css?1634834254 rel=stylesheet>
+<link href=/css/atom-one-dark-reasonable.css?1634834254 rel=stylesheet>
+<link href=/css/theme.css?1634834254 rel=stylesheet>
+<link href=/css/tabs.css?1634834254 rel=stylesheet>
+<link href=/css/hugo-theme.css?1634834254 rel=stylesheet>
+<link href=/css/theme-red.css?1634834254 rel=stylesheet>
+<script src=/js/jquery-3.3.1.min.js?1634834254></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
 <body data-url=/router-lab/>
@@ -30,10 +30,10 @@
 <input data-search-input id=search-by type=search placeholder=Search...>
 <span data-search-clear><i class="fas fa-times"></i></span>
 </div>
-<script type=text/javascript src=/js/lunr.min.js?1634762570></script>
-<script type=text/javascript src=/js/auto-complete.js?1634762570></script>
+<script type=text/javascript src=/js/lunr.min.js?1634834254></script>
+<script type=text/javascript src=/js/auto-complete.js?1634834254></script>
 <script type=text/javascript>var baseurl="https://iot-hack-labs.github.io/"</script>
-<script type=text/javascript src=/js/search.js?1634762570></script>
+<script type=text/javascript src=/js/search.js?1634834254></script>
 </div>
 <section id=homelinks>
 <ul>
@@ -49,11 +49,6 @@
 Victure PC420
 </a>
 <ul>
-<li data-nav-id=/victure-pc420/01-micro-sd/ title="Micro SD" class=dd-item>
-<a href=/victure-pc420/01-micro-sd/>
-Micro SD
-</a>
-</li>
 <li data-nav-id=/victure-pc420/02-uart-to-uboot/ title="UART to U-Boot" class=dd-item>
 <a href=/victure-pc420/02-uart-to-uboot/>
 UART to U-Boot
@@ -64,13 +59,40 @@ UART to U-Boot
 U-Boot to Root
 </a>
 </li>
-<li data-nav-id=/victure-pc420/04-configure-remote-connection/ title="Configure Remote Connection" class=dd-item>
-<a href=/victure-pc420/04-configure-remote-connection/>
+<li data-nav-id=/victure-pc420/configure-remote-connection/ title="Configure Remote Connection" class=dd-item>
+<a href=/victure-pc420/configure-remote-connection/>
 Configure Remote Connection
 </a>
+<ul>
+<li data-nav-id=/victure-pc420/configure-remote-connection/01-dump-firmware/ title="Dump Firmware" class=dd-item>
+<a href=/victure-pc420/configure-remote-connection/01-dump-firmware/>
+Dump Firmware
+</a>
 </li>
-<li data-nav-id=/victure-pc420/05-test-remote-connection/ title="Test Remote Connection" class=dd-item>
-<a href=/victure-pc420/05-test-remote-connection/>
+<li data-nav-id=/victure-pc420/configure-remote-connection/02-modify-firmware/ title="Modify Firmware" class=dd-item>
+<a href=/victure-pc420/configure-remote-connection/02-modify-firmware/>
+Modify Firmware
+</a>
+</li>
+<li data-nav-id=/victure-pc420/configure-remote-connection/03-build-firmware/ title="Build Firmware" class=dd-item>
+<a href=/victure-pc420/configure-remote-connection/03-build-firmware/>
+Build Firmware
+</a>
+</li>
+<li data-nav-id=/victure-pc420/configure-remote-connection/04-update-camera-firmware/ title="Update Camera Firmware" class=dd-item>
+<a href=/victure-pc420/configure-remote-connection/04-update-camera-firmware/>
+Update Camera Firmware
+</a>
+</li>
+<li data-nav-id=/victure-pc420/configure-remote-connection/05-connect-camera-to-wifi/ title="Connect Camera to WiFi" class=dd-item>
+<a href=/victure-pc420/configure-remote-connection/05-connect-camera-to-wifi/>
+Connect Camera to WiFi
+</a>
+</li>
+</ul>
+</li>
+<li data-nav-id=/victure-pc420/09-test-remote-connection/ title="Test Remote Connection" class=dd-item>
+<a href=/victure-pc420/09-test-remote-connection/>
 Test Remote Connection
 </a>
 </li>
@@ -200,24 +222,24 @@ Target CIDR: 172.21.0.1/24
 </div>
 </div>
 <div id=navigation>
-<a class="nav nav-prev" href=/victure-pc420/05-test-remote-connection/ title="Test Remote Connection"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-prev" href=/victure-pc420/09-test-remote-connection/ title="Test Remote Connection"> <i class="fa fa-chevron-left"></i></a>
 <a class="nav nav-next" href=/router-lab/mikrotik/ title=MikroTik style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
 <div style=border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px></div>
 </div>
-<script src=/js/clipboard.min.js?1634762570></script>
-<script src=/js/perfect-scrollbar.min.js?1634762570></script>
-<script src=/js/perfect-scrollbar.jquery.min.js?1634762570></script>
-<script src=/js/jquery.sticky.js?1634762570></script>
-<script src=/js/featherlight.min.js?1634762570></script>
-<script src=/js/highlight.pack.js?1634762570></script>
+<script src=/js/clipboard.min.js?1634834254></script>
+<script src=/js/perfect-scrollbar.min.js?1634834254></script>
+<script src=/js/perfect-scrollbar.jquery.min.js?1634834254></script>
+<script src=/js/jquery.sticky.js?1634834254></script>
+<script src=/js/featherlight.min.js?1634834254></script>
+<script src=/js/highlight.pack.js?1634834254></script>
 <script>hljs.initHighlightingOnLoad()</script>
-<script src=/js/modernizr.custom-3.6.0.js?1634762570></script>
-<script src=/js/learn.js?1634762570></script>
-<script src=/js/hugo-learn.js?1634762570></script>
-<script src=/mermaid/mermaid.js?1634762570></script>
+<script src=/js/modernizr.custom-3.6.0.js?1634834254></script>
+<script src=/js/learn.js?1634834254></script>
+<script src=/js/hugo-learn.js?1634834254></script>
+<script src=/mermaid/mermaid.js?1634834254></script>
 <script>mermaid.initialize({startOnLoad:!0})</script>
 </body>
 </html>

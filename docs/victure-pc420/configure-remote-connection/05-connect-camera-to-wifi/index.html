@@ -5,7 +5,7 @@
 <meta name=generator content="Hugo 0.88.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title>UART to U-Boot :: IoT Hack Labs</title>
+<title>Connect Camera to WiFi :: IoT Hack Labs</title>
 <link href=/css/nucleus.css?1634834254 rel=stylesheet>
 <link href=/css/fontawesome-all.min.css?1634834254 rel=stylesheet>
 <link href=/css/hybrid.css?1634834254 rel=stylesheet>
@@ -20,7 +20,7 @@
 <script src=/js/jquery-3.3.1.min.js?1634834254></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
-<body data-url=/victure-pc420/02-uart-to-uboot/>
+<body data-url=/victure-pc420/configure-remote-connection/05-connect-camera-to-wifi/>
 <nav id=sidebar>
 <div id=header-wrapper>
 <div id=header>
@@ -50,7 +50,7 @@ parent">
 Victure PC420
 </a>
 <ul>
-<li data-nav-id=/victure-pc420/02-uart-to-uboot/ title="UART to U-Boot" class="dd-item active">
+<li data-nav-id=/victure-pc420/02-uart-to-uboot/ title="UART to U-Boot" class=dd-item>
 <a href=/victure-pc420/02-uart-to-uboot/>
 UART to U-Boot
 </a>
@@ -60,7 +60,8 @@ UART to U-Boot
 U-Boot to Root
 </a>
 </li>
-<li data-nav-id=/victure-pc420/configure-remote-connection/ title="Configure Remote Connection" class=dd-item>
+<li data-nav-id=/victure-pc420/configure-remote-connection/ title="Configure Remote Connection" class="dd-item
+parent">
 <a href=/victure-pc420/configure-remote-connection/>
 Configure Remote Connection
 </a>
@@ -85,7 +86,7 @@ Build Firmware
 Update Camera Firmware
 </a>
 </li>
-<li data-nav-id=/victure-pc420/configure-remote-connection/05-connect-camera-to-wifi/ title="Connect Camera to WiFi" class=dd-item>
+<li data-nav-id=/victure-pc420/configure-remote-connection/05-connect-camera-to-wifi/ title="Connect Camera to WiFi" class="dd-item active">
 <a href=/victure-pc420/configure-remote-connection/05-connect-camera-to-wifi/>
 Connect Camera to WiFi
 </a>
@@ -188,7 +189,7 @@ Ultraloq-UL3
 <div>
 <div id=top-bar>
 <div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/Victure%20PC420/02-UART-to-UBoot.md target=blank>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/Victure%20PC420/Configure%20Remote%20Connection/05-Connect-Camera-to-Wifi.md target=blank>
 <i class="fas fa-code-branch"></i>
 <span id=top-github-link-text>Edit this page</span>
 </a>
@@ -201,14 +202,18 @@ Ultraloq-UL3
 </span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > <a href=/victure-pc420/>Victure PC420</a> > UART to U-Boot
+<a href=/></a> > <a href=/victure-pc420/>Victure PC420</a> > <a href=/victure-pc420/configure-remote-connection/>Configure Remote Connection</a> > Connect Camera to WiFi
 </span>
 </div>
 <div class=progress>
 <div class=wrapper>
 <nav id=TableOfContents>
 <ul>
-<li><a href=#uart-to-u-boot>UART to U-Boot</a></li>
+<li>
+<ul>
+<li><a href=#connect-camera-to-wifi>Connect Camera to WiFi</a></li>
+</ul>
+</li>
 </ul>
 </nav>
 </div>
@@ -219,91 +224,54 @@ Ultraloq-UL3
 </div>
 <div id=body-inner>
 <h1>
-UART to U-Boot
+Connect Camera to WiFi
 </h1>
-<h2 id=uart-to-u-boot>UART to U-Boot</h2>
-<div class=expand>
-<div class=expand-label style=cursor:pointer onclick="$h=$(this),$h.next('div').slideToggle(100,function(){$h.children('i').attr('class',function(){return $h.next('div').is(':visible')?'fas fa-chevron-down':'fas fa-chevron-right'})})">
-<i style=font-size:x-small class="fas fa-chevron-right"></i>
-<span>
-Home Only
-</span>
-</div>
-<div class=expand-content style=display:none>
-<p>We will now connect to the Victure camera via the USB to TTL adapter.</p>
-<p><img src=/static/PC420-dsd-tech-usb-to-ttl.jpg alt="DSD Tech USB to TTL Adapter">
-<img src=/static/PC420-shikra-diagram.png alt="Shikra Diagram"></p>
-<p>Connect the female ends of the jumper cables to the TX, RX, and GND pins on the USB to TTL adapter shown above. Once done, connect the adapter to the computer</p>
-<p>Now connect the male ends of the jumper cables to the camera&rsquo;s UART ports according to the following table</p>
-<table>
-<thead>
-<tr>
-<th>Adapter</th>
-<th>Camera</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GND</td>
-<td>GND</td>
-</tr>
-<tr>
-<td>TX</td>
-<td>RX</td>
-</tr>
-<tr>
-<td>RX</td>
-<td>TX</td>
-</tr>
-</tbody>
-</table>
-<p><img src=/static/PC420-victure.png alt="Victure UART Ports"></p>
-</div>
-</div>
-<p><code>screen</code> can be used to connect to serial consoles. To connect to the adapter, run the following</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>screen /dev/ttyUSB3 <span style=color:#ae81ff>115200</span>
-</code></pre></div><p>Where,</p>
-<ul>
-<li><code>/dev/ttyUSB3</code>: Linux serial port for the USB to TTL adapter</li>
-<li><code>115200</code>: The baud rate (i.e. communication speed). <code>115200</code> is often the baud rate of UART devices.</li>
-</ul>
-<div class=expand>
-<div class=expand-label style=cursor:pointer onclick="$h=$(this),$h.next('div').slideToggle(100,function(){$h.children('i').attr('class',function(){return $h.next('div').is(':visible')?'fas fa-chevron-down':'fas fa-chevron-right'})})">
-<i style=font-size:x-small class="fas fa-chevron-right"></i>
-<span>
-Home Only
-</span>
-</div>
-<div class=expand-content style=display:none>
-<p><strong>Note:</strong> Your serial port might not be <code>/dev/ttyUSB3</code>. You can disconnect the adapter from the computer, run <code>ls /dev</code>, reconnect the adapter and run <code>ls /dev</code> to determine the correct serial port to use.</p>
-</div>
-</div>
-<p>It is now time to power the camera. <strong>Before doing so, make sure you are ready to press any key in the terminal where you ran the <code>screen</code> command to connect to the adapter&rsquo;s serial console.</strong></p>
-<p>Once the camera is powered on, you should see something like this in the <code>screen</code> session</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>U-Boot 2013.10.0-AK_V3.0.05 <span style=color:#f92672>(</span>Jan <span style=color:#ae81ff>11</span> <span style=color:#ae81ff>2021</span> - 08:10:47<span style=color:#f92672>)</span>
+<h3 id=connect-camera-to-wifi>Connect Camera to WiFi</h3>
+<p>Now that the firmware has been updated, we no longer need to boot to <code>/bin/sh</code>. To change the bootargs, follow the steps taken in the <code>UART to U-Boot</code> section to get into the U-Boot shell and run the following:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>setenv bootargs console<span style=color:#f92672>=</span>ttySAK0,115200n8 root<span style=color:#f92672>=</span>/dev/mtdblock4 rootfstype<span style=color:#f92672>=</span>squashfs init<span style=color:#f92672>=</span>/init mem<span style=color:#f92672>=</span>64M memsize<span style=color:#f92672>=</span>64M
+saveenv
+</code></pre></div><pre tabindex=0><code>Saving Environment to SPI Flash...
+Env save done OK
+</code></pre><p>Now disconnect and reconnect the power to the camera. The camera should not boot into a shell but should run our modified initialization scripts.</p>
+<p>We now need to connect the camera to the WiFi. The first step to do this is to connect the computer to the WiFi the camera is broadcasting. The camera&rsquo;s WiFi SSID should start with &lsquo;Victure_&rsquo;.</p>
+<p>Once connected, run the following on the computer, replacing PASSWORD and SSID with the password and SSID of the WiFi it should connect to:</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>gen_qr_code_str<span style=color:#f92672>(){</span>
+    qrcode_header<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;\x68\x00\x00\x00\x80&#39;</span>
+    victure_user<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;95c992cdf31fc7d0&#34;</span>
+    timezone<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;-7.00&#34;</span>
+    region<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;US&#34;</span>
+    wifi_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;WPA&#34;</span>
+    wifi_ssid<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$1<span style=color:#e6db74>&#34;</span>
+    wifi_password<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$2<span style=color:#e6db74>&#34;</span>
 
-DRAM:  <span style=color:#ae81ff>64</span> MiB
-<span style=color:#ae81ff>8</span> MiB
-Create flash partition table init OK!
-ak_sdhsmmc_init:
-ANYKA SDHC/MMC4.0: <span style=color:#ae81ff>0</span>
-Load Env CRC OK!
-In:    serial
-Out:   serial
-Err:   serial
-reset pin value: <span style=color:#ae81ff>1</span>
+    payload<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;WIFI:U:</span>$victure_user<span style=color:#e6db74>;Z:</span>$timezone<span style=color:#e6db74>;R:</span>$region<span style=color:#e6db74>;T:</span>$wifi_type<span style=color:#e6db74>;P:\&#34;</span>$wifi_password<span style=color:#e6db74>\&#34;;S:</span>$wifi_ssid<span style=color:#e6db74>;&#34;</span>
 
-Hit any key to stop autoboot:  <span style=color:#ae81ff>1</span>
-</code></pre></div><p><strong>Press any key to stop the autoboot process</strong>. The following shell prompt should be shown</p>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>anyka$
-</code></pre></div><p><strong>Note:</strong> If you weren&rsquo;t fast enough, just simply disconnect and reconnect the power and try again.</p>
+    ssidLength<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${#</span>wifi_ssid<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+    passwordLength<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${#</span>wifi_password<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+    payloadLength<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${#</span>payload<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
+    lengths<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$passwordLength<span style=color:#e6db74>;</span>$ssidLength<span style=color:#e6db74>;</span>$payloadLength<span style=color:#e6db74>&#34;</span>
+    echo -en <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>qrcode_header<span style=color:#e6db74>}</span><span style=color:#e6db74>L:</span>$lengths<span style=color:#e6db74>;</span>$payload<span style=color:#e6db74>&#34;</span>
+<span style=color:#f92672>}</span>
+
+gen_qr_code_str <span style=color:#e6db74>&#34;SAINTCON&#34;</span> <span style=color:#e6db74>&#34;saintcon2021&#34;</span> | nc -v 10.1.8.1 <span style=color:#ae81ff>6666</span>
+</code></pre></div><p>This sends the camera all of the info it needs in order to connect to the WiFi. Once done, you should see output in the <code>screen</code> session related to the camera connecting to the WiFi. Make note of the IP that is displayed once it has connected to the WiFi.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>Sending <span style=color:#66d9ef>select</span> <span style=color:#66d9ef>for</span> 192.168.4.46...
+Lease of 192.168.4.46 obtained, lease time <span style=color:#ae81ff>14400</span>
+deleting routes
+route: SIOCDELRT: No such process
+adding dns 69.27.0.130
+adding dns 69.27.0.131
+totalsize <span style=color:#f92672>[</span>4857755<span style=color:#f92672>]</span> VmRSS <span style=color:#f92672>[</span>3672<span style=color:#f92672>]</span> <span style=color:#f92672>[</span>4020<span style=color:#f92672>]</span> VmSize <span style=color:#f92672>[</span>13104<span style=color:#f92672>]</span>
+no network <span style=color:#66d9ef>for</span> token
+interface <span style=color:#f92672>[</span>wlan0<span style=color:#f92672>]</span> ip <span style=color:#f92672>[</span>192.168.4.46<span style=color:#f92672>]</span>
+</code></pre></div>
 <footer class=footline>
 </footer>
 </div>
 </div>
 <div id=navigation>
-<a class="nav nav-prev" href=/victure-pc420/ title="Victure PC420"> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/victure-pc420/03-uboot-to-root/ title="U-Boot to Root" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-prev" href=/victure-pc420/configure-remote-connection/04-update-camera-firmware/ title="Update Camera Firmware"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/victure-pc420/09-test-remote-connection/ title="Test Remote Connection" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>

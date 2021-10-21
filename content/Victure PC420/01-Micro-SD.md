@@ -2,6 +2,7 @@
 title: "Micro SD"
 weight: 100
 date: 2021-10-18T20:46:32-06:00
+draft: true
 ---
 
 ## Micro SD

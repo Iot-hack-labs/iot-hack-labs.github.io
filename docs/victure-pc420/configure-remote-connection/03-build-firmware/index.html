@@ -5,7 +5,7 @@
 <meta name=generator content="Hugo 0.88.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title>BTLE CTF :: IoT Hack Labs</title>
+<title>Build Firmware :: IoT Hack Labs</title>
 <link href=/css/nucleus.css?1634834254 rel=stylesheet>
 <link href=/css/fontawesome-all.min.css?1634834254 rel=stylesheet>
 <link href=/css/hybrid.css?1634834254 rel=stylesheet>
@@ -20,7 +20,7 @@
 <script src=/js/jquery-3.3.1.min.js?1634834254></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
-<body data-url=/btle-labs/>
+<body data-url=/victure-pc420/configure-remote-connection/03-build-firmware/>
 <nav id=sidebar>
 <div id=header-wrapper>
 <div id=header>
@@ -44,7 +44,8 @@
 </section>
 <div class=highlightable>
 <ul class=topics>
-<li data-nav-id=/victure-pc420/ title="Victure PC420" class=dd-item>
+<li data-nav-id=/victure-pc420/ title="Victure PC420" class="dd-item
+parent">
 <a href=/victure-pc420/>
 Victure PC420
 </a>
@@ -59,7 +60,8 @@ UART to U-Boot
 U-Boot to Root
 </a>
 </li>
-<li data-nav-id=/victure-pc420/configure-remote-connection/ title="Configure Remote Connection" class=dd-item>
+<li data-nav-id=/victure-pc420/configure-remote-connection/ title="Configure Remote Connection" class="dd-item
+parent">
 <a href=/victure-pc420/configure-remote-connection/>
 Configure Remote Connection
 </a>
@@ -74,7 +76,7 @@ Dump Firmware
 Modify Firmware
 </a>
 </li>
-<li data-nav-id=/victure-pc420/configure-remote-connection/03-build-firmware/ title="Build Firmware" class=dd-item>
+<li data-nav-id=/victure-pc420/configure-remote-connection/03-build-firmware/ title="Build Firmware" class="dd-item active">
 <a href=/victure-pc420/configure-remote-connection/03-build-firmware/>
 Build Firmware
 </a>
@@ -134,9 +136,7 @@ Local File Inclusion
 </li>
 </ul>
 </li>
-<li data-nav-id=/btle-labs/ title="BTLE CTF" class="dd-item
-parent
-active">
+<li data-nav-id=/btle-labs/ title="BTLE CTF" class=dd-item>
 <a href=/btle-labs/>
 BTLE CTF
 </a>
@@ -189,7 +189,7 @@ Ultraloq-UL3
 <div>
 <div id=top-bar>
 <div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/BTLE%20Labs/_index.md target=blank>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/Victure%20PC420/Configure%20Remote%20Connection/03-Build-Firmware.md target=blank>
 <i class="fas fa-code-branch"></i>
 <span id=top-github-link-text>Edit this page</span>
 </a>
@@ -200,34 +200,47 @@ Ultraloq-UL3
 <i class="fas fa-bars"></i>
 </a>
 </span>
+<span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > BTLE CTF
+<a href=/></a> > <a href=/victure-pc420/>Victure PC420</a> > <a href=/victure-pc420/configure-remote-connection/>Configure Remote Connection</a> > Build Firmware
 </span>
+</div>
+<div class=progress>
+<div class=wrapper>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#build-firmware>Build Firmware</a></li>
+</ul>
+</nav>
+</div>
 </div>
 </div>
 </div>
 <div id=head-tags>
 </div>
-<div id=chapter>
 <div id=body-inner>
-<h3 id=btle-ctf>BTLE CTF</h3>
-<h2 id=about>About</h2>
-<p>This lab walks through some tools that are used for hacking Bluetooth Low Energy (BLE). Our target is a Bluetooth CTF project designed to allow users to learn about core concepts of Bluetooth client and server interactions. (BLE CTF Infinity)</p>
-<h2 id=tips-for-this-lab>Tips for this lab</h2>
-<p>⚠️⚠️⚠️ BLE devices are finicky. Here are some helpful tips for this lab:</p>
-<ol>
-<li>Run commands multiple times if you get errors.</li>
-<li>Remove and re insert the Bluetooth dongle.</li>
-<li>Most of the time you can skip ahead in the lab if it just isn&rsquo;t working.</li>
-</ol>
+<h1>
+Build Firmware
+</h1>
+<h2 id=build-firmware>Build Firmware</h2>
+<p>Now that we have modified the initialization scripts, we are going to &lsquo;resquash&rsquo; the files</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mksquashfs rootfs /mnt/pc420/root.sqsh4 -comp xz
+</code></pre></div><p>Where,</p>
+<ul>
+<li><code>rootfs</code>: The path to the directory containing the filesystem</li>
+<li><code>/mnt/pc420/root.sqsh4</code>: The destination of the resulting squashfs file</li>
+<li><code>-comp xz</code>: Compress the filesystem using <code>xz</code></li>
+</ul>
+<p>Once complete, unmount the micro SD card</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>sudo umount /mnt/pc420
+</code></pre></div>
 <footer class=footline>
 </footer>
 </div>
 </div>
-</div>
 <div id=navigation>
-<a class="nav nav-prev" href=/router-lab/wrt160n/local-file-inclusion/ title="Local File Inclusion"> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/btle-labs/01-getting-started/ title="Getting Started" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-prev" href=/victure-pc420/configure-remote-connection/02-modify-firmware/ title="Modify Firmware"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/victure-pc420/configure-remote-connection/04-update-camera-firmware/ title="Update Camera Firmware" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
