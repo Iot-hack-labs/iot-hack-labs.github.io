@@ -2,9 +2,9 @@
 title: "Micro SD"
 weight: 100
 date: 2021-10-18T20:46:32-06:00
+draft: true
 ---
 
-## Micro SD
 The micro SD must be FAT32 formatted. The following steps can be skipped if your micro SD is already FAT32 formatted.
 
 ### Partitioning

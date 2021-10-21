@@ -16,3 +16,14 @@ This lab walks through some tools that are used for hacking Bluetooth Low Energy
 1. Run commands multiple times if you get errors.
 2. Remove and re insert the Bluetooth dongle.
 3. Most of the time you can skip ahead in the lab if it just isn't working.
+
+## Devices for reference
+Here are the target devices for reference:
+
+1. 08:3A:F2:7D:65:8A
+2. 94:B9:7E:FA:27:72
+3. 94:B9:7E:F9:21:B6
+4. 94:B9:7E:FA:71:F2
+5. 94:B9:7E:FA:2A:42
+6. 4C:EB:D6:75:4E:B6
+7. 94:B9:7E:DA:08:56

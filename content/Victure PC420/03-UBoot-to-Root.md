@@ -4,8 +4,6 @@ weight: 300
 date: 2021-10-18T20:48:21-06:00
 ---
 
-## U-Boot to Root
-
 The current shell is actually a U-Boot a limited shell. U-Boot is an open-source, primary boot loader. This shell has commands related to the booting process.
 
 ```sh
@@ -33,7 +31,6 @@ saveenv
 ```
 Saving Environment to SPI Flash...
 Env save done OK
-
 ```
 Where,
 - `setenv bootargs args...`: Sets the command line arguments that are passed to the kernel. The change here is `init=/bin/sh`. This means that instead of running `/init` when fully booted, `/bin/sh` will be run.
