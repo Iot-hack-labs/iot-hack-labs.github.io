@@ -5,7 +5,7 @@ date: 2021-10-18T20:48:21-06:01
 ---
 Now that we have modified the initialization scripts, we are going to 'resquash' the files
 ```sh
-mksquashfs rootfs /mnt/pc420/root.sqsh4 -comp xz
+sudo mksquashfs rootfs /mnt/pc420/root.sqsh4 -comp xz
 ```
 Where,
 - `rootfs`: The path to the directory containing the filesystem
