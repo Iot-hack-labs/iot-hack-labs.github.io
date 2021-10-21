@@ -4,9 +4,6 @@ weight: 900
 date: 2021-10-18T20:52:11-06:00
 ---
 
-
-
-## Test Remote Connection
 Now that the camera is connected to the WiFi, we should be able to disconnect our USB to TTL adapter and remotely connect to it.
 ```sh
 telnet IP_ADDR

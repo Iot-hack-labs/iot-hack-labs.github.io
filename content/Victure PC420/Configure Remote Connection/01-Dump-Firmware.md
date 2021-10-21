@@ -4,7 +4,6 @@ weight: 100
 date: 2021-10-18T20:48:21-06:01
 ---
 
-## Dump Firmware
 The first step in enabling remote connections is to dump the camera's firmware.
 
 You may notice that, though we have shell, basic commands like `whoami` seem to give errors

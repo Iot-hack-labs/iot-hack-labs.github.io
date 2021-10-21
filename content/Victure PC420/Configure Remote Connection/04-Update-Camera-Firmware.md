@@ -4,7 +4,6 @@ weight: 400
 date: 2021-10-18T20:48:21-06:01
 ---
 
-## Update Camera Firmware
 **The following commands need to be run on the camera**
 
 Now that we have the modified squashfs file, we can update the camera's firmware. Plug the micro SD into the camera and run the following
