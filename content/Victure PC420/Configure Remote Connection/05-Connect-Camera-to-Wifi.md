@@ -42,13 +42,13 @@ gen_qr_code_str "HP Office Jet 420" "omg pizza party" | nc -v 10.1.8.1 6666
 ```
 This sends the camera all of the info it needs in order to connect to the WiFi. Once done, you should see output in the `screen` session related to the camera connecting to the WiFi. Make note of the IP that is displayed once it has connected to the WiFi.
 ```sh
-Sending select for 192.168.4.46...
-Lease of 192.168.4.46 obtained, lease time 14400
+Sending select for 172.21.0.69...
+Lease of 172.21.0.69 obtained, lease time 14400
 deleting routes
 route: SIOCDELRT: No such process
 adding dns 69.27.0.130
 adding dns 69.27.0.131
 totalsize [4857755] VmRSS [3672] [4020] VmSize [13104]
 no network for token
-interface [wlan0] ip [192.168.4.46]
+interface [wlan0] ip [172.21.0.69]
 ```
