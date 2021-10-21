@@ -13,7 +13,7 @@ For this step, we will use Burpsuite.
 
 Click the Kali drop down in the top left corner and search for `Burp`.
 
-![images/kali-burp.png](/static/kali-burp.png)
+![images/kali-burp.png](/static/kali-find-burp.png)
 
 - Open Burp. This may take a few seconds.
 - Click `Next`
@@ -41,7 +41,7 @@ In Firefox, log into the DLINK router using the creds discovered from out brute 
 
 Then navigate to `Tools` > `System Check`:
 
-![images/dir815_tools_system_check.png](/static/ir815_tools_system_check.png)
+![images/dir815_tools_system_check.png](/static/dir815_tools_system_check.png)
 
 Try using the IPv6 ping utility.
 
