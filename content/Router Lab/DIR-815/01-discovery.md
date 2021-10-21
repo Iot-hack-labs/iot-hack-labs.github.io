@@ -1,7 +1,7 @@
 +++
 title = "Discovery"
 date = 2021-10-18T20:39:54-06:00
-weight = 5
+weight = 1
 +++
 
 Run nmap against the target. The `-Pn` flag is used to scan ports even though nmap is not receiving a ping response from the device.
