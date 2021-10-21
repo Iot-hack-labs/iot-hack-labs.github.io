@@ -14,4 +14,8 @@ Must be on the Wifi [documented here](/router-lab/).
 Host: 172.21.0.42
 ```
 
-Coming Soon
+## Enumeration
+
+```bash
+nmap 172.21.0.42 -p- -Pn
+```
