@@ -22,6 +22,6 @@ PORT     STATE SERVICE
 
 Open up a browser and navigate to https://172.16.0.23:8080
 
-![images/dir-815-login.png](/static/dir-815-login.png)
+![images/dir-815-login.png](/static/dir815-login-screen.png)
 
 You can try logging in, but we should see that we don't have the password.
