@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DIR-815 on IoT Hack Labs</title><link>https://iot-hack-labs.github.io/router-lab/dir-815/</link><description>Recent content in DIR-815 on IoT Hack Labs</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 18 Oct 2021 20:39:54 -0600</lastBuildDate><atom:link href="https://iot-hack-labs.github.io/router-lab/dir-815/index.xml" rel="self" type="application/rss+xml"/><item><title>Discovery</title><link>https://iot-hack-labs.github.io/router-lab/dir-815/01-discovery/</link><pubDate>Mon, 18 Oct 2021 20:39:54 -0600</pubDate><guid>https://iot-hack-labs.github.io/router-lab/dir-815/01-discovery/</guid><description>Run nmap against the target. The -Pn flag is used to scan ports even though nmap is not receiving a ping response from the device.
-nmap 172.21.0.23 -Pn
-You should see that only port 8080 is shown as open.
-Host discovery disabled (-Pn). All addresses will be marked 'up' and scan times will be slower.
+nmap 172.21.0.23 -Pn You should see that only port 8080 is shown as open.
+Host discovery disabled (-Pn). All addresses will be marked &amp;#39;up&amp;#39; and scan times will be slower.
 Starting Nmap 7.91 ( https://nmap.org ) at 2021-10-19 13:20 MDT
 Nmap scan report for 172.21.0.23
 Host is up (0.</description></item><item><title>Brute Force Login</title><link>https://iot-hack-labs.github.io/router-lab/dir-815/02-brute-force-login/</link><pubDate>Mon, 18 Oct 2021 20:39:54 -0600</pubDate><guid>https://iot-hack-labs.github.io/router-lab/dir-815/02-brute-force-login/</guid><description>We can see if the login has been configured with weak credentials by using a brute force attack with a password list. There are several tools to do this. We will use a Metasploit.

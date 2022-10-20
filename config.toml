@@ -1,16 +1,46 @@
 baseURL = "https://iot-hack-labs.github.io/"
 languageCode = "en-us"
+defaultContentLanguage = "en"
 title = "IoT Hack Labs"
+metaDataFormat = "yaml"
+defaultContentLanguageInSubdir= true
 
 # Change the default theme to be use when building the site with Hugo
-theme = "hugo-theme-learn"
+theme = "hugo-theme-relearn"
 
 # For search functionality
 [outputs]
 home = [ "HTML", "RSS", "JSON"]
 
 [params]
-  # Change default color scheme with a variant one. Can be "red", "blue", "green".
-  themeVariant = "red"
+  disableBreadcrumb = false
+  disableNextPrev = false
+  disableLandingPageButton = false
+  disableMermaid = false
+  customMermaidURL = "https://unpkg.com/mermaid@8.8.0/dist/mermaid.min.js"
+  titleSeparator = "::"
+  themeVariant = [ "relearn-light", "relearn-dark", "learn", "neon", "blue", "green", "red" ]
   ordersectionsby = "weight"
   editURL = "https://github.com/Iot-hack-labs/iot-hack-labs.github.io/blob/main/content/"
+
+[markup]
+  [markup.highlight]
+    # if `guessSyntax = true`, there will be no unstyled code even if no language
+    # was given BUT mermaid code fences will not work anymore! So this is a mandatory
+    # setting for your site
+    guessSyntax = false
+
+    # here in this showcase we use our own modified chroma syntax highlightning style
+    # which is imported in theme-relearn-light.css / theme-relearn-dark.css;
+    # if you want to use a predefined style instead:
+    # - remove the following `noClasses`
+    # - set the following `style` to a predefined style name
+    # - remove the `@import` of the self-defined chroma stylesheet from your CSS files
+    #   (here eg.: theme-relearn-light.css / theme-relearn-dark.css)
+    noClasses = false
+    # style = "tango"
+
+  [markup.goldmark.renderer]
+    # activated for this showcase to use HTML and JavaScript; decide on your own needs;
+    # if in doubt, remove this line
+    unsafe = true
