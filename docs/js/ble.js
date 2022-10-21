@@ -94,9 +94,10 @@ $(async function() {
 		await $.getJSON(`${BASE_API_URL}/ping`)
 	} catch (error) {
 		console.log("API not listening")
-		$(".outlet-container").hide()
 		return
 	}
+
+	$(".outlet-container").show()
 
 	let outlets = $('[data-outlet]')
 	for (const o of outlets) {
