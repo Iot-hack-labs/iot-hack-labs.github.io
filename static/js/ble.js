@@ -1,6 +1,8 @@
 const BASE_API_URL = "http://localhost:8307/api"
 
-let inProgress = false
+let isLoading = false
+const onLabel = "Turn On"
+const offLabel = "Turn Off"
 
 async function getPowerState(num) {
 	let state = await $.getJSON(`${BASE_API_URL}/powerstrip/${num}`)
@@ -8,11 +10,12 @@ async function getPowerState(num) {
 }
 
 async function togglePowerState(num) {
-	if (inProgress) {
+	if (isLoading) {
 		return
 	}
 
-	inProgress = true
+	isLoading = true
+	showSpinner(num)
 
 	try {
 		let currentState = await getPowerState(num)
@@ -36,7 +39,7 @@ async function togglePowerState(num) {
 		console.log(error)
 	}
 
-	inProgress = false
+	isLoading = false
 }
 
 function setButtonOn(num) {
@@ -47,7 +50,7 @@ function setButtonOn(num) {
 
 	outlet.removeClass("tip warning").addClass("tip")
 	let a = outlet.find("a").first()
-	a.text("On")
+	a.text(onLabel)
 }
 
 function setButtonOff(num) {
@@ -58,10 +61,43 @@ function setButtonOff(num) {
 
 	outlet.removeClass("tip warning").addClass("warning")
 	let a = outlet.find("a").first()
-	a.text("Off")
+	a.text(offLabel)
+}
+
+function showSpinner(num) {
+	let outlet = $(`[data-outlet=${num}]`)
+	if (!outlet) {
+		return
+	}
+
+	let a = outlet.find("a").first()
+	a.html(`<i class="fas fa-spinner fa-fw fa-spin"></i>`)
+}
+
+async function loadState() {
+	let outlets = $('[data-outlet]')
+	for (const o of outlets) {
+		let outlet = $(o)
+		let num = outlet.data("outlet")
+		let power = await getPowerState(num)
+		
+		if (power) {
+			setButtonOff(num)
+		} else {
+			setButtonOn(num)
+		}
+	}
 }
 
 $(async function() {
+	try {
+		await $.getJSON(`${BASE_API_URL}/ping`)
+	} catch (error) {
+		console.log("API not listening")
+		$(".outlet-container").hide()
+		return
+	}
+
 	let outlets = $('[data-outlet]')
 	for (const o of outlets) {
 		let outlet = $(o)
@@ -79,5 +115,5 @@ $(async function() {
 		}
 	}
 	
-	// setInterval(() => this.location.reload(), 10000)
+	setInterval(loadState, 30000)
 });
