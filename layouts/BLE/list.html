@@ -1,18 +1,123 @@
 {{ partial "header.html" . }}
 
-<div>
-  <span data-outlet="1" class="btn cstyle tip">
-    <a class="highlight">On</a>
-  </span>
-  <span data-outlet="2" class="btn cstyle tip">
-    <a class="highlight">On</a>
-  </span>
-  <span data-outlet="3" class="btn cstyle tip">
-    <a class="highlight">On</a>
-  </span>
-  <span data-outlet="4" class="btn cstyle tip">
-    <a class="highlight">On</a>
-  </span>
+{{ .Content }}
+
+<style>
+  .outlet-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 50px;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    width: 285px;
+    box-shadow: 0 0 10px #00000020;
+    user-select: none;
+  }
+
+  .card>div {
+    padding: 20px 40px;
+  }
+
+  .card-header {
+    background-color: var(--INTERNAL-MENU-HEADER-BG-color);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .card-header::after {
+    content: "";
+    width: 25px;
+    height: 25px;
+    rotate: 45deg;
+    background-color: var(--INTERNAL-MENU-HEADER-BG-color);
+    position: absolute;
+    bottom: -7px;
+  }
+
+  .card-header p {
+    font-weight: 600;
+    font-size: 32px !important;
+  }
+
+  .card-body {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 20px !important;
+  }
+
+  .toggle-btn a {
+    gap: 10px;
+    padding: 10px 50px;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .toggle-btn a.highlight {
+    width: 195px;
+    height: 50px;
+  }
+</style>
+
+<div class="outlet-container">
+  <div class="card card-1">
+    <div class="card-header">
+      <p>Outlet 1</p>
+    </div>
+    <div class="card-body">
+      <div class="toggle-btn">
+        <span data-outlet="1" class="btn cstyle">
+          <a class="highlight"></a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="card card-2">
+    <div class="card-header">
+      <p>Outlet 2</p>
+    </div>
+    <div class="card-body">
+      <div class="toggle-btn">
+        <span data-outlet="2" class="btn cstyle">
+          <a class="highlight"></a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="card card-3">
+    <div class="card-header">
+      <p>Outlet 3</p>
+    </div>
+    <div class="card-body">
+      <div class="toggle-btn">
+        <span data-outlet="3" class="btn cstyle">
+          <a class="highlight"></a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="card card-4">
+    <div class="card-header">
+      <p>Outlet 4</p>
+    </div>
+    <div class="card-body">
+      <div class="toggle-btn">
+        <span data-outlet="4" class="btn cstyle">
+          <a class="highlight"></a>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
 
 {{ partial "footer.html" . }}
