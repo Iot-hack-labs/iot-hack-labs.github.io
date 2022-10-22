@@ -3,24 +3,23 @@
 {{ .Content }}
 
 <style>
-  .outlet-container {
+  .action-container {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    gap: 20px;
+    gap: 2%;
     margin-top: 50px;
   }
 
   .card {
     display: flex;
     flex-direction: column;
-    width: 285px;
     box-shadow: 0 0 10px #00000020;
     user-select: none;
+    width: calc(100% / 3);
   }
 
   .card>div {
-    padding: 20px 40px;
+    padding: 20px 10px;
   }
 
   .card-header {
@@ -50,70 +49,93 @@
   .card-body {
     background-color: #fff;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
     gap: 30px;
     padding-bottom: 20px !important;
   }
 
-  .toggle-btn a {
+  .action-btn a {
     gap: 10px;
     padding: 10px 50px;
     font-size: 24px;
     font-weight: 500;
   }
 
-  .toggle-btn a.highlight {
+  .action-btn.button a.highlight {
     width: 195px;
     height: 50px;
   }
+
+  #message-card {
+    width: 100%;
+  }
 </style>
 
-<div class="outlet-container" style="display: none;">
-  <div class="card card-1">
+<div class="action-container" style="display: none;">
+  <div class="card">
     <div class="card-header">
       <p>Outlet 1</p>
     </div>
     <div class="card-body">
-      <div class="toggle-btn">
+      <div class="action-btn toggle">
         <span data-outlet="1" class="btn cstyle">
           <a class="highlight"></a>
         </span>
       </div>
     </div>
   </div>
-  <div class="card card-2">
+
+  <div class="card">
     <div class="card-header">
       <p>Outlet 2</p>
     </div>
     <div class="card-body">
-      <div class="toggle-btn">
+      <div class="action-btn toggle">
         <span data-outlet="2" class="btn cstyle">
           <a class="highlight"></a>
         </span>
       </div>
     </div>
   </div>
-  <div class="card card-3">
+
+  <div class="card">
     <div class="card-header">
       <p>Outlet 3</p>
     </div>
     <div class="card-body">
-      <div class="toggle-btn">
+      <div class="action-btn toggle">
         <span data-outlet="3" class="btn cstyle">
           <a class="highlight"></a>
         </span>
       </div>
     </div>
   </div>
-  <div class="card card-4">
+</div>
+
+<div class="action-container" style="display: none;">
+  <div id="message-card" class="card">
     <div class="card-header">
-      <p>Outlet 4</p>
+      <p>Message</p>
     </div>
     <div class="card-body">
-      <div class="toggle-btn">
-        <span data-outlet="4" class="btn cstyle">
-          <a class="highlight"></a>
+      <div class="action-btn">
+        <span data-message="1" class="btn cstyle tip">
+          <a class="highlight">1</a>
+        </span>
+      </div>
+      <div class="action-btn">
+        <span data-message="2" class="btn cstyle tip">
+          <a class="highlight">2</a>
+        </span>
+      </div>
+      <div class="action-btn">
+        <span data-message="3" class="btn cstyle tip">
+          <a class="highlight">3</a>
+        </span>
+      </div>
+      <div class="action-btn">
+        <span data-message="4" class="btn cstyle tip">
+          <a class="highlight">4</a>
         </span>
       </div>
     </div>

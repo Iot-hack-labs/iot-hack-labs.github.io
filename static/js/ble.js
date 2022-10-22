@@ -15,7 +15,7 @@ async function togglePowerState(num) {
 	}
 
 	isLoading = true
-	showSpinner(num)
+	showSpinner(`[data-outlet=${num}]`)
 
 	try {
 		let currentState = await getPowerState(num)
@@ -43,35 +43,72 @@ async function togglePowerState(num) {
 }
 
 function setButtonOn(num) {
-	let outlet = $(`[data-outlet=${num}]`)
+	let outlet = setButtonText(`[data-outlet=${num}]`, onLabel)
 	if (!outlet) {
 		return
 	}
 
 	outlet.removeClass("tip warning").addClass("tip")
-	let a = outlet.find("a").first()
-	a.text(onLabel)
 }
 
 function setButtonOff(num) {
-	let outlet = $(`[data-outlet=${num}]`)
+	let outlet = setButtonText(`[data-outlet=${num}]`, offLabel)
 	if (!outlet) {
 		return
 	}
 
 	outlet.removeClass("tip warning").addClass("warning")
-	let a = outlet.find("a").first()
-	a.text(offLabel)
 }
 
-function showSpinner(num) {
-	let outlet = $(`[data-outlet=${num}]`)
+function showSpinner(selector) {
+	let outlet = $(selector)
 	if (!outlet) {
 		return
 	}
 
 	let a = outlet.find("a").first()
 	a.html(`<i class="fas fa-spinner fa-fw fa-spin"></i>`)
+}
+
+function setButtonText(selector, text) {
+	let button = $(selector)
+	if (!button) {
+		return
+	}
+
+	let a = button.find("a").first()
+	a.text(text)
+
+	return button
+}
+
+async function sendMessage(num) {
+	if (isLoading) {
+		return
+	}
+	
+	isLoading = true
+
+	showSpinner(`[data-message=${num}]`)
+
+	try {
+		let resp = await $.ajax({
+			url: `${BASE_API_URL}/display`,
+			type: 'POST',
+			data: JSON.stringify({
+				id: num
+			})
+		});
+
+		setButtonText(`[data-message=${num}]`, num)
+	
+		console.log(`Send message ${num}:`)
+		console.log(resp)
+	} catch (error) {
+		console.log(error)
+	}
+
+	isLoading = false
 }
 
 async function loadState() {
@@ -97,7 +134,7 @@ $(async function() {
 		return
 	}
 
-	$(".outlet-container").show()
+	$(".action-container").show()
 
 	let outlets = $('[data-outlet]')
 	for (const o of outlets) {
@@ -114,6 +151,15 @@ $(async function() {
 		} else {
 			setButtonOn(num)
 		}
+	}
+
+	let messages = $('[data-message]')
+	for (const m of messages) {
+		let message = $(m)
+		let num = message.data("message")
+		message.find("a").first().on("click", () => {
+			sendMessage(num)
+		})
 	}
 	
 	setInterval(loadState, 30000)
