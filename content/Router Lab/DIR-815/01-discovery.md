@@ -20,7 +20,7 @@ PORT     STATE SERVICE
 8080/tcp open  http-proxy
 ```
 
-Open up a browser and navigate to https://172.16.0.23:8080
+Open up a browser and navigate to http://172.21.0.23:8080
 
 ![images/dir-815-login.png](/static/dir815-login-screen.png)
 
