@@ -70,3 +70,5 @@ run
 ![images/dir815-run.png](/static/dir815-run.png)
 
 The module should continue to try passwords until it finds the correct one.
+
+Creds: `Admin`:`letmein`
