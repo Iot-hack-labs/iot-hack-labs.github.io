@@ -27,7 +27,7 @@ Navigate to "Proxy" > "Intercept" tab and turn off Intercept.
 
 In Burpsuite, click on the open Browser button. This will automatically proxy calls through Burpsuite.
 
-![images/foxy-proxy.png](/static/burpsuite_browser_button.png)
+![images//burpsuite_browser_button.png](/static/burpsuite_browser_button.png)
 
 In the broswer, navigate to `http://172.21.0.23:8080/`.
 
