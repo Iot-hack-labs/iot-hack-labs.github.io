@@ -23,13 +23,13 @@ Navigate to "Proxy" > "Intercept" tab and turn off Intercept.
 
 ![images/burp_nav_to_proxy.png](/static/burp_nav_to_proxy.png)
 
-## Open Firefox
+## Open the Burpsuite Browser
 
-Open Firefox and click on the "Foxy Proxy" extension. We need to select the option `127.0.0.1:8080`. The "Foxy Proxy" extension should then get a green label above it.
+In Burpsuite, click on the open Browser button. This will automatically proxy calls through Burpsuite.
 
-![images/foxy-proxy.png](/static/foxy-proxy.png)
+![images/foxy-proxy.png](/static/burpsuite_browser_button.png)
 
-In Firefox, navigate to `http://172.21.0.23:8080/`.
+In the broswer, navigate to `http://172.21.0.23:8080/`.
 
 Now in Burpsuite. Navigate to the "Proxy" > "HTTP History" tab. You should see the traffic from loading the login page.
 
@@ -37,7 +37,7 @@ Now in Burpsuite. Navigate to the "Proxy" > "HTTP History" tab. You should see t
 
 ## Use the Ping Utility
 
-In Firefox, log into the DLINK router using the creds discovered from out brute force attack.
+In the browser, log into the DLINK router using the creds discovered from out brute force attack.
 
 Then navigate to `Tools` > `System Check`:
 

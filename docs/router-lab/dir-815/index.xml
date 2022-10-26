@@ -9,4 +9,4 @@ In a terminal, open up Metasploit.</description></item><item><title>Command Inje
 Open Burpsuite For this step, we will use Burpsuite.
 Click the Kali drop down in the top left corner and search for Burp.
 Open Burp. This may take a few seconds. Click Next Click Start Burp Navigate to &amp;ldquo;Proxy&amp;rdquo; &amp;gt; &amp;ldquo;Intercept&amp;rdquo; tab and turn off Intercept.
-Open Firefox Open Firefox and click on the &amp;ldquo;Foxy Proxy&amp;rdquo; extension.</description></item></channel></rss>
+Open the Burpsuite Browser In Burpsuite, click on the open Browser button.</description></item></channel></rss>
